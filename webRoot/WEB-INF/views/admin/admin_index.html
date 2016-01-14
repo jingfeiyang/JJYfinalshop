@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>管理中心 - Powered By ${systemConfig.systemName}</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="${base}/template/assets/css/admin.css">
+  <script type="text/javascript" src="${base}/template/assets/js/jquery.min.js"></script>
+</head>
+<body>
+	<div class="admin-content">
+	
+	    <div class="am-cf am-padding">
+	      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>管理中心</small></div>
+	    </div>
+	
+	    <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+	      <li><a href="#" class="am-text-success"><span class="am-icon-btn am-icon-file-text"></span><br/>未处理订单<br/>${unprocessedOrderCount!}</a></li>
+	      <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>等待发货订单数<br/>${paidUnshippedOrderCount!}</a></li>
+	      <li><a href="#" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>未读消息<br/>${unreadMessageCount!}</a></li>
+	      <li><a href="#" class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br/>商品库存报警<br/>${storeAlertCount}</a></li>
+	    </ul>
+	
+	    <div class="am-g">
+	      <div class="am-u-sm-12">
+	       <table class="am-table">				
+				<tbody>
+					<tr>
+						<td class="am-primary">已上架商品:</td>
+						<td class="am-success">${marketableProductCount!}</td>
+						<td class="am-primary">已下架商品:</td>
+						<td class="am-success">${unMarketableProductCount!}</td>
+					</tr>
+					<tr>
+						<td class="am-primary">会员总数:</td>
+						<td class="am-success">${memberTotalCount!}</td>
+						<td class="am-primary">文章总数:</td>
+						<td class="am-success">${articleTotalCount!}</td>
+					</tr>
+					<tr>
+						<td class="am-primary">JAVA版本:</td>
+						<td class="am-success">${java_version!}</td>
+						<td class="am-primary">操作系统名称:</td>
+						<td class="am-success">${os!}</td>
+					</tr>
+					<tr>
+						<td class="am-primary">操作系统构架:</td>
+						<td class="am-success">${os_arch!}</td>
+						<td class="am-primary">操作系统版本</td>
+						<td class="am-success">${os_version!}</td>
+					</tr>					
+				</tbody>
+			</table>
+	      </div>
+	    </div>
+	  </div>
+</body>
+</html>

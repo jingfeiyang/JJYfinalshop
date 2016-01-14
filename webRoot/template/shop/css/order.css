@@ -1,0 +1,221 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Order Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+.orderInfo .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.orderInfo .orderInfoTable {
+	width: 1000px;
+	clear: both;
+	border-top: 2px solid #d13333;
+}
+
+.orderInfo .orderInfoTable th {
+	line-height: 28px;
+	padding: 5px;
+	border: 1px solid #d4d4d4;
+	background-color: #fffaf1;
+}
+
+.orderInfo .orderInfoTable td {
+	line-height: 28px;
+	padding: 5px;
+	border: 1px solid #d4d4d4;
+}
+
+.orderInfo .otherReceiverTable {
+	width: 100%;
+	clear: both;
+	display: none;
+	border: 1px solid #d4d4d4;
+}
+
+.orderInfo .otherReceiverTable th {
+	width: 120px;
+	text-align: right;
+	border: none;
+	background-color: #f5f5f5;
+}
+
+.orderInfo .otherReceiverTable td {
+	border: none;
+}
+
+.orderInfo .deliveryTypeTable {
+	width: 100%;
+	clear: both;
+	border: 1px solid #d4d4d4;
+}
+
+.orderInfo .deliveryTypeTable th {
+	width: 200px;
+	text-align: left;
+	border: none;
+	background-color: #f5f5f5;
+}
+
+.orderInfo .paymentConfigTable {
+	width: 100%;
+	clear: both;
+	border: 1px solid #d4d4d4;
+}
+
+.orderInfo .paymentConfigTable th {
+	width: 200px;
+	text-align: left;
+	border: none;
+	background-color: #f5f5f5;
+}
+
+.orderInfo .cartItemTable {
+	width: 1000px;
+	clear: both;
+	border-top: 2px solid #d13333;
+}
+
+.orderInfo .cartItemTable th {
+	line-height: 30px;
+	border: 1px solid #d4d4d4;
+	background-color: #fffaf1;
+}
+
+.orderInfo .cartItemTable td {
+	line-height: 28px;
+	padding: 5px;
+	text-align: center;
+	border: 1px solid #d4d4d4;
+}
+
+.orderInfo .cartItemTable td img {
+	width: 60px;
+	height: 60px;
+	vertical-align: middle;
+	padding: 1px;
+	border: 1px solid #eeeeee;
+}
+
+.orderInfo .cartItemTable .productName {
+	text-align: left;
+}
+
+.orderInfo .cartItemTable .quantity {
+	width: 22px;
+	height: 12px;
+	line-height: 12px;
+}
+
+.orderInfo .cartItemTable .info {
+	line-height: 30px;
+	text-align: right;
+}
+
+.orderInfo .backCartItem {
+	float: left;
+}
+
+.orderInfo .backCartItem span.icon {
+	width: 25px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/order_bg.gif) 0px 0px no-repeat;
+}
+
+.orderInfo input.formButton {
+	width: 89px;
+	height: 32px;
+	display: block;
+	float: right;
+	margin-right: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 5px;
+	color: #ffffff;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/order_bg.gif) -30px 0px no-repeat;
+}
+
+.orderInfo input.formButton:hover {
+	background: url(../images/order_bg.gif) -120px 0px no-repeat;
+}
+
+.orderResult .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.orderResult .message {
+	height: 50px;
+	line-height: 50px;
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: bold;
+	border: 1px solid #a9bcdd;
+	background-color: #f7f8fc;
+}
+
+.orderResult .message .icon {
+	width: 51px;
+	height: 51px;
+	line-height: 51px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/order_bg.gif) no-repeat 0px -60px;
+}
+
+.orderResult .listTable {
+	width: 100%;
+}
+
+.orderResult .listTable th {
+	padding: 10px;
+	text-align: left;
+	font-size: 14px;
+	border: 1px solid #dbdbdb;
+	background-color: #f7f8fc;
+}
+
+.orderResult .listTable td {
+	padding: 10px;
+	border: 1px solid #dbdbdb;
+}
+
+.orderResult .listTable .title {
+	width: 100px;
+	color: #666666;
+}
+
+.orderResult input.formButton {
+	width: 89px;
+	height: 32px;
+	display: block;
+	margin-right: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: #ffffff;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/order_bg.gif) -30px 0px no-repeat;
+}
+
+.orderResult input.formButton:hover {
+	background: url(../images/order_bg.gif) -120px 0px no-repeat;
+}

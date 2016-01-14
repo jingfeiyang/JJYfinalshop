@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Article List Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+.articleList .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.articleList .bodyLeft {
+	width: 210px;
+	float: left;
+}
+
+.articleList .bodyRight {
+	width: 780px;
+	float: right;
+}
+
+.articleList .articleList {
+	width: 780px;
+	float: right;
+}
+
+.articleList .articleList .articleListTop {
+	width: 780px;
+	height: 3px;
+	overflow: hidden;
+	clear: both;
+	background: url(../images/article_list_bg.gif) 0px 0px no-repeat;
+}
+
+.articleList .articleList .articleListMiddle {
+	width: 750px;
+	clear: both;
+	padding: 15px;
+	background: url(../images/article_list_y_bg.gif) 0px 0px repeat-y;
+}
+
+.articleList .articleList .articleListDetail li {
+	padding: 10px 0px;
+	border-bottom: 1px solid #e9e9e9;
+}
+
+.articleList .articleList .articleListDetail li.noRecord {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	clear: both;
+	color: #999999;
+	font-size: 14px;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+}
+
+.articleList .articleList .articleListDetail .title {
+	line-height: 30px;
+	color: #204e7d;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.articleList .articleList .articleListDetail .author {
+	padding-left: 10px;
+	color: #111111;
+}
+
+.articleList .articleList .articleListDetail .createDate {
+	padding-left: 10px;
+	line-height: 30px;
+	color: #787878;
+	font-size: 12px;
+}
+
+.articleList .articleList .articleListDetail .contentText {
+	line-height: 30px;
+	color: #787878;
+}
+
+.articleList .articleList .articleListBottom {
+	width: 780px;
+	height: 5px;
+	overflow: hidden;
+	clear: both;
+	background: url(../images/article_list_bg.gif) 0px -30px no-repeat;
+}

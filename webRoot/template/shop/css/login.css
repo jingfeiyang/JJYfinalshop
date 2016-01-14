@@ -1,0 +1,219 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Login Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+.loginWindow {
+	width: 400px;
+	margin-left: -200px;
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	z-index: 100;
+}
+
+.loginWindow .windowTop {
+	width: 400px;
+	height: 29px;
+	clear: both;
+	overflow: hidden;
+	cursor: move;
+	background: url(../images/login_bg.gif) no-repeat 0px 0px;
+}
+
+.loginWindow .windowMiddle {
+	width: 400px;
+	clear: both;
+	padding: 10px 0px;
+	text-align: center;
+	background: url(../images/login_y_bg.gif) repeat-y 0px 0px;
+}
+
+.loginWindow .windowBottom {
+	width: 400px;
+	height: 5px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/login_bg.gif) no-repeat 0px -30px;
+}
+
+.loginWindow .windowTitle {
+	height: 29px;
+	line-height: 32px;
+	_display: inline;
+	float: left;
+	margin-left: 30px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #5a5a5a;
+}
+
+.loginWindow .windowClose {
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
+	display: block;
+	outline: none;
+	float: right;
+	cursor: pointer;
+	background: url(../images/login_bg.gif) no-repeat 0px -60px;
+}
+
+.loginWindow .windowClose:hover {
+	background: url(../images/login_bg.gif) no-repeat -30px -60px;
+}
+
+.loginWindow table {
+	width: 100%;
+}
+
+.loginWindow th {
+	width: 115px;
+	line-height: 35px;
+	padding-right: 10px;
+	text-align: right;
+	font-weight: normal;
+}
+
+.loginWindow td {
+	line-height: 35px;
+	text-align: left;
+}
+
+.loginWindow input.formText {
+	width: 180px;
+}
+
+.loginWindow input.formTextS {
+	width: 95px;
+	margin-right: 5px;
+	text-transform: uppercase;
+}
+
+.loginWindow #loginWindowCaptchaImage {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.loginWindow .loginSubmit {
+	width: 80px;
+	height: 28px;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/login_bg.gif) 0px -90px no-repeat;
+}
+
+.loginWindow .loginSubmit:hover {
+	background: url(../images/login_bg.gif) -90px -90px no-repeat;
+}
+
+* iframe.jqm {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+	width: expression(this.parentNode.offsetWidth+'px');
+	height: expression(this.parentNode.offsetHeight+'px');
+}
+
+* html .loginWindow {
+	position: absolute;
+	top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(25 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+.login .body {
+	width: 1000px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+.login .loginDetail {
+	width: 500px;
+	margin: 0px auto;
+}
+
+.login .loginDetail .top {
+	width: 455px;
+	height: 41px;
+	line-height: 38px;
+	clear: both;
+	padding-top: 4px;
+	padding-left: 45px;
+	text-align: left;
+	font-size: 14px;
+	font-weight: bold;
+	color: #515151;
+	overflow: hidden;
+	background: url(../images/login_bg.gif) no-repeat 0px -120px;
+}
+
+.login .loginDetail .middle {
+	width: 500px;
+	clear: both;
+	padding-top: 10px;
+	text-align: center;
+	background: url(../images/login_y_bg.gif) repeat-y -400px 0px;
+}
+
+.login .loginDetail .bottom {
+	width: 500px;
+	height: 60px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/login_bg.gif) no-repeat 0px -180px;
+}
+
+.login .loginDetail table {
+	width: 100%;
+}
+
+.login .loginDetail th {
+	width: 160px;
+	line-height: 35px;
+	padding-right: 10px;
+	text-align: right;
+	font-weight: normal;
+}
+
+.login .loginDetail td {
+	line-height: 35px;
+	text-align: left;
+}
+
+.login .loginDetail input.formTextS {
+	margin-right: 1px;
+	text-transform: uppercase;
+}
+
+.login .loginDetail #loginCaptchaImage {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.login .loginDetail .submitButton {
+	width: 80px;
+	height: 28px;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/login_bg.gif) 0px -90px no-repeat;
+}
+
+.login .loginDetail .submitButton:hover {
+	background: url(../images/login_bg.gif) -90px -90px no-repeat;
+}

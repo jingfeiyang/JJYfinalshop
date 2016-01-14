@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>JFinalShop体验商城 - Powered By JFinalShop</title>
+<meta name="Author" content="JFINALSHOP Team" />
+<meta name="Copyright" content="JFINALSHOP" />
+<meta name="keywords" content="JFinalShop体验商城" />
+<meta name="description" content="JFinalShop是基于JAVA技术的开源网店系统，主要应用于电子商务领域内的网上购物、网上交易、交易信息发布等系统的构建。致力于为个人和企业提供安全、稳定、高效、强大的电子商务解决方案，并推进国内电子商务技术和开源技术的发展而不断努力。" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="/template/common/css/base.css" rel="stylesheet" type="text/css" />
+<link href="/template/common/css/jquery.datepicker.css" rel="stylesheet" type="text/css" />
+<link href="/template/common/css/jquery.zoomimage.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/common/js/jquery.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.form.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.metadata.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.methods.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.cn.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.dimensions.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.jqDnR.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.jqModal.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.tools.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.qtip.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.pager.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.livequery.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.superfish.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.datepicker.js"></script>
+<!-- <script type="text/javascript" src="/template/common/js/jquery.bCheckbox.js"></script> -->
+<script type="text/javascript" src="/template/common/js/jquery.lSelect.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.ajaxfileupload.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.zoomimage.js"></script>
+<script type="text/javascript" src="/template/common/tiny_mce/jquery.tinymce.js"></script>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="/template/common/js/belatedPNG.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/template/common/js/base.js"></script><link href="/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/index.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/product.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/article.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/shop/js/login.js"></script>
+<script type="text/javascript" src="/template/shop/js/register.js"></script>
+<!-- <script type="text/javascript" src="/template/shop/js/index.js"></script> -->
+<script type="text/javascript" src="/template/shop/js/product.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$(".slider .scrollable").scrollable({
+		circular: true,
+		speed: 500
+	}).autoscroll({
+		autoplay: true,
+		interval: 4000
+	}).navigator();
+	
+	$(".hotProduct .scrollable").scrollable({
+		circular: true,
+		speed: 500
+	});
+	
+	$(".newProduct ul.newProductTab").tabs(".newProduct .newProductTabContent", {
+		effect: "fade",// 逐渐显示动画
+		fadeInSpeed: 500,// 动画显示速度
+		event: "mouseover"// 触发tab切换的事件
+	});
+
+})
+</script>
+</head>
+<body class="index">
+<script type="text/javascript" src="/template/shop/js/header.js"></script>
+<link href="/template/shop/css/header.css" rel="stylesheet" type="text/css" />
+<div class="header png">
+	<div class="headerTop png">
+		<div class="headerTopContent">
+			<div class="headerLoginInfo">
+				您好<span id="headerLoginMemberUsername"></span>，欢迎来到JFinalShop体验商城!
+				<a href="#" id="headerShowLoginWindow" class="showLoginWindow">[登  录]</a>
+				<a href="/memberCenter" id="headerMemberCenter">[会员中心]</a>
+				<a href="#" id="headerShowRegisterWindow" class="showRegisterWindow">[注  册]</a>
+				<a href="/memberCenter/logout" id="headerLogout">[退  出]</a>
+			</div>
+			<div class="headerTopNav">
+					<a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html"  target="_blank">关于我们</a>
+			</div>
+		</div>
+	</div>
+	<div class="headerMiddle">
+		<div class="headerInfo">
+			7×24小时服务热线：<strong>400-8888888</strong>
+		</div>
+		<div class="headerLogo">
+			<a href="/"><img class="png" src="/upload/image/logo.gif" title="JFinalShop体验商城" /></a>
+		</div>
+		<div class="headerSearch png">
+			<form id="productSearchForm" action="/shop/product/search" method="get">
+				<div class="headerSearchText">
+					<input type="text" id="productSearchKeyword" name="keyword" value="请输入关键词..."}" />
+				</div>
+				<input type="submit" class="headerSearchButton" value="" />
+				<div class="hotKeyword">
+					热门关键词: 
+						<a href="/shop/product/search?keyword=电子书">电子书</a>
+						<a href="/shop/product/search?keyword=生活电器">生活电器</a>
+						<a href="/shop/product/search?keyword=电脑配件">电脑配件</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="headerBottom">
+		<input type="button" class="cartItemListButton showCartItemList" value="" onclick="window.open('/shop/cartItem/list')" />
+		<ul id="cartItemListDetail"></ul>
+		<input type="button" class="orderButton" value="" onclick="window.open('/shop/cartItem/list')" />
+		<div class="headerMiddleNav">
+			<div class="headerMiddleNavLeft png"></div>
+			<ul class="headerMiddleNavContent png">
+					<li>
+						<a href="/">首页</a>
+					</li>
+			</ul>
+			<div class="headerMiddleNavRight png"></div>
+		</div>
+	</div>
+</div>	<div class="body">
+		<div class="bodyLeft">
+			<div class="productCategory">
+            	<div class="top">商品分类</div>
+            	<div class="middle clearfix">
+            		<ul class="menu">
+            				<li class="mainCategory">
+								<a href="/shop/product/list?id=c5910cfe886244c9b23bd0234d946c3e">厨房电器</a>
+							</li>
+									<li>
+										<a href="/shop/product/list?id=2505aa1eda674d78a3325db74b0bfd72"><span class="icon"> </span>电水壶</a>
+									</li>
+									<li>
+										<a href="/shop/product/list?id=3693519d7a81423082a8639f6cfb31ef"><span class="icon"> </span>榨汁机</a>
+									</li>
+									<li>
+										<a href="/shop/product/list?id=a2a54141e9c04a20ac81d9b18b6e96ab"><span class="icon"> </span>电陶炉</a>
+									</li>
+									<li>
+										<a href="/shop/product/list?id=28663da185934da0a4cf52784f771157"><span class="icon"> </span>111</a>
+									</li>
+            				<li class="mainCategory">
+								<a href="/shop/product/list?id=0e3d1018956045ea8588796d321f7317">3C数码配件市场</a>
+							</li>
+									<li>
+										<a href="/shop/product/list?id=340f3673c9f340529a89398228a0cc87"><span class="icon"> </span>移动电源</a>
+									</li>
+            				<li class="mainCategory">
+								<a href="/shop/product/list?id=2dcf75f487de4c7ea62bc181a0c28662">个人护理清洁</a>
+							</li>
+									<li>
+										<a href="/shop/product/list?id=a0060df8778447a2b2c636b04555f43b"><span class="icon"> </span>电子美容仪</a>
+									</li>
+					</ul>
+            	</div>
+                <div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="slider">
+				<div class="scrollable">
+					<div class="items">
+						<div>
+							<img src="/upload/image/banner1.jpg" />
+						</div>
+						<div>
+							<img src="/upload/image/banner2.jpg" />
+						</div>
+						<div>
+							<img src="/upload/image/banner3.jpg" />
+						</div>
+					</div>
+					<div class="navi"></div>
+					<div class="prevNext">
+						<a class="prev browse left"></a>
+						<a class="next browse right"></a>
+					</div>
+				</div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotProduct">
+				<div class="title">
+					<strong>热卖商品</strong>HOT
+				</div>
+				<a class="prev browse"></a>
+				<div class="scrollable">
+					<div class="items">
+								<div>
+								<ul>
+							<li>
+								<a href="/html/product_content/201501/7bb5a5692a164d6d93af2ff318808185.html">
+									<img src="/upload/image/201501/877e84f41e07437c9e3756a3ac32c2e7_thumbnail.jpg" alt="SKG 1638 家用静音电陶炉 不锈钢 包邮特价 无辐射黑晶炉" />
+										<p title="SKG 1638 家用静音电陶炉 不锈钢 包邮特价 无辐射黑晶炉">SKG 1638...</p>
+								</a>
+							</li>
+							<li>
+								<a href="/html/product_content/201501/709936434ae64444b52dd29edda6618a.html">
+									<img src="/upload/image/201501/d7ac6f6bcf734de3a37411bd405166d4_thumbnail.jpg" alt="新款SKG GW3315榨汁机 不锈钢 婴儿榨汁机 出汁率高 特价ZZ1318" />
+										<p title="新款SKG GW3315榨汁机 不锈钢 婴儿榨汁机 出汁率高 特价ZZ1318">新款SKG GW...</p>
+								</a>
+							</li>
+					</div>
+				</div>
+				<a class="next browse"></a>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<img src="/upload/image/banner4.jpg" />
+		<div class="blank"></div>
+		<div class="newProduct">
+			<div class="left">
+				<ul class="newProductTab">
+						<li>
+							厨房电器
+						</li>
+						<li>
+							3C数码配件市场
+						</li>
+						<li>
+							个人护理清洁
+						</li>
+				</ul>
+			</div>
+			<div class="right">
+					<ul class="newProductTabContent">
+					</ul>
+					<ul class="newProductTabContent">
+					</ul>
+					<ul class="newProductTabContent">
+					</ul>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<div class="bodyLeft">
+			<div class="hotProduct">
+				<div class="top">热销排行</div>
+				<div class="middle clearfix">
+					<ul>
+							<li class="number1">
+									<span class="icon"> </span><a href="/html/product_content/201501/7bb5a5692a164d6d93af2ff318808185.html" title="SKG 1638 家用静音电陶炉 不锈钢 包邮特价 无辐射黑晶炉">SKG 1638 家用...</a>
+							</li>
+							<li class="number2">
+									<span class="icon"> </span><a href="/html/product_content/201501/709936434ae64444b52dd29edda6618a.html" title="新款SKG GW3315榨汁机 不锈钢 婴儿榨汁机 出汁率高 特价ZZ1318">新款SKG GW331...</a>
+							</li>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotArticle">
+				<div class="top">热点文章</div>
+				<div class="middle clearfix">
+					<ul>
+							<li class="number1">
+									<span class="icon"> </span><a href="/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html" title="网站制度">网站制度</a>
+							</li>
+							<li class="number2">
+									<span class="icon"> </span><a href="/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html" title="关于我们">关于我们</a>
+							</li>
+							<li class="number3">
+									<span class="icon"> </span><a href="/html/article_content/201010/0340b92488ca464aa8d545fb899dcd25.html" title="会员等级">会员等级</a>
+							</li>
+							<li class="number4">
+									<span class="icon"> </span><a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html" title="联系我们">联系我们</a>
+							</li>
+							<li class="number5">
+									<span class="icon"> </span><a href="/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html" title="网上支付">网上支付</a>
+							</li>
+							<li class="number6">
+									<span class="icon"> </span><a href="/html/article_content/201010/ac6f0b7c351c41058dc800ea0091e26c.html" title="退货政策">退货政策</a>
+							</li>
+							<li class="number7">
+									<span class="icon"> </span><a href="/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html" title="订单查询">订单查询</a>
+							</li>
+							<li class="number8">
+									<span class="icon"> </span><a href="/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html" title="购物流程">购物流程</a>
+							</li>
+							<li class="number9">
+									<span class="icon"> </span><a href="/html/article_content/201010/c55109104bb241c7a51605602b1531df.html" title="会员注册协议">会员注册协议</a>
+							</li>
+							<li class="number10">
+									<span class="icon"> </span><a href="/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html" title="发票制度说明">发票制度说明</a>
+							</li>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="bestProduct">
+				<div class="top">
+					<strong>精品推荐</strong>BEST
+				</div>
+				<div class="middle">
+					<ul>
+							<li>
+								<a href="/html/product_content/201501/7bb5a5692a164d6d93af2ff318808185.html">
+									<img src="/upload/image/201501/877e84f41e07437c9e3756a3ac32c2e7_thumbnail.jpg" alt="SKG 1638 家用静音电陶炉 不锈钢 包邮特价 无辐射黑晶炉" />
+										<p title="SKG 1638 家用静音电陶炉 不锈钢 包邮特价 无辐射黑晶炉">SKG 1638...</p>
+									<p class="red">￥179.00</p>
+								</a>
+							</li>
+							<li>
+								<a href="/html/product_content/201501/709936434ae64444b52dd29edda6618a.html">
+									<img src="/upload/image/201501/d7ac6f6bcf734de3a37411bd405166d4_thumbnail.jpg" alt="新款SKG GW3315榨汁机 不锈钢 婴儿榨汁机 出汁率高 特价ZZ1318" />
+										<p title="新款SKG GW3315榨汁机 不锈钢 婴儿榨汁机 出汁率高 特价ZZ1318">新款SKG GW...</p>
+									<p class="red">￥299.00</p>
+								</a>
+							</li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+<link href="/template/shop/css/friend_link.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/template/shop/js/friend_link.js"></script>
+<div class="friendLink">
+	<div class="pictureFriendLink">
+		<div class="left prev"></div>
+		<div class="middle scrollable">
+			<ul class="items">
+					<li>
+						<a href="http://www.oschina.net/" target="_blank" title="开源中国">
+							<img src="/upload/image/1e31632cf9214b4191bd0adb50b4ed3e.png">
+						</a>
+					</li>
+			</ul>
+		</div>
+		<div class="right next"></div>
+	</div>
+	<div class="textFriendLink">
+		<div class="left"></div>
+		<div class="middle">
+			<ul>
+			</ul>
+		</div>
+		<div class="right"></div>
+	</div>
+</div>	</div>
+	<div class="blank"></div>
+<link href="/template/shop/css/footer.css" type="text/css" rel="stylesheet" />
+<div class="footer">
+	<div class="bottomNavigation">
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html >购物流程</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html >网站制度</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html >订单查询</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/390aed8de096473aa3fd928c25bf9fb9.html >积分说明</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/c55109104bb241c7a51605602b1531df.html >会员注册协议</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/0340b92488ca464aa8d545fb899dcd25.html >会员等级</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html >网上支付</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html >邮局汇款</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/ac6f0b7c351c41058dc800ea0091e26c.html >退货政策</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html >关于我们</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html >发票制度说明</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/cb4b35cc2fd14ddbb20b49d7637fab2f.html >常见问题</a>
+				</dd>
+				</dl>
+				<dl>
+	</div>
+	<div class="footerInfo">
+		<ul>
+<li><a>关于商城</a>|</li>
+<li><a>帮助中心</a>|</li>
+<li><a>网站地图</a>|</li>
+<li><a>诚聘英才</a>|</li>
+<li><a>联系我们</a>|</li>
+<li><a>版权说明</a></li>
+</ul>
+<ul>
+<p>Copyright &copy; 2014 JFinalShop. All rights reserved. <a title="开源中国" href="http://www.oschina.net" target="_blank">开源中国</a></p>
+<p>Powered by JFinal<span class="systemName">Shop V1.0</span></p>
+</ul>
+	</div>
+</div></body>
+</html>

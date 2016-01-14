@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Footer Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+.footer {
+	width: 100%;
+	clear: both;
+	padding-top: 4px;
+	background: url(../images/footer_x_bg.gif) 0px 0px repeat-x;
+}
+
+.footer .bottomNavigation {
+	width: 1000px;
+	padding-left: 80px;
+	margin: 0px auto;
+}
+
+.footer .bottomNavigation dl {
+	width: 230px;
+	line-height: 25px;
+	float: left;
+	padding-left: 10px;
+	text-align: left;
+}
+
+.footer .bottomNavigation dl dt {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 30px;
+}
+
+.footer .footerInfo {
+	width: 1000px;
+	margin: 5px auto;
+	clear: both;
+	text-align: center;
+	border-top: 1px solid #e6e6e6;
+}
+
+.footer .footerInfo ul {
+	clear: both;
+}
+
+.footer .footerInfo ul li {
+	line-height: 30px;
+	display: inline;
+}
+
+.footer .footerInfo ul li a {
+	margin: 0px 10px;
+}
+
+.footer .systemName {
+	color: #000000;
+	font-weight: bold;
+}
+.footer .systemName span {
+	color: #ff6600;
+}

@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>常见问题 - Powered By JFinalShop</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<meta name="keywords" content="问题" />
+<meta name="description" content="常见的问题解决方法" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="/template/common/css/base.css" rel="stylesheet" type="text/css" />
+<link href="/template/common/css/jquery.datepicker.css" rel="stylesheet" type="text/css" />
+<link href="/template/common/css/jquery.zoomimage.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/common/js/jquery.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.form.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.metadata.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.methods.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.cn.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.dimensions.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.jqDnR.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.jqModal.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.tools.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.qtip.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.pager.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.livequery.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.superfish.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.datepicker.js"></script>
+<!-- <script type="text/javascript" src="/template/common/js/jquery.bCheckbox.js"></script> -->
+<script type="text/javascript" src="/template/common/js/jquery.lSelect.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.ajaxfileupload.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.zoomimage.js"></script>
+<script type="text/javascript" src="/template/common/tiny_mce/jquery.tinymce.js"></script>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="/template/common/js/belatedPNG.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/template/common/js/base.js"></script><link href="/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/article.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/article_content.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/shop/js/login.js"></script>
+<script type="text/javascript" src="/template/shop/js/register.js"></script>
+<script type="text/javascript" src="/template/shop/js/article.js"></script>
+<script type="text/javascript">
+$().ready( function() {
+
+	$hits = $("#hits");
+
+	// 统计文章点击数
+	$.ajax({
+		url: "/shop/article/ajaxCounter?id=402881882ba8753a012ba892f6160005",
+		dataType: "json",
+		async: false,
+		success: function(data) {
+			if (data.status == "success") {
+				$hits.text(data.hits);
+			}
+		}
+	});
+
+});
+</script>
+</head>
+<body class="articleContent">
+<script type="text/javascript" src="/template/shop/js/header.js"></script>
+<link href="/template/shop/css/header.css" rel="stylesheet" type="text/css" />
+<div class="header png">
+	<div class="headerTop png">
+		<div class="headerTopContent">
+			<div class="headerLoginInfo">
+				您好<span id="headerLoginMemberUsername"></span>，欢迎来到JFinalShop体验商城!
+				<a href="#" id="headerShowLoginWindow" class="showLoginWindow">[登  录]</a>
+				<a href="/memberCenter" id="headerMemberCenter">[会员中心]</a>
+				<a href="#" id="headerShowRegisterWindow" class="showRegisterWindow">[注  册]</a>
+				<a href="/memberCenter/logout" id="headerLogout">[退  出]</a>
+			</div>
+			<div class="headerTopNav">
+										<a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html"  target="_blank">关于我们</a>
+			</div>
+		</div>
+	</div>
+	<div class="headerMiddle">
+		<div class="headerInfo">
+			7×24小时服务热线：<strong>400-8888888</strong>
+		</div>
+		<div class="headerLogo">
+			<a href="/"><img class="png" src="/upload/image/logo.gif" title="JFinalShop体验商城" /></a>
+		</div>
+		<div class="headerSearch png">
+			<form id="productSearchForm" action="/shop/product/search" method="get">
+				<div class="headerSearchText">
+					<input type="text" id="productSearchKeyword" name="keyword" value="请输入关键词..."}" />
+				</div>
+				<input type="submit" class="headerSearchButton" value="" />
+				<div class="hotKeyword">
+					热门关键词: 
+						<a href="/shop/product/search?keyword=电子书">电子书</a>
+						<a href="/shop/product/search?keyword=生活电器">生活电器</a>
+						<a href="/shop/product/search?keyword=电脑配件">电脑配件</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="headerBottom">
+		<input type="button" class="cartItemListButton showCartItemList" value="" onclick="window.open('/shop/cartItem/list')" />
+		<ul id="cartItemListDetail"></ul>
+		<input type="button" class="orderButton" value="" onclick="window.open('/shop/cartItem/list')" />
+		<div class="headerMiddleNav">
+			<div class="headerMiddleNavLeft png"></div>
+			<ul class="headerMiddleNavContent png">
+					<li>
+						<a href="/">首页</a>
+					</li>
+			</ul>
+			<div class="headerMiddleNavRight png"></div>
+		</div>
+	</div>
+</div>	<div class="body">
+		<div class="bodyLeft">
+			<div class="recommendArticle">
+				<div class="top">推荐文章</div>
+				<div class="middle clearfix">
+					<ul>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html" title="联系我们">联系我们</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html" title="关于我们">关于我们</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html" title="发票制度说明">发票制度说明</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/cb4b35cc2fd14ddbb20b49d7637fab2f.html" title="常见问题">常见问题</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html" title="订单查询">订单查询</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html" title="网站制度">网站制度</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html" title="购物流程">购物流程</a>
+							</li>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotArticle">
+				<div class="top">热点文章</div>
+				<div class="middle clearfix">
+					<ul>
+							<li class="number1">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html" title="网站制度">网站制度</a>
+							</li>
+							<li class="number2">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html" title="关于我们">关于我们</a>
+							</li>
+							<li class="number3">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html" title="联系我们">联系我们</a>
+							</li>
+							<li class="number4">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/ac6f0b7c351c41058dc800ea0091e26c.html" title="退货政策">退货政策</a>
+							</li>
+							<li class="number5">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html" title="订单查询">订单查询</a>
+							</li>
+							<li class="number6">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html" title="购物流程">购物流程</a>
+							</li>
+							<li class="number7">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html" title="发票制度说明">发票制度说明</a>
+							</li>
+							<li class="number8">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/cb4b35cc2fd14ddbb20b49d7637fab2f.html" title="常见问题">常见问题</a>
+							</li>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="listBar">
+				<div class="left"></div>
+				<div class="middle">
+					<div class="path">
+						<a href="/" class="home"><span class="icon">&nbsp;</span>首页</a>>
+							<a href="/shop/article/list?id=402881882ba8455f012ba86db8560006">帮助中心</a>>
+					</div>
+					<div class="articleSearch">
+						<form id="articleSearchForm" action="/shop/article/search" method="get">
+							<input type="text" name="keyword" id="articleSearchKeyword" class="keyword" value="请输入关键词..." />
+							<input type="submit" class="searchButton" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="right"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="articleContentDetail">
+				<div class="articleContentTop"></div>
+				<div class="articleContentMiddle">
+					<div class="title">常见问题</div>
+                    <div class="blank"></div>
+                    <div class="info">
+                    	<span class="createDate">日期：2010-10-14</span>
+                    	
+                    	点击：<span id="hits"></span> 次
+                    	<span class="fontSize">【<a id="changeBigFontSize" href="javascript:void(0);">大</a> <a id="changeNormalFontSize" href="javascript:void(0);">中</a> <a id="changeSmallFontSize" href="javascript:void(0);">小</a>】</span>
+                    </div>
+					<div id="articleContent" class="content">
+             			<p>问：<strong>商城所售商品都是正品行货吗？有售后保修吗？</strong></p><p>答：商城所售商品都是正品行货，均自带机打发票。凭商城发票，所有商品都可以享受生产厂家的全国联保服务。商城将严格按照国家三包政策，针对所售商品履行保修、换货和退货的义务。您也可以到商城任一分公司售后部享受售后服务。</p><p>问：<strong>购买的商品能开发票？如果是公司购买，可以开增值税发票吗？</strong></p><p>答：商城所售商品都是正品行货，每张订单均自带中文机打的&ldquo;商品专用发票&rdquo;，此发票可用作单位报销凭证。 发票会随包裹一同发出，发票金额含配送费金额。<br />企业客户在提供《一般纳税人证书》、《营业执照》、《税务登记证》、《开户许可证》四类证件复印件后，可向开取增值税发票，开好后，商城会以快递方式为您寄出。</p><p>问：<strong>无货商品什么时候能到货？</strong></p><p>答：无货商品的到货时间根据配货情况而不同，无法准确估计，但您可以使用&ldquo;到货通知&rdquo;功能，一旦商品有货，我们会通过电子邮件等方式通知您。</p><p>问：<strong>下单后何时可以收到货？</strong></p><p>答：在商品有现货的情况下，北京、上海、广州客户，下单后一般24小时内可收到货（郊区县配送时间可能会更长一些）；<br />其它地区用户，将根据您的收货地址及所选择的配送方式而不同，一般到货时间在1-7天（极偏远地区配送时间可能会更长一些）；<br />如果商品处于预订或在途状态，那么还应加上调配货时间。</p><p>问：<strong>在线支付支持哪些银行卡？支持大额支付吗？</strong></p><p>答：我们为您提供几乎全部银行的银行卡及信用卡在线支付，只要您开通了&ldquo;网上支付&rdquo;功能，即可进行在线支付，无需手续费，实时到帐，方便快捷。（如客户原因取消订单退款，则需要客户承担1%平台手续费）如您订单金额较大，可以使用快钱支付中的招行、工行、建行、农行、广发进行一次性大额支付（一万元以下）。</p><p>问：<strong>下单时可以指定送货时间吗？</strong></p><p>答：可以，您下单时可以选择&ldquo;只工作日送货(双休日、假日不用送)&rdquo;、&ldquo;工作日、双休日与假日均可送货&rdquo;、&ldquo;只双休日、假日送货(工作日不用送)&rdquo;等时间类型，并选择是否提前电话确认。<br />另外，您还可以在订单备注里填写更具体的需求，我们会尽量满足您的要求。</p><p>问：<strong>收货时发现问题可以拒收吗？</strong></p><p>答：在签收货物时如发现货物有损坏，请直接拒收退回我公司，相关人员将为您重新安排发货。</p><p>问：<strong>如果我刚刚下单商品就降价了，能给我补偿吗？</strong></p><p>答：商城的商品价格随市场价格的波动每日都会有涨价、降价或者优惠等变化。如果下完订单后价格发生了变化，可到&ldquo;我的商城&rdquo;自主申请价格保护。</p><p>问：<strong>下单后，我能做什么？</strong></p><p>答：如果是在线支付方式，请您尽快完成付款，待付款被确认后我们会立即为您发货，如果选择自提或货到付款，您可以进入&ldquo;个人中心&rdquo;，在&ldquo;订单列表&rdquo;中找到您的订单，然后可随时查看订单处理状态，做好收货或者上门自提的准备。<br />在您成功购物后，您还可以发表商品评价，向其他用户分享商品使用心得。</p><p>问：<strong>为什么我无法登陆商城？</strong></p><p>答：首先要检查您的用户名、密码是否正确，确认您的浏览器是否支持COOKIE。</p><p>问：<strong>产品如何保修？</strong></p><p>答：商城销售的商品都以商品说明中的保修承诺为准。</p><p>问：<strong>订单得到确认后我该做什么？</strong></p><p>答：按照订单所提示的实际应汇款金额，汇款至该订单所在的公司账号内，汇款交易成功后，登陆&ldquo;个人中心&rdquo;查看您的订单，在订单中的&ldquo;汇款备注&rdquo;中输入您的相关汇款信息(例如：汇入行、汇入我司银行账号的实际金额、汇款日期和汇入账号、订单号等），等待我司财务人员确认汇款。</p><p>问：<strong>汇款确认后多久能够将货物发出？</strong></p>
+             			<div class="blank"></div>
+             			<link href="/template/shop/css/pager.css" rel="stylesheet" type="text/css" />
+             			<!-- 分页未写 -->
+                    </div>
+				</div>
+				<div class="articleContentBottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+<link href="/template/shop/css/friend_link.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/template/shop/js/friend_link.js"></script>
+<div class="friendLink">
+	<div class="pictureFriendLink">
+		<div class="left prev"></div>
+		<div class="middle scrollable">
+			<ul class="items">
+					<li>
+						<a href="http://www.oschina.net/" target="_blank" title="开源中国">
+							<img src="/upload/image/1e31632cf9214b4191bd0adb50b4ed3e.png">
+						</a>
+					</li>
+			</ul>
+		</div>
+		<div class="right next"></div>
+	</div>
+	<div class="textFriendLink">
+		<div class="left"></div>
+		<div class="middle">
+			<ul>
+			</ul>
+		</div>
+		<div class="right"></div>
+	</div>
+</div>	</div>
+	<div class="blank"></div>
+<link href="/template/shop/css/footer.css" type="text/css" rel="stylesheet" />
+<div class="footer">
+	<div class="bottomNavigation">
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html >购物流程</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html >网站制度</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html >订单查询</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/390aed8de096473aa3fd928c25bf9fb9.html >积分说明</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/c55109104bb241c7a51605602b1531df.html >会员注册协议</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/0340b92488ca464aa8d545fb899dcd25.html >会员等级</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html >网上支付</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html >邮局汇款</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/ac6f0b7c351c41058dc800ea0091e26c.html >退货政策</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html >关于我们</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html >发票制度说明</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/cb4b35cc2fd14ddbb20b49d7637fab2f.html >常见问题</a>
+				</dd>
+				</dl>
+				<dl>
+	</div>
+	<div class="footerInfo">
+		<ul class=" list-paddingleft-2"><li><p><a>关于商城</a>|</p></li><li><p><a>帮助中心</a>|</p></li><li><p><a>网站地图</a>|</p></li><li><p><a>诚聘英才</a>|</p></li><li><p><a>联系我们</a>|</p></li><li><p><a>版权说明</a></p></li><p>Copyright &amp;copy; 2014 JFinalShop. All rights reserved.</p><p>Powered by JFinal<span class="systemName">Shop V1.0</span></p></ul><ul class=" list-paddingleft-2"></ul>
+	</div>
+</div></body>
+</html>

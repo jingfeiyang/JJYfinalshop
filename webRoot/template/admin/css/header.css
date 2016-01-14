@@ -1,0 +1,147 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Header Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+body.header {
+	background: url(../images/header_x_bg.gif) 0px 0px repeat-x;
+}
+
+.header .body {
+	height: 60px;
+	padding-left: 150px;
+	position: relative;
+}
+
+.header .headerLogo {
+	width: 150px;
+	height: 60px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background: url(../images/header_logo.png) 0px 0px no-repeat;
+}
+
+.header .headerTop {
+	width: 100%;
+	height: 27px;
+	clear: both;
+}
+
+.header .headerBottom {
+	width: 100%;
+	height: 33px;
+	clear: both;
+	padding-bottom: 3px;
+}
+
+.header .headerLink {
+	height: 27px;
+	line-height: 27px;
+	float: right;
+}
+
+.header .headerLink a {
+	padding: 0px 5px;
+}
+
+.header .headerMenu {
+	height: 30px;
+	float: left;
+}
+
+.header .headerMenu .menuLeft {
+	width: 5px;
+	height: 30px;
+	float: left;
+	background: url(../images/header_bg.gif) 0px 0px no-repeat;
+}
+
+.header .headerMenu ul {
+	height: 30px;
+	display: block;
+	float: left;
+	background: url(../images/header_x_bg.gif) 0px -60px repeat-x;
+}
+
+.header .headerMenu li {
+	height: 30px;
+	line-height: 30px;
+	float: left;
+	background: url(../images/header_separator.gif) center right no-repeat;
+}
+
+.header .headerMenu li a {
+	height: 30px;
+	line-height: 30px;
+	display: block;
+	float: left;
+	padding: 0px 20px;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.header .headerMenu li a:hover {
+	color: #f0f0f0;
+	background: url(../images/header_bg.gif) -90px 0px no-repeat;
+}
+
+.header .headerMenu li.home {
+	padding: 0px 20px;
+	background: none;
+}
+
+.header .headerMenu li.home a {
+	width: 48px;
+	height: 30px;
+	display: block;
+	outline: none;
+	background: url(../images/header_bg.gif) 0px -60px no-repeat;
+}
+
+.header .headerMenu li.home a:hover {
+	background: url(../images/header_bg.gif) 0px -90px no-repeat;
+}
+
+.header .headerMenu .menuRight {
+	width: 5px;
+	height: 30px;
+	float: left;
+	background: url(../images/header_bg.gif) -30px 0px no-repeat;
+}
+
+.header .userInfo {
+	height: 30px;
+	float: right;
+}
+
+.header .userInfo {
+	height: 30px;
+	line-height: 30px;
+	float: right;
+}
+
+.header .userInfo a {
+	padding-left: 10px;
+}
+
+.header .welcome {
+	color: #000000;
+}
+
+.header .profileIcon {
+	line-height: 30px;
+	padding: 7px 5px;
+	background: url(../images/header_bg.gif) 0px -30px no-repeat;
+}
+
+.header .logoutIcon {
+	line-height: 30px;
+	padding: 7px 5px;
+	background: url(../images/header_bg.gif) -30px -30px no-repeat;
+}

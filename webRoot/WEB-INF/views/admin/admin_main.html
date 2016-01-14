@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>管理中心 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/admin.css">
+  <script type="text/javascript"> 
+	function iFrameHeight() { 
+		var ifm= document.getElementById("mainFrame"); 
+		var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument; 
+		if(ifm != null && subWeb != null) { 
+		ifm.height = subWeb.body.scrollHeight; 
+	} 
+  } 
+</script> 
+</head>
+<body>
+<!--在这里编写你的代码-->
+<!-- header -->
+	<%include("/admin/admin_header.html"){}%>
+	<div class="am-g">
+		<!-- <div class="am-u-md-1 am-u-md-pull-8 am-u-lg-reset-order" style="padding:0px;margin:0px;"> -->
+		<div class="am-u-md-1 am-u-md-pull-8 am-u-lg-reset-order am-panel am-panel-default" style="padding:0px;margin:0px;">
+			<%include("/admin/menu_common.html"){}%>
+		</div>
+	  	<div class="am-u-md-11 am-u-md-push-4 am-u-lg-reset-order" style="padding:0px;margin:0px;">
+	  		<!-- content -->
+			<iframe name="mainFrame" id="mainFrame"  width="100%" onLoad="iFrameHeight()" src="${base}/admin" height="650"></iframe>
+		</div>  		
+	</div>
+	<hr>
+	<footer data-am-widget="footer" class="am-footer am-footer-default" data-am-footer="{  }">	 
+	  <div class="am-footer-miscs ">
+	    <p>由
+	      <a href="http://www.jfinalshop.com/" title="" target="_blank">JFinalShop交流群</a>提供技术支持</p>
+	    <p>CopyRight©2015</p>
+	    <p>粤ICP备15007170号-1</p>
+	  </div>
+	</footer>
+</div>
+
+<!-- content end -->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="${base}/template/assets/js/jquery.min.js"></script>
+<script src="${base}/template/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+</body>
+</html>

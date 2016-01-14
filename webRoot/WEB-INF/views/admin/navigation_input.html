@@ -1,0 +1,184 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>添加/编辑导航 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/admin.css">
+  <script type="text/javascript" src="${base}/template/assets/js/jquery.min.js"></script>
+  <%
+	var isAdd = false;
+	var isEdit = false;
+	if(isEmpty(navigation.id)){
+		isAdd = true;
+	}else{	
+		isEdit = true;
+  }%>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<div class="admin-content">
+	 <div class="am-cf am-padding">
+	   <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">内容管理</strong> / <small><%if(isAdd){%>添加导航<%}else{%>编辑导航<%}%></small></div>
+	 </div>
+	 <hr style="padding:0px 1.6rem 1.6rem 1rem;margin:0px;">
+	 <div class="am-g" >
+		<div class="am-u-sm-12" style="padding:0px 5px 0px 0px;margin:0px;height: 600px">
+		    <form id="inputForm" class="am-form" action="<%if (isAdd){%>${base}/navigation/save<%}else{%>${base}/navigation/update<%}%>" method="post">
+	          <input type="hidden" name="navigation.id" value="${navigation.id!}" />
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right">名称</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" id="name" name="navigation.name" class="am-input-sm" value="${navigation.name!}" required/>	 
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">${nameMessages!}</div>
+	          </div>
+	
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right">系统内容</div>
+	            <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+	            	<select id="systemUrl" data-am-selected="{btnSize: 'sm', btnStyle: 'secondary'}">
+						<%for(list in articleCategoryTreeList){%>
+							<option value="/shop/article/list?id=${list.id}"<%if (("/shop/article/list?id=" + list.id) == navigation.url!){%> selected <%}%>>
+								<%if (list.level != 0){%>
+									<%for( i in range(0,list.level)){%>&nbsp;&nbsp;&nbsp;&nbsp;<%}%>
+								<%}%>
+							${list.name}
+							</option>
+						<%}%>
+						<option value="">-----</option>
+						<%for(list in productCategoryTreeList){%>
+							<option value="/shop/product/list?id=${list.id}"<%if (("/shop/product/list?id=" + list.id) == navigation.url!){%> selected <%}%>>
+								<%if (list.level != 0){%>
+									<%for( i in range(0,list.level)){%>&nbsp;&nbsp;&nbsp;&nbsp;<%}%>
+								<%}%>
+								${list.name}
+							</option>
+						<<%}%>
+					</select>
+	            </div>
+	          </div>
+	
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right">链接地址</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" id="url" name="navigation.url" class="am-input-sm" value="${navigation.url!}" required/>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">${urlMessages!}</div>
+	          </div>
+	
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right">位置</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	            	<select name="position" data-am-selected="{btnSize: 'sm', btnStyle: 'secondary'}">
+						<option value="top" <%if (isAdd || navigation.position! == "top"){%>selected="selected" <%}%>>${i18n("Position.top")}</option>
+						<option value="middle" <%if (isAdd || navigation.position! == "middle"){%>selected="selected" <%}%>>${i18n("Position.middle")}</option>
+						<option value="bottom" <%if (isAdd || navigation.position! == "bottom"){%>selected="selected" <%}%>>${i18n("Position.bottom")}</option>
+					</select>
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning"></div>
+	          </div>
+	
+	
+			  <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right" style="margin-top:0.8rem">是否显示</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	            	<div class="am-g">
+					  <div class="am-u-sm-2"><label class="am-radio am-secondary"><input type="radio" name="navigation.isVisible" value="true" data-am-ucheck<%if (isAdd || navigation.isVisible == true){%> checked<%}%>> 是</label></div>
+					  <div class="am-u-sm-10"><label class="am-radio am-secondary"><input type="radio" name="navigation.isVisible" value="false" data-am-ucheck<%if (navigation.isVisible! == false){%> checked<%}%>> 否</label></div>
+					</div>
+	            </div>
+	             <div class="am-hide-sm-only am-u-md-6 am-text-warning">${isVisibleMessages!}</div>
+	          </div>
+	          
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right" style="margin-top:0.8rem">是否在新窗口中打开</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	            	<div class="am-g">
+					  <div class="am-u-sm-2"><label class="am-radio am-secondary"><input type="radio" name="navigation.isBlankTarget" value="true" data-am-ucheck<%if (navigation.isBlankTarget! == true){%> checked<%}%>> 是</label></div>
+					  <div class="am-u-sm-10"><label class="am-radio am-secondary"><input type="radio" name="navigation.isBlankTarget" value="false" data-am-ucheck<%if (isAdd || navigation.isBlankTarget == false){%> checked<%}%>> 否</label></div>
+					</div>
+	            </div>
+	             <div class="am-hide-sm-only am-u-md-6 am-text-warning">${isBlankTargetMessages!}</div>
+	          </div>
+	          
+	          
+	          <div class="am-g am-margin-top-sm">
+	            <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text">排序</div>
+	            <div class="am-u-sm-12 am-u-md-4">
+	              <input type="text" id="url" name="navigation.orderList" class="am-input-sm" value="${navigation.orderList!50}" required/>
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning">${orderListMessages!}</div>
+	          </div>
+	          
+			  <div class="am-g am-margin-top">
+			  <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text"></div>
+			  <div class="am-u-sm-12 am-u-md-10">
+			  	<button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+			    <button type="button" class="am-btn am-btn-warning am-btn-xs" onclick="window.history.back(); return false;">放弃保存</button>
+			  </div>
+			  </div>
+	        </form>
+		</div>
+	</div>
+</div>
+<!-- content end -->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="${base}/template/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+	  $(document).ready( function() {
+		// 将选择的系统内容地址填充至链接地址中,若名称为空,则自动将名称填充至名称输入框.
+		$name = $("#name");
+		$systemUrl = $("#systemUrl");
+		$url = $("#url");
+		$systemUrl.change( function() {
+			var url = $systemUrl.val();
+			$url.val(url);
+			if($name.val() == "") {
+				//var systemUrlSelectedText = $("$systemUrl:selected").get(0).text;
+				var systemUrlSelectedText = $("#systemUrl").find("option:selected").text();
+				systemUrlSelectedText = systemUrlSelectedText.replace(/^-*\s*/g,"");
+				$name.val(systemUrlSelectedText);
+			}
+		});
+		// 链接地址内容修改时，系统内容选择框修改为不选择任何项目
+		$url.keypress( function() {
+			$systemUrl.val("");
+		});
+  })
+</script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+</body>
+</html>

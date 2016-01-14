@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jfinalshop> 
+	<description>JFinalShop配置文件</description>  
+	<systemConfig> 
+		<systemName>JFinalShop</systemName>  
+		<systemVersion>V1.0</systemVersion>  
+		<systemDescription>JFinalShop是基于JAVA技术的开源网店系统，主要应用于电子商务领域内的网上购物、网上交易、交易信息发布等系统的构建。致力于为个人和企业提供安全、稳定、高效、强大的电子商务解决方案，并推进国内电子商务技术和开源技术的发展而不断努力。</systemDescription>  
+		<isInstalled>true</isInstalled>  
+		<shopName>JFinalShop体验商城</shopName>  
+		<shopUrl>http://www.jfinalshop.com</shopUrl>  
+		<shopLogo>/upload/image/logo.gif</shopLogo>  
+		<hotSearch>电子书,生活电器,电脑配件</hotSearch>  
+		<metaKeywords>JFinalShop体验商城</metaKeywords>  
+		<metaDescription>JFinalShop是基于JAVA技术的开源网店系统，主要应用于电子商务领域内的网上购物、网上交易、交易信息发布等系统的构建。致力于为个人和企业提供安全、稳定、高效、强大的电子商务解决方案，并推进国内电子商务技术和开源技术的发展而不断努力。</metaDescription>  
+		<address>中国杭州</address>  
+		<phone>400-8888888</phone>  
+		<zipCode>400000</zipCode>  
+		<email>admin@jfinalshop.com</email>  
+		<currencyType>CNY</currencyType>  .
+		
+		<currencySign>￥</currencySign>  
+		<currencyUnit>元</currencyUnit>  
+		<priceScale>2</priceScale>  
+		<priceRoundType>roundHalfUp</priceRoundType>  
+		<orderScale>2</orderScale>  
+		<orderRoundType>roundHalfUp</orderRoundType>  
+		<certtext>杭ICP备10000000号</certtext>  
+		<storeAlertCount>5</storeAlertCount>  
+		<storeFreezeTime>order</storeFreezeTime>  
+		<uploadLimit>15360</uploadLimit>  
+		<isLoginFailureLock>true</isLoginFailureLock>  
+		<loginFailureLockCount>5</loginFailureLockCount>  
+		<loginFailureLockTime>5</loginFailureLockTime>  
+		<isRegister>true</isRegister>  
+		<watermarkImagePath>/upload/image/watermark.jpg</watermarkImagePath>  
+		<watermarkPosition>bottomRight</watermarkPosition>  
+		<watermarkAlpha>50</watermarkAlpha>  
+		<bigProductImageWidth>500</bigProductImageWidth>  
+		<bigProductImageHeight>500</bigProductImageHeight>  
+		<smallProductImageWidth>300</smallProductImageWidth>  
+		<smallProductImageHeight>300</smallProductImageHeight>  
+		<thumbnailProductImageWidth>140</thumbnailProductImageWidth>  
+		<thumbnailProductImageHeight>140</thumbnailProductImageHeight>  
+		<defaultBigProductImagePath>/upload/image/default_big_product_image.jpg</defaultBigProductImagePath>  
+		<defaultSmallProductImagePath>/upload/image/default_small_product_image.jpg</defaultSmallProductImagePath>  
+		<defaultThumbnailProductImagePath>/upload/image/default_thumbnail_product_image.jpg</defaultThumbnailProductImagePath>  
+		<allowedUploadImageExtension>jpg,jpge,bmp,gif,png</allowedUploadImageExtension>  
+		<allowedUploadMediaExtension/>  
+		<allowedUploadFileExtension/>  
+		<smtpFromMail>187048359@qq.com</smtpFromMail>  
+		<smtpHost>smtp.qq.com</smtpHost>  
+		<smtpPort>25</smtpPort>  
+		<smtpUsername>187048359</smtpUsername>  
+		<smtpPassword>hycxli227</smtpPassword>  
+		<pointType>productSet</pointType>  
+		<pointScale>1</pointScale> 
+	</systemConfig> 
+</jfinalshop>

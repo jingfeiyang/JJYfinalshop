@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>添加/编辑支付方式 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/admin/css/input.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$().ready( function() {
+
+	var $paymentConfigTypeSelect = $("select[name='paymentConfigType']");
+	var $tenpayConfigTr = $(".tenpayConfigTr");
+	var $tenpayInput = $(".tenpayConfigTr :input");
+
+	var $alipayConfigTr = $(".alipayConfigTr");
+	var $alipayInput = $(".alipayConfigTr :input");
+	// 根据支付类型显示/隐藏输入项
+	$paymentConfigTypeSelect.change( function() {
+		var $this = $(this);
+		if ($this.val() == "tenpay") {
+			$tenpayInput.removeClass("ignoreValidate");
+			$tenpayConfigTr.show();
+			$alipayConfigTr.hide();
+		} else if($this.val() == "alipay") {
+			$alipayInput.removeClass("ignoreValidate");
+			$alipayConfigTr.show();
+			$tenpayConfigTr.hide();
+		} else {
+			$tenpayInput.addClass("ignoreValidate");
+			$tenpayConfigTr.hide();
+			$alipayInput.addClass("ignoreValidate");
+			$alipayConfigTr.hide();
+		}
+	});
+
+});
+</script>
+<%
+var isAdd = false;
+var isEdit = false;
+if(isEmpty(paymentConfig.id)){
+	isAdd = true;
+}else{
+	isEdit = true;
+}%>
+</head>
+<body class="input">
+	<div class="body">
+		<div class="inputBar">
+			<h1><span class="icon">&nbsp;</span><%if(isAdd){%>添加支付方式<%}else{%>编辑支付方式<%}%></h1>
+		</div>
+		<form id="inputForm" class="validate" action="<%if (isAdd){%>${base}/paymentConfig/save<%}else{%>${base}/paymentConfig/update<%}%>" method="post">
+			<input type="hidden" name="paymentConfig.id" value="${paymentConfig.id!}" />
+			<table class="inputTable">
+				<tr>
+					<th>
+						支付类型:
+					</th>
+					<td>
+						<select name="paymentConfigType" class="{required: true}">
+							<option value="">请选择...</option>
+							<%for(list in allPaymentConfigType){%>
+								<option value="${list}"<%if (list == paymentConfig.paymentConfigType!){%> selected<%}%>>
+									${i18n("PaymentConfigType." + list)}
+								</option>
+							<%}%>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						支付方式名称:
+					</th>
+					<td>
+						<input type="text" name="paymentConfig.name" <%if(isAdd){%>class="formText {required: true, remote: '${base}/paymentConfig/checkName?${paymentConfig.name!}', messages: {remote: '支付方式名称已存在!'}}" <%}%> value="${paymentConfig.name!}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						支付手续费设置:
+					</th>
+					<td>
+						<%for(list in allPaymentFeeType){%>
+							<label class="requireField">
+								<input type="radio" name="paymentFeeType" value="${list}"<%if ((isAdd && list == "scale") || list == paymentConfig.paymentFeeType!){%> checked <%}%>>
+								${i18n("PaymentFeeType." + list)}
+							</label>
+						<%}%>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+					<th>
+						支付费率/固定费用:
+					</th>
+					<td>
+						<input type="text" name="paymentConfig.paymentFee" class="formText {required: true, min: 0}'" value="${paymentConfig.paymentFee!"0"}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr class="tenpayConfigTr<%if (isAdd || paymentConfig.paymentConfigType != "tenpay"){%> hidden<%}%>">
+					<th>
+						财付通交易类型:
+					</th>
+					<td>
+						<select name="tenpayType" class="<%if (isAdd || paymentConfig.paymentConfigType != "tenpay"){%>ignoreValidate <%}%>{required: true}">
+							<option value="">请选择...</option>
+							<%for(list in allTenpayType){%>
+								<option value="${list}"<%if (list == tenpayConfig.tenpayType!){%> selected<%}%>>
+									${i18n("TenpayType." + list)}
+								</option>
+							<%}%>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr class="tenpayConfigTr<%if (isAdd || paymentConfig.paymentConfigType != "tenpay"){%> hidden<%}%>">
+					<th>
+						财付通商户号:
+					</th>
+					<td>
+						<input type="text" name="tenpayConfig.bargainorId" class="formText<%if (isAdd || paymentConfig.paymentConfigType != "tenpay"){%> ignoreValidate<%}%> {required: true}'" value="${tenpayConfig.bargainorId!}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr class="tenpayConfigTr<%if (isAdd || paymentConfig.paymentConfigType != "tenpay"){%> hidden<%}%>">
+					<th>
+						财付通密钥:
+					</th>
+					<td>
+						<input type="text" name="tenpayConfig.key" class="formText<%if (isAdd || paymentConfig.paymentConfigType != "tenpay"){%> ignoreValidate<%}%> {required: true}'" value="${tenpayConfig.key!}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<!-- 支付宝 begin-->
+				<tr class="alipayConfigTr<%if (isAdd || paymentConfig.paymentConfigType != "alipay"){%> hidden<%}%>">
+					<th>
+						支付宝交易类型:
+					</th>
+					<td>
+						<select name="alipayType" class="<%if (isAdd || paymentConfig.paymentConfigType != "alipay"){%>ignoreValidate <%}%>{required: true}">
+							<option value="">请选择...</option>
+							<%for(list in allAlipayType){%>
+								<option value="${list}"<%if (list == alipayConfig.alipayType!){%> selected<%}%>>
+									${i18n("AlipayType." + list)}
+								</option>
+							<%}%>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr class="alipayConfigTr<%if (isAdd || paymentConfig.paymentConfigType != "alipay"){%> hidden<%}%>">
+					<th>
+						支付宝商户号:
+					</th>
+					<td>
+						<input type="text" name="alipayConfig.bargainorId" class="formText<%if (isAdd || paymentConfig.paymentConfigType != "alipay"){%> ignoreValidate<%}%> {required: true}'" value="${alipayConfig.bargainorId!}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr class="alipayConfigTr<%if (isAdd || paymentConfig.paymentConfigType != "alipay"){%> hidden<%}%>">
+					<th>
+						支付宝密钥:
+					</th>
+					<td>
+						<input type="text" name="alipayConfig.key" class="formText<%if (isAdd || paymentConfig.paymentConfigType != "alipay"){%> ignoreValidate<%}%> {required: true}'" value="${alipayConfig.key!}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<!-- 支付宝end; -->
+				<tr>
+					<th>
+						排序:
+					</th>
+					<td>
+						<input type="text" name="paymentConfig.orderList" class="formText {required: true, digits: true}" value="${paymentConfig.orderList!50}" title="只允许输入零或正整数" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						介绍:
+					</th>
+					<td>
+						<textarea name="paymentConfig.description" class="wysiwyg" rows="20" cols="100">${paymentConfig.description!}</textarea>
+					</td>
+				</tr>
+			</table>
+			<div class="buttonArea">
+				<input type="submit" class="formButton" value="确  定" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<link href="${base}/template/shop/css/footer.css" type="text/css" rel="stylesheet" />
+<div class="footer">
+	<div class="bottomNavigation">
+		<%for(list in bottomNavigationList){%>
+				<dl>
+				<dd>
+					<a href=${base}${list.url} <%if (list.isBlankTarget == true){%> target="_blank"<%}%>>${list.name}</a>
+				</dd>
+			<%if (listLP.index % 3 == 0 && listLP.last){%>
+				</dl>
+				<dl>
+			<%}%>
+			<%if (!listLP.last){%>
+				</dl>
+			<%}%>
+		<%}%>
+	</div>
+	<div class="footerInfo">
+		${footer.content!}
+	</div>
+</div>

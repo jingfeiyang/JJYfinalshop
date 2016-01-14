@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>订单详情 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/member_center.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+</head>
+<body class="memberCenter">
+	<%include("/shop/header.html"){}%>
+	<div class="body orderList">
+		<div class="bodyLeft">
+			<div class="memberInfo">
+				<div class="top"></div>
+				<div class="middle">
+					<p>欢迎您！<span class="username">${loginMember.username}</span> [<a class="userLogout" href="${base}/memberCenter/logout">退出</a>]</p>
+					<p>会员等级:<span class="red"> ${loginMember.memberRank.name}</span></p>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<!-- 侧边栏 -->
+			<%include("/shop/sidebar.html"){}%>
+		</div>
+		<div class="bodyRight">
+			<div class="memberCenterDetail">
+				<div class="top">订单详情[${order.orderSn}]</div>
+				<div class="middle">
+					<div class="blank"></div>
+					<div class="operationInfo">
+						<strong class="green">订单状态 [订单编号：${order.orderSn}]</strong>
+						<%if (order.orderStatus == "unprocessed"){%>
+							<p class="red">等待订单处理</p>
+						<%}else if (order.orderStatus == "processed"){%>
+							<p class="red">您的订单正在处理中</p>
+						<%}else if (order.orderStatus == "completed"){%>
+							<p class="red">您的订单已完成</p>
+						<%}else if (order.orderStatus == "invalid"){%>
+							<p class="red">您的订单已作废</p>
+						<%}%>
+						<%if (order.orderStatus != "completed" && order.orderStatus != "invalid"){%>
+							<%if (order.paymentConfig != null){%>
+								<%if (order.paymentStatus == "unpaid"){%>
+									<form action="${base}/shop/payment/confirm" method="post">
+										<%if (order.paymentConfig.paymentConfigType == "deposit"){%>
+											<input type="hidden" name="paymentType" value="deposit" />
+										<%}else if (order.paymentConfig.paymentConfigType == "offline"){%>
+											<input type="hidden" name="paymentType" value="offline" />
+										<%}else{%>
+											<input type="hidden" name="paymentType" value="online" />
+										<%}%>
+										<input type="hidden" name="order.id" value="${order.id}" />
+										<p class="red">您尚未完成订单支付</p>
+										<input type="submit" class="formButton" value="立即支付" />
+									</form>
+								<%}else if (order.paymentStatus == "partPayment"){%>
+									<form action="${base}/payment/confirm" method="post">
+										<%if (order.paymentConfig.paymentConfigType == "deposit"){%>
+											<input type="hidden" name="paymentType" value="deposit" />
+										<%}else if  (order.paymentConfig.paymentConfigType == "offline"){%>
+											<input type="hidden" name="paymentType" value="offline" />
+										<%}else{%>
+											<input type="hidden" name="paymentType" value="online" />
+										<%}%>
+										<input type="hidden" name="order.id" value="${order.id}" />
+										<p class="red">您尚未完成订单支付</p>
+										<input type="submit" class="formButton" value="支付余款" />
+									</form>
+								<%}else{%>
+									<p class="red">${i18n("PaymentStatus." + order.paymentStatus)}</p>
+								<%}%>
+							<%}%>
+							<p class="red">${i18n("ShippingStatus." + order.shippingStatus)}</p>
+						<%}%>
+					</div>
+					<div class="blank"></div>
+					<table class="listTable">
+						<tr>
+							<th colspan="4">收货信息</th>
+						</tr>
+						<tr>
+							<td class="title">收货人：</td>
+							<td>${order.shipName}</td>
+							<td class="title">收货地区：</td>
+							<td>${order.shipArea}</td>
+						</tr>
+						<tr>
+							<td class="title">收货地址：</td>
+							<td>${order.shipAddress}</td>
+							<td class="title">邮编：</td>
+							<td>${order.shipZipCode}</td>
+						</tr>
+						<tr>
+							<td class="title">电话：</td>
+							<td>${order.shipPhone}</td>
+							<td class="title">手机：</td>
+							<td>${order.shipMobile}</td>
+						</tr>
+						<tr>
+							<td class="title">附言：</td>
+							<td colspan="3">${order.memo}</td>
+						</tr>
+					</table>
+					<div class="blank"></div>
+					<table class="listTable">
+						<tr>
+							<th colspan="4">支付信息</th>
+						</tr>
+						<tr>
+							<td class="title">配送方式：</td>
+							<td>${order.deliveryTypeName}</td>
+							<td class="title">支付方式：</td>
+							<td>${order.paymentConfigName}</td>
+						</tr>
+						<tr>
+							<td class="title">商品重量：</td>
+							<td>${order.productWeight} ${i18n("WeightUnit." + order.productWeightUnit)}</td>
+							<td class="title">配送费用：</td>
+							<td><span class="red">${order.deliveryFee,orderUnitCurrencyFormat}</span></td>
+						</tr>
+					</table>
+					<div class="blank"></div>
+					<div class="blank"></div>
+					<table class="listTable">
+						<tr>
+							<th>商品名称</th>
+							<th>购买价格</th>
+							<th>购买数量</th>
+							<th>小计</th>
+						</tr>
+						<%for(list in order.orderItemList){%>
+							<tr>
+								<td>
+									<a href="${base}${list.productHtmlFilePath}" target="_blank">${list.productName}</a>
+								</td>
+								<td>
+									${list.productPrice,priceCurrencyFormat}
+								</td>
+								<td>
+									${list.productQuantity}
+								</td>
+								<td>
+									<span class="subtotalPrice">${list.subtotalPrice,orderCurrencyFormat}</span>
+								</td>
+							</tr>
+						<%}%>
+						<tr>
+							<td class="info" colspan="4">
+								商品总金额：<span class="red">${order.productTotalPrice,orderUnitCurrencyFormat}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+								配送费用：<span class="red">${order.deliveryFee,orderUnitCurrencyFormat}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+								支付手续费：<span class="red">${order.paymentFee,orderUnitCurrencyFormat}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+								订单总金额：<span class="red">${order.totalAmount,orderUnitCurrencyFormat}</span>
+							</td>
+						</tr>
+					</table>
+					<div class="blank"></div>
+					<table class="listTable">
+						<tr>
+							<th colspan="5">订单日志</th>
+						</tr>
+						<tr>
+							<th>序号</th>
+							<th>日志类型</th>
+							<th>日志信息</th>
+							<th>操作时间</th>
+							<th>操作人</th>
+						</tr>
+						<%for(list in order.orderLogList){%>
+							<tr>
+								<td>${listLP.index + 1}</td>
+								<td>${i18n("OrderLogType." + list.orderLogType)}</td>
+								<td>${list.info!"-"}</td>
+								<td>${list.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}</td>
+								<td>${list.operator!"-"}</td>
+							</tr>
+						<%}%>
+					</table>
+					<div class="blank"></div>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>添加/编辑商品 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/admin/css/input.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$().ready(function() {
+
+	// 查询商品属性
+	$("#productTypeId").change( function() {
+		$(".productAttributeContentTr").remove();
+		var productTypeId = $("#productTypeId").val();
+		$.ajax({
+			url: "${base}/productAttribute/ajaxProductAttribute",
+			dataType: "json",
+			data:{productTypeId: productTypeId},
+			async: false,
+			success: function(json) {
+				var productAttributeTrHtml = "";
+				$.each(json, function(i) {
+					if(json[i]["attributeType"] == 0) {
+						productAttributeTrHtml += '<tr class="productAttributeContentTr"><th>' + json[i].name + ':</th><td><input type="text" name="' + json[i].id + '"' + ((json[i].isRequired == true) ? ' class="formText {required: true}"' : ' class="formText"') + ' />' + ((json[i].isRequired == true) ? '<label class="requireField">*</label>' : '') + '</td></tr>';
+					} else if(json[i]["attributeType"] == 1) {
+						productAttributeTrHtml += '<tr class="productAttributeContentTr"><th>' + json[i].name + ':</th><td><input type="text" name="' + json[i].id + '"' + ((json[i].isRequired == true) ? ' class="formText {required: true, number: true}"' : ' class="formText {number: true}"') + ' />' + ((json[i].isRequired == true) ? '<label class="requireField">*</label>' : '') + '</td></tr>';
+					} else if(json[i]["attributeType"] == 2){
+						productAttributeTrHtml += '<tr class="productAttributeContentTr"><th>' + json[i].name + ':</th><td><input type="text" name="' + json[i].id + '"' + ((json[i].isRequired == true) ? ' class="formText {required: true, lettersonly: true}"' : ' class="formText {lettersonly: true}"') + ' />' + ((json[i].isRequired == true) ? '<label class="requireField">*</label>' : '') + '</td></tr>';
+					} else if(json[i]["attributeType"] == 3) {
+						var productAttributeOption = '<option value="">请选择...</option>';
+						for(var key in json[i]["attributeOptionList"]) {
+							productAttributeOption += ('<option value="' + json[i]["attributeOptionList"][key] + '">' + json[i]["attributeOptionList"][key] + '</option>');
+						}
+						productAttributeTrHtml += '<tr class="productAttributeContentTr"><th>' + json[i].name + ':</th><td><select name="' + json[i].id + '"' + ((json[i].isRequired == true) ? ' class="{required: true}"' : '') + '>' + productAttributeOption + '</select>' + ((json[i].isRequired == true) ? '<label class="requireField">*</label>' : '') + '</td></tr>';
+					} else if(json[i]["attributeType"] == 4) {
+						var productAttributeOption = "";
+						for(var key in json[i]["attributeOptionList"]) {
+							productAttributeOption += ('<label><input type="checkbox" name="' + json[i].id + '" value="' + json[i]["attributeOptionList"][key] + '"' + ((json[i].isRequired == true) ? ' class="{required: true, messagePosition: \'#' + json[i].id + 'MessagePosition\'}"' : '') +' />' + json[i]["attributeOptionList"][key] + '</label>&nbsp;&nbsp;');
+						}
+						productAttributeTrHtml += '<tr class="productAttributeContentTr"><th>' + json[i].name + ':</th><td>' + productAttributeOption + ((json[i].isRequired == true) ? '<span id="' + json[i].id + 'MessagePosition"></span><label class="requireField">*</label>' : '') + '</td></tr>';
+					} else if(json[i]["attributeType"] == 5) {
+						productAttributeTrHtml += '<tr class="productAttributeContentTr"><th>' + json[i].name + ':</th><td><input type="text" name="' + json[i].id + '"' + ((json[i].isRequired == true) ? ' class="formText datePicker {required: true, dateISO: true}"' : ' class="formText datePicker {dateISO: true}"') + ' />' + ((json[i].isRequired == true) ? '<label class="requireField">*</label>' : '') + '</td></tr>';
+					}
+				})
+				$("#productTypeTr").after(productAttributeTrHtml);
+				$.bindDatePicker();
+			}
+		});
+	});
+	
+	// 商品图片预览滚动栏
+	$(".productImageArea .scrollable").scrollable({
+		speed: 600
+	});
+	
+	// 显示商品图片预览操作层
+	$(".productImageArea li").livequery("mouseover", function() {
+		$(this).find(".productImageOperate").show();
+	});
+	
+	// 隐藏商品图片预览操作层
+	$(".productImageArea li").livequery("mouseout", function() {
+		$(this).find(".productImageOperate").hide();
+	});
+	
+	// 商品图片左移
+	$(".left").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImagePrevLi = $productImageLi.prev("li");
+		if ($productImagePrevLi.length > 0) {
+			$productImagePrevLi.insertAfter($productImageLi);
+		}
+	});
+	
+	// 商品图片右移
+	$(".right").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImageNextLi = $productImageLi.next("li");
+		if ($productImageNextLi.length > 0) {
+			$productImageNextLi.insertBefore($productImageLi);
+		}
+	});
+	
+	// 商品图片删除
+	$(".delete").livequery("click", function() {
+		var $productImageLi = $(this).parent().parent().parent();
+		var $productImagePreview = $productImageLi.find(".productImagePreview");
+		var $productImageIds = $productImageLi.find("input[name='productImageIds']");
+		var $productImageFiles = $productImageLi.find("input[name='productImages']");
+		var $productImageParameterTypes = $productImageLi.find("input[name='productImageParameterTypes']");
+		$productImageIds.remove();
+		$productImageFiles.after('<input type="file" name="productImages" hidefocus="true" />');
+		$productImageFiles.remove();
+		$productImageParameterTypes.remove();
+		
+		$productImagePreview.html("暂无图片");
+		$productImagePreview.removeAttr("title");
+		if ($.browser.msie) {
+			if(window.XMLHttpRequest) {
+				$productImagePreview[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod = 'scale', src='')";
+			}
+		}
+	});
+	
+	// 商品图片选择预览
+	var $productImageScrollable = $(".productImageArea .scrollable").scrollable();
+	var productImageLiHtml = '<li><div class="productImageBox"><div class="productImagePreview">暂无图片</div><div class="productImageOperate"><a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a><a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a><a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a></div><a class="productImageUploadButton" href="javascript: void(0);"><input type="file" name="productImages" hidefocus="true" /><div>上传新图片</div></a></div></li>';
+	var index = 0;
+	$(".productImageUploadButton input").livequery("change", function() {
+		var $this = $(this);
+		var $productImageLi = $this.parent().parent().parent();
+		var $productImagePreview = $productImageLi.find(".productImagePreview");
+		var fileName = $this.val().substr($this.val().lastIndexOf("\\") + 1);
+		if (/(<%for(list in strutil.split(systemConfig.allowedUploadImageExtension,@com.jfinalshop.bean.SystemConfig.EXTENSION_SEPARATOR)){%><%if (!listLP.last){%>.${list}|<%}else{%>.${list}<%}%><%}%>)$/i.test($this.val()) == false) {
+			$.message("您选择的文件格式错误！");
+			return false;
+		}
+		$productImagePreview.empty();
+		$productImagePreview.attr("title", fileName);
+		var isChrome = navigator.userAgent.toLowerCase().match(/chrome/) != null;//判断是否是谷歌浏览器
+		if ($.browser.msie) {
+			if(!window.XMLHttpRequest) {
+				$productImagePreview.html('<img src="' + $this.val() + '" />');
+			} else {
+				$this[0].select();
+				var imgSrc = document.selection.createRange().text;
+				$productImagePreview[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod = 'scale', src='" + imgSrc + "')";
+			}
+		} else if ($.browser.mozilla || isChrome) {
+			var objectURL = window.URL.createObjectURL($this[0].files[0]);//Firefox 7.0下getAsDataURL取文件绝对路径的替代方法
+			$productImagePreview.html('<img src="' + objectURL + '" />');
+			//$productImagePreview.html('<img src="' + $this[0].files[0].getAsDataURL() + '" />');
+		} else {
+			$productImagePreview.html(fileName);
+		}
+		
+		 if ($productImageLi.next().length == 0) {
+			 productImageLiHtml = productImageLiHtml.replace("productImages","productImages"+index);
+			 $productImageLi.after(productImageLiHtml);
+			 index++;
+			if ($productImageScrollable.getSize() > 5) {
+				$productImageScrollable.next();
+			}
+		} 
+		
+		var $productImageIds = $productImageLi.find("input[name='productImageIds']");
+		var $productImageParameterTypes = $productImageLi.find("input[name='productImageParameterTypes']");
+		var $productImageUploadButton = $productImageLi.find(".productImageUploadButton");
+		$productImageIds.remove();
+		 if ($productImageParameterTypes.length > 0) {
+			$productImageParameterTypes.val("productImageFile");
+		} else {
+			$productImageUploadButton.append('<input type="hidden" name="productImageParameterTypes" value="productImageFile" />');
+		} 
+	});
+
+})
+</script>
+<%
+var isAdd = false;
+var isEdit = false;
+if(isEmpty(product.id)){
+	isAdd = true;
+}else{
+	isEdit = true;
+}%>
+</head>
+<body class="input">
+	<div class="body">
+		<div class="inputBar">
+			<h1><span class="icon">&nbsp;</span><%if(isAdd){%>添加商品<%}else{%>编辑商品<%}%></h1>
+		</div>
+		<div class="blank"></div>
+		<form id="inputForm" class="validate" action="<%if (isAdd){%>${base}/product/save<%}else{%>${base}/product/update<%}%>" enctype="multipart/form-data" method="post">
+			<input type="hidden" name="product.id" value="${product.id!}" />
+			<ul class="tab">
+				<li>
+					<input type="button" value="基本信息" hidefocus="true" />
+				</li>
+				<li>
+					<input type="button" value="商品描述" hidefocus="true" />
+				</li>
+				<li>
+					<input type="button" value="商品属性" hidefocus="true" />
+				</li>
+			</ul>
+			<table class="inputTable tabContent">
+				<tr>
+					<th>
+						商品名称:
+					</th>
+					<td>
+						<input type="text" name="product.name" class="formText {required: true}" value="${product.name!}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						货号:
+					</th>
+					<td>
+						<input type="text" class="formText" name="product.productSn" value="${product.productSn!}" title="若留空则由系统随机生成" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商品分类:
+					</th>
+					<td>
+						<select name="product.productCategory_id" class="{required: true}">
+							<option value="">请选择...</option>
+							<%for(list in productCategoryTreeList){%>
+								<option value="${list.id}"<%if (list.id == product.productCategory_id!){%> selected<%}%>>
+									<%if (list.level != 0){%>
+										<%for( i in range(0,list.level)){%>------<%}%>
+									<%}%>
+									${list.name}
+								</option>
+							<%}%>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商品品牌:
+					</th>
+					<td>
+						<select name="product.brand_id" class="{required: true}">
+							<option value="">请选择...</option>
+							<%for(list in allBrand){%>
+								<option value="${list.id}"<%if (list.id == product.brand_id!){%> selected <%}%>>
+									${list.name}
+								</option>
+							<%}%>
+						</select>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						本店售价:
+					</th>
+					<td>
+						<input type="text" name="product.price" class="formText {required: true, min: 0}" value="${product.price!"0"}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						市场售价:
+					</th>
+					<td>
+						<input type="text" name="product.marketPrice" class="formText {required: true, min: 0}" value="${product.marketPrice!"0"}" />
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<%if (systemConfig.pointType == "productSet"){%>
+					<tr>
+						<th>
+							积分:
+						</th>
+						<td>
+							<input type="text" name="product.point" class="formText {required: true, digits: true}" value="${product.point!"0"}" />
+						</td>
+					</tr>
+				<%}%>
+				<tr>
+					<th>
+						商品重量:
+					</th>
+					<td>
+						<input type="text" name="product.weight" class="formText {required: true, min: 0, messagePosition: '#weightMessagePosition'}" value="${product.weight!"0"}" title="0表示不计重量" />
+						<select name="weightUnit">
+							<%for(list in allWeightUnit){%>
+								<option value="${list}"<%if (list == product.weightUnit!){%> selected <%}%>>
+									${i18n("WeightUnit."+list)}
+								</option>
+							<%}%>
+						</select>
+						<span id="weightMessagePosition"></span>
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						库存量:
+					</th>
+					<td>
+						<input type="text" name="product.store" class="formText {required: true, min: 0}" value="${product.store!0}" title="只允许输入零或正整数，为空表示不计库存" />				 						
+					</td>
+				</tr>
+				<tr>
+					<th>
+						是否精品推荐:
+					</th>
+					<td>
+						<label><input type="radio" name="product.isBest" value="true"<%if (product.isBest! == true){%> checked<%}%> />是</label>
+						<label><input type="radio" name="product.isBest" value="false"<%if (isAdd || product.isBest == false){%> checked<%}%> />否</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						是否新品推荐:
+					</th>
+					<td>
+						<label><input type="radio" name="product.isNew" value="true"<%if (product.isNew! == true){%> checked<%}%> />是</label>
+						<label><input type="radio" name="product.isNew" value="false"<%if (isAdd || product.isNew == false){%> checked<%}%> />否</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						是否热销推荐:
+					</th>
+					<td>
+						<label><input type="radio" name="product.isHot" value="true"<%if (product.isHot! == true){%> checked<%}%> />是</label>
+						<label><input type="radio" name="product.isHot" value="false"<%if (isAdd || product.isHot == false){%> checked<%}%> />否</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						是否上架:
+					</th>
+					<td>
+						<label><input type="radio" name="product.isMarketable" value="true"<%if (isAdd || product.isMarketable! == true){%> checked<%}%> />是</label>
+						<label><input type="radio" name="product.isMarketable" value="false"<%if (product.isMarketable! == false){%> checked<%}%> />否</label>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						上传商品图片
+					</th>
+					<td>
+						<div class="productImageArea">
+							<div class="example"></div>
+							<a class="prev browse" href="javascript:void(0);" hidefocus="true"></a>
+							<div class="scrollable">
+								<ul class="items">
+									<%for(list in product.productImageList!){%>
+										<li>
+											<div class="productImageBox">
+												<div class="productImagePreview png">
+													<img src="${base}${list.thumbnailProductImagePath}" >
+												</div>
+												<div class="productImageOperate">
+													<a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a>
+													<a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a>
+													<a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a>
+												</div>
+												<a class="productImageUploadButton" href="javascript: void(0);">
+													<input type="hidden" name="productImageIds" value="${list.id}" />
+													<input type="hidden" name="productImageParameterTypes" value="productImageId" />
+													<%if (systemConfig.allowedUploadImageExtension != ""){%>
+														<input type="file" name="productImages" hidefocus="true" />
+														<div>上传新图片</div>
+													<%}else{%>
+														<div>不允许上传</div>
+													<%}%>
+												</a>
+											</div>
+										</li>
+									<%}%>
+									<li>
+										<div class="productImageBox">
+											<div class="productImagePreview png">暂无图片</div>
+											<div class="productImageOperate">
+												<a class="left" href="javascript: void(0);" alt="左移" hidefocus="true"></a>
+												<a class="right" href="javascript: void(0);" title="右移" hidefocus="true"></a>
+												<a class="delete" href="javascript: void(0);" title="删除" hidefocus="true"></a>
+											</div>
+											<a class="productImageUploadButton" href="javascript: void(0);">
+												<%if (systemConfig.allowedUploadImageExtension != ""){%>
+													<input type="file" name="productImages1" hidefocus="true" />
+													<div>上传新图片</div>
+												<%}else{%>
+													<div>不允许上传</div>
+												<%}%>
+											</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<a class="next browse" href="javascript:void(0);" hidefocus="true"></a>
+							<div class="blank"></div>
+							<%if (systemConfig.allowedUploadImageExtension != ""){%>
+								<span class="warnInfo"><span class="icon">&nbsp;</span>
+									<%if ((systemConfig.uploadLimit != 0) && (systemConfig.uploadLimit < 1024)){%>
+										小于${systemConfig.uploadLimit}KB
+									<%}else if (systemConfig.uploadLimit >= 1024){%>
+										小于${systemConfig.uploadLimit / 1024}MB
+									<%}%> 
+									<%for(list in strutil.split(systemConfig.allowedUploadImageExtension,@com.jfinalshop.bean.SystemConfig.EXTENSION_SEPARATOR)){%>
+										<%if (listLP.last){%>
+											*.${list};
+										<%}else{%>
+											*.${list}
+										<%}%>
+									<%}%>
+								</span>
+							<%}else{%>
+								<span class="warnInfo"><span class="icon">&nbsp;</span>系统设置不允许上传图片文件!</span>
+							<%}%>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						页面关键词:
+					</th>
+					<td>
+						<input type="text" name="product.metaKeywords" class="formText" value="${product.metaKeywords!}" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						页面描述:
+					</th>
+					<td>
+						<textarea name="product.metaDescription" class="formTextarea">${product.metaDescription!}</textarea>
+					</td>
+				</tr>
+			</table>
+			<table class="inputTable tabContent">
+				<tr>
+					<td colspan="2">
+						 <textarea name="product.description" class="wysiwyg" style="width: 100%; height: 450px;">${product.description!}</textarea> 
+					</td>
+				</tr>
+			</table>
+			<table class="inputTable tabContent">
+				<tr id="productTypeTr">
+					<th>
+						商品类型:
+					</th>
+					<td>
+						<select name="product.productType_id" id="productTypeId">
+							<option value="">请选择...</option>
+							<%for(list in allProductType){%>
+								<option value="${list.id}"<%if ((isEdit) && (list.id == product.productType_id)){%> selected <%}%>>${list.name}</option>
+							<%}%>
+						</select>
+					</td>
+				</tr>
+				<%for(list in product.productType.enabledProductAttributeList!){%>
+					<tr class="productAttributeContentTr">
+						<th>
+							${list.name}:
+						</th>
+						<td>
+							<%if (list.attributeType == "text"){%>
+								<input type="text" name="${list.id}" class="formText<%if (list.isRequired){%> {required: true}<%}%>" value="${product.productAttributeMap[list.id]!}" />
+								<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+							<%}else if (list.attributeType == "number"){%>
+								<input type="text" name="${list.id}" class="formText {<%if (list.isRequired){%>required: true, <%}%>number: true}" value="${product.productAttributeMap[list.id]!}" />
+								<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+							<%}else if (list.attributeType == "alphaint"){%>
+								<input type="text" name="${list.id}" class="formText {<%if (list.isRequired){%>required: true, <%}%>lettersonly: true}" value="${product.productAttributeMap[list.id]!}" />
+								<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+							<%}else if (list.attributeType == "select"){%>
+								<select name="${list.id}"<%if (list.isRequired){%> class="{required: true}"<%}%>>
+									<option value="">请选择...</option>
+									<%for(attributeOptionList in list.attributeOptionList){%>
+										<option value="${attributeOptionList}"<%if (product.productAttributeMap[list.id] == attributeOptionList){%> selected<%}%>>${attributeOptionList}</option>
+									<%}%>
+								</select>
+								<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+							<%}else if (list.attributeType == "checkbox"){%>
+								<%for(attributeOptionList in list.attributeOptionList){%>
+									<label><input type="checkbox" name="${list.id}"<%if (list.isRequired){%> class="{required: true, messagePosition: '#${list.id}MessagePosition'}"<%}%> value="${attributeOptionList}"<%if (strutil.contain(product.productAttributeMap[list.id],attributeOptionList)){%> checked<%}%> />${attributeOptionList}</label>
+								<%}%>
+								<span id="${list.id}MessagePosition"></span>
+								<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+							<%}else if (list.attributeType == "date"){%>
+								<input type="text" name="${list.id}" class="formText datePicker {<%if (list.isRequired){%>required: true, <%}%>dateISO: true}" value="${product.productAttributeMap[list.id]!}" />
+								<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+							<%}%>
+						</td>
+					</tr>
+				<%}%>
+			</table>
+			
+			<div class="buttonArea">
+				<input type="submit" class="formButton" value="确  定" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+			</div>
+		</form>		
+	</div>
+</body>
+</html>

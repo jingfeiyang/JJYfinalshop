@@ -1,0 +1,373 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Member Center Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+.memberCenter .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.memberCenter .bodyLeft {
+	width: 210px;
+	float: left;
+}
+
+.memberCenter .bodyRight {
+	width: 780px;
+	float: right;
+}
+
+.memberCenter .memberInfo {
+	width: 210px;
+	clear: both;
+	color: #595959;
+}
+
+.memberCenter .memberInfo a {
+	color: #32517f;
+}
+
+.memberCenter .memberInfo .top {
+	width: 210px;
+	height: 10px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/member_center_bg.gif) no-repeat 0px 0px;
+}
+
+.memberCenter .memberInfo .middle {
+	width: 190px;
+	line-height: 20px;
+	padding-left: 20px;
+	clear: both;
+	background: url(../images/member_center_y_bg.gif) repeat-y 0px 0px;
+}
+
+.memberCenter .memberInfo .username {
+	font-weight: bold;
+}
+
+.memberCenter .memberInfo .bottom {
+	width: 210px;
+	height: 20px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/member_center_bg.gif) no-repeat 0px -30px;
+}
+
+.memberCenter .memberMenu {
+	width: 210px;
+	clear: both;
+	color: #595959;
+}
+
+.memberCenter .memberMenu .top {
+	width: 180px;
+	height: 29px;
+	line-height: 29px;
+	clear: both;
+	padding-left: 30px;
+	overflow: hidden;
+	background: url(../images/member_center_bg.gif) no-repeat 0px -60px;
+}
+
+.memberCenter .memberMenu .middle {
+	width: 210px;
+	line-height: 20px;
+	clear: both;
+	background: url(../images/member_center_y_bg.gif) repeat-y 0px -210px;
+}
+
+.memberCenter .memberMenu li {
+	line-height: 30px;
+}
+
+.memberCenter .memberMenu li li {
+	line-height: 30px;
+	padding-left: 30px;
+}
+
+.memberCenter .memberMenu li li:hover, .memberCenter .memberMenu li li.current{
+	background: url(../images/member_center_bg.gif) no-repeat 0px -120px;
+}
+
+.memberCenter .memberMenu .order {
+	width: 210px;
+	padding-top: 30px;
+	background: url(../images/member_menu_order_bg.gif) no-repeat 0px 0px;
+}
+
+.memberCenter .memberMenu .favorite {
+	width: 210px;
+	padding-top: 30px;
+	background: url(../images/member_menu_favorite_bg.gif) no-repeat 0px 0px;
+}
+
+.memberCenter .memberMenu .message {
+	width: 210px;
+	padding-top: 30px;
+	background: url(../images/member_menu_message_bg.gif) no-repeat 0px 0px;
+}
+
+.memberCenter .memberMenu .profile {
+	width: 210px;
+	padding-top: 30px;
+	background: url(../images/member_menu_profile_bg.gif) no-repeat 0px 0px;
+}
+
+.memberCenter .memberMenu .deposit {
+	width: 210px;
+	padding-top: 30px;
+	background: url(../images/member_menu_deposit_bg.gif) no-repeat 0px 0px;
+}
+
+.memberCenter .memberMenu .bottom {
+	width: 210px;
+	height: 20px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/member_center_bg.gif) no-repeat 0px -90px;
+}
+
+.memberCenter .memberCenterDetail .top {
+	width: 740px;
+	height: 45px;
+	line-height: 40px;
+	padding-left: 40px;
+	clear: both;
+	font-size: 14px;
+	font-weight: bold;
+	color: #595959;
+	overflow: hidden;
+	background: url(../images/member_center_bg.gif) no-repeat 0px -150px;
+}
+
+.memberCenter .memberCenterDetail .middle {
+	width: 760px;
+	clear: both;
+	padding: 0px 10px;
+	background: url(../images/member_center_y_bg.gif) repeat-y -420px 0px;
+}
+
+.memberCenter .memberCenterDetail .bottom {
+	width: 780px;
+	height: 18px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/member_center_bg.gif) no-repeat 0px -210px;
+}
+
+.memberCenter table.listTable {
+	width: 100%;
+	border: 1px solid #e8e8e8;
+	table-layout: fixed;
+}
+
+.memberCenter table.listTable th {
+	line-height: 30px;
+	padding-left: 10px;
+	text-align: left;
+	border-bottom: 1px solid #f1f1f1;
+	background-color: #f6f6f6;
+}
+
+.memberCenter table.listTable td {
+	line-height: 28px;
+	padding: 3px 10px;
+	text-align: left;
+	color: #595959;
+	word-break: break-all;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+.memberCenter table.listTable tr:hover {
+	background-color: #ffffd4
+}
+
+.memberCenter table.listTable .title {
+	width: 70px;
+	font-weight: bold;
+}
+
+.memberCenter table.inputTable {
+	width: 100%;
+	border: 1px solid #e8e8e8;
+}
+
+.memberCenter table.inputTable th {
+	width: 150px;
+	line-height: 30px;
+	padding-right: 10px;
+	text-align: right;
+	color: #333333;
+	background-color: #fafafa;
+}
+
+.memberCenter table.inputTable tr:hover th {
+	background-color: #eeeeee;
+}
+
+.memberCenter table.inputTable td {
+	line-height: 28px;
+	padding: 3px 5px;
+	text-align: left;
+	color: #595959;
+}
+
+.memberCenter table.inputTable tr:hover td {
+	background-color: #fafafa;
+}
+
+.memberCenter ul.tab {
+	height: 29px;
+	padding-left: 161px;
+	background: url(../images//member_center_x_bg.gif) 0px 0px repeat-x;
+}
+
+.memberCenter ul.tab li {
+	float: left;
+}
+
+.memberCenter ul.tab input {
+	width: 100px;
+	height: 29px;
+	line-height: 29px;
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/member_center_bg.gif) -430px 0px no-repeat;
+}
+
+.memberCenter ul.tab input.current {
+	background: url(../images/member_center_bg.gif) -330px 0px no-repeat;
+}
+
+.memberCenter .tabContent {
+	border-top: none;
+}
+
+.memberCenter .addButton {
+	width: 76px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	font-size: 12px;
+	color: #cb2b00;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/member_center_bg.gif) no-repeat -210px -30px;
+}
+
+.memberCenter .addButton:hover {
+	background: url(../images/member_center_bg.gif) no-repeat -300px -30px;
+}
+
+.memberCenter .submitButton {
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	float: left;
+	font-size: 12px;
+	color: #ffffff;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/member_center_bg.gif) no-repeat -210px 0px;
+}
+
+.memberCenter .submitButton:hover {
+	background: url(../images/member_center_bg.gif) no-repeat -270px 0px;
+}
+
+.memberCenter .backButton {
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	margin-left: 30px;
+	float: left;
+	font-size: 12px;
+	color: #ffffff;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/member_center_bg.gif) no-repeat -210px 0px;
+}
+
+.memberCenter .backButton:hover {
+	background: url(../images/member_center_bg.gif) no-repeat -270px 0px;
+}
+
+.memberCenter .downIcon {
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/member_center_bg.gif) no-repeat -210px -60px;
+}
+
+.memberCenter .upIcon {
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/member_center_bg.gif) no-repeat -210px -90px;
+}
+
+.memberCenter .favoriteList td {
+	padding: 5px 5px 4px 5px;
+	border-bottom: 1px dashed #e3e3e3;
+}
+
+.memberCenter .favoriteList .productImage img {
+	width: 100px;
+	height: 100px;
+	padding: 2px;
+	border: 1px solid #e3e3e3;
+}
+
+.memberCenter .depositRecharge .paymentConfigTable {
+	width: 100%;
+}
+
+.memberCenter .depositRecharge .paymentConfigTable td.nameTd {
+	width: 150px;
+	line-height: 30px;
+	text-align: left;
+	border: 1px solid #e3e3e3;
+	background-color: #fafafa;
+}
+
+.memberCenter .depositRecharge .paymentConfigTable td {
+	line-height: 30px;
+	border: 1px solid #e3e3e3;
+}
+
+.memberCenter .orderList .operationInfo {
+	line-height: 25px;
+	padding: 10px;
+	border: 1px solid #ff8c00;
+	background-color: #fffaef;
+}
+
+.memberCenter .orderList .operationInfo:hover {
+	background-color: #fffcf7;
+}

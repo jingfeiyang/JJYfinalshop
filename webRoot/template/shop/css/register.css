@@ -1,0 +1,235 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Register Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+.registerWindow {
+	width: 500px;
+	margin-left: -250px;
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	z-index: 100;
+}
+
+.registerWindow .windowTop {
+	width: 500px;
+	height: 29px;
+	clear: both;
+	overflow: hidden;
+	cursor: move;
+	background: url(../images/register_bg.gif) no-repeat 0px 0px;
+}
+
+.registerWindow .windowMiddle {
+	width: 500px;
+	clear: both;
+	padding: 10px 0px;
+	text-align: center;
+	background: url(../images/register_y_bg.gif) repeat-y 0px 0px;
+}
+
+.registerWindow .windowBottom {
+	width: 500px;
+	height: 5px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/register_bg.gif) no-repeat 0px -30px;
+}
+
+.registerWindow .windowTitle {
+	height: 29px;
+	line-height: 32px;
+	_display: inline;
+	float: left;
+	margin-left: 30px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #5a5a5a;
+}
+
+.registerWindow .windowClose {
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
+	display: block;
+	outline: none;
+	float: right;
+	cursor: pointer;
+	background: url(../images/register_bg.gif) no-repeat 0px -60px;
+}
+
+.registerWindow .windowClose:hover {
+	background: url(../images/register_bg.gif) no-repeat -30px -60px;
+}
+
+.registerWindow table {
+	width: 100%;
+}
+
+.registerWindow th {
+	width: 150px;
+	line-height: 35px;
+	padding-right: 10px;
+	text-align: right;
+	font-weight: normal;
+}
+
+.registerWindow td {
+	line-height: 35px;
+	text-align: left;
+}
+
+.registerWindow input.formText {
+	width: 180px;
+}
+
+.registerWindow input.formTextS {
+	width: 95px;
+	margin-right: 5px;
+	text-transform: uppercase;
+}
+
+.registerWindow #registerWindowCaptchaImage {
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.registerWindow .registerWindowSubmit {
+	width: 80px;
+	height: 28px;
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/register_bg.gif) 0px -90px no-repeat;
+}
+
+.registerWindow .registerWindowSubmit:hover {
+	background: url(../images/register_bg.gif) -90px -90px no-repeat;
+}
+
+* html .registerWindow {
+	position: absolute;
+	top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(25 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+.agreementWindow {
+	width: 500px;
+	margin-left: -250px;
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+}
+
+.agreementWindow .windowTop {
+	width: 500px;
+	height: 29px;
+	clear: both;
+	overflow: hidden;
+	cursor: move;
+	background: url(../images/register_bg.gif) no-repeat 0px -120px;
+}
+
+.agreementWindow .windowMiddle {
+	width: 480px;
+	clear: both;
+	padding: 10px;
+	text-align: center;
+	background: url(../images/register_y_bg.gif) repeat-y 0px 0px;
+}
+
+.agreementWindow .windowBottom {
+	width: 500px;
+	height: 5px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/register_bg.gif) no-repeat 0px -150px;
+}
+
+.agreementWindow .windowTitle {
+	height: 29px;
+	line-height: 32px;
+	_display: inline;
+	float: left;
+	margin-left: 35px;
+	font-size: 12px;
+	font-weight: bold;
+	color: #5a5a5a;
+}
+
+.agreementWindow .windowClose {
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
+	display: block;
+	outline: none;
+	float: right;
+	cursor: pointer;
+	background: url(../images/register_bg.gif) no-repeat 0px -180px;
+}
+
+.agreementWindow .windowClose:hover {
+	background: url(../images/register_bg.gif) no-repeat -30px -180px;
+}
+
+.agreementWindow #agreementContent {
+	width: 460px;
+	height: 220px;
+	clear: both;
+	text-align: left;
+	color: #6f6f6f;
+	border: 1px solid #e0e5e9;
+	padding: 10px;
+	margin-bottom: 10px;
+	overflow-y: scroll;
+	scrollbar-face-color: #ffffff;
+	scrollbar-shadow-color: #d2e5f4;
+	scrollbar-highlight-color: #d2e5f4;
+	scrollbar-3dlight-color: #ffffff;
+	scrollbar-darkshadow-color: #ffffff;
+	scrollbar-track-color: #ffffff;
+	scrollbar-arrow-color: #d2e5f4;
+}
+
+.agreementWindow .agreementButton {
+	width: 80px;
+	height: 28px;
+	display: block;
+	margin: 0px auto;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: url(../images/register_bg.gif) 0px -210px no-repeat;
+}
+
+.agreementWindow .agreementButton:hover {
+	background: url(../images/register_bg.gif) -90px -210px no-repeat;
+}
+
+* iframe.jqm {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: -1;
+	width: expression(this.parentNode.offsetWidth+'px');
+	height: expression(this.parentNode.offsetHeight+'px');
+}
+
+* html .agreementWindow {
+	position: absolute;
+	top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(25 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}

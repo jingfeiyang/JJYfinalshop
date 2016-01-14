@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>网站制度 - Powered By JFinalShop</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<meta name="keywords" content="制度" />
+<meta name="description" content="会员应遵守的网站制度" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="/template/common/css/base.css" rel="stylesheet" type="text/css" />
+<link href="/template/common/css/jquery.datepicker.css" rel="stylesheet" type="text/css" />
+<link href="/template/common/css/jquery.zoomimage.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/common/js/jquery.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.form.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.metadata.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.methods.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.cn.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.dimensions.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.jqDnR.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.jqModal.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.tools.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.qtip.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.pager.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.livequery.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.superfish.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.datepicker.js"></script>
+<!-- <script type="text/javascript" src="/template/common/js/jquery.bCheckbox.js"></script> -->
+<script type="text/javascript" src="/template/common/js/jquery.lSelect.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.ajaxfileupload.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.zoomimage.js"></script>
+<script type="text/javascript" src="/template/common/tiny_mce/jquery.tinymce.js"></script>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="/template/common/js/belatedPNG.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/template/common/js/base.js"></script><link href="/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/article.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/article_content.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/shop/js/login.js"></script>
+<script type="text/javascript" src="/template/shop/js/register.js"></script>
+<script type="text/javascript" src="/template/shop/js/article.js"></script>
+<script type="text/javascript">
+$().ready( function() {
+
+	$hits = $("#hits");
+
+	// 统计文章点击数
+	$.ajax({
+		url: "/shop/article/ajaxCounter?id=402881882ba8753a012ba88eb79a0003",
+		dataType: "json",
+		async: false,
+		success: function(data) {
+			if (data.status == "success") {
+				$hits.text(data.hits);
+			}
+		}
+	});
+
+});
+</script>
+</head>
+<body class="articleContent">
+<script type="text/javascript" src="/template/shop/js/header.js"></script>
+<link href="/template/shop/css/header.css" rel="stylesheet" type="text/css" />
+<div class="header png">
+	<div class="headerTop png">
+		<div class="headerTopContent">
+			<div class="headerLoginInfo">
+				您好<span id="headerLoginMemberUsername"></span>，欢迎来到JFinalShop体验商城!
+				<a href="#" id="headerShowLoginWindow" class="showLoginWindow">[登  录]</a>
+				<a href="/memberCenter" id="headerMemberCenter">[会员中心]</a>
+				<a href="#" id="headerShowRegisterWindow" class="showRegisterWindow">[注  册]</a>
+				<a href="/memberCenter/logout" id="headerLogout">[退  出]</a>
+			</div>
+			<div class="headerTopNav">
+										<a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html"  target="_blank">关于我们</a>
+			</div>
+		</div>
+	</div>
+	<div class="headerMiddle">
+		<div class="headerInfo">
+			7×24小时服务热线：<strong>400-8888888</strong>
+		</div>
+		<div class="headerLogo">
+			<a href="/"><img class="png" src="/upload/image/logo.gif" title="JFinalShop体验商城" /></a>
+		</div>
+		<div class="headerSearch png">
+			<form id="productSearchForm" action="/shop/product/search" method="get">
+				<div class="headerSearchText">
+					<input type="text" id="productSearchKeyword" name="keyword" value="请输入关键词..."}" />
+				</div>
+				<input type="submit" class="headerSearchButton" value="" />
+				<div class="hotKeyword">
+					热门关键词: 
+						<a href="/shop/product/search?keyword=电子书">电子书</a>
+						<a href="/shop/product/search?keyword=生活电器">生活电器</a>
+						<a href="/shop/product/search?keyword=电脑配件">电脑配件</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="headerBottom">
+		<input type="button" class="cartItemListButton showCartItemList" value="" onclick="window.open('/shop/cartItem/list')" />
+		<ul id="cartItemListDetail"></ul>
+		<input type="button" class="orderButton" value="" onclick="window.open('/shop/cartItem/list')" />
+		<div class="headerMiddleNav">
+			<div class="headerMiddleNavLeft png"></div>
+			<ul class="headerMiddleNavContent png">
+					<li>
+						<a href="/">首页</a>
+					</li>
+			</ul>
+			<div class="headerMiddleNavRight png"></div>
+		</div>
+	</div>
+</div>	<div class="body">
+		<div class="bodyLeft">
+			<div class="recommendArticle">
+				<div class="top">推荐文章</div>
+				<div class="middle clearfix">
+					<ul>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html" title="联系我们">联系我们</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html" title="关于我们">关于我们</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html" title="发票制度说明">发票制度说明</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/cb4b35cc2fd14ddbb20b49d7637fab2f.html" title="常见问题">常见问题</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html" title="订单查询">订单查询</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html" title="网站制度">网站制度</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html" title="购物流程">购物流程</a>
+							</li>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotArticle">
+				<div class="top">热点文章</div>
+				<div class="middle clearfix">
+					<ul>
+							<li class="number1">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html" title="网站制度">网站制度</a>
+							</li>
+							<li class="number2">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html" title="关于我们">关于我们</a>
+							</li>
+							<li class="number3">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html" title="联系我们">联系我们</a>
+							</li>
+							<li class="number4">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/ac6f0b7c351c41058dc800ea0091e26c.html" title="退货政策">退货政策</a>
+							</li>
+							<li class="number5">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html" title="订单查询">订单查询</a>
+							</li>
+							<li class="number6">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html" title="购物流程">购物流程</a>
+							</li>
+							<li class="number7">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html" title="发票制度说明">发票制度说明</a>
+							</li>
+							<li class="number8">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/cb4b35cc2fd14ddbb20b49d7637fab2f.html" title="常见问题">常见问题</a>
+							</li>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="listBar">
+				<div class="left"></div>
+				<div class="middle">
+					<div class="path">
+						<a href="/" class="home"><span class="icon">&nbsp;</span>首页</a>>
+							<a href="/shop/article/list?id=402881882ba8455f012ba86db8560006">帮助中心</a>>
+					</div>
+					<div class="articleSearch">
+						<form id="articleSearchForm" action="/shop/article/search" method="get">
+							<input type="text" name="keyword" id="articleSearchKeyword" class="keyword" value="请输入关键词..." />
+							<input type="submit" class="searchButton" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="right"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="articleContentDetail">
+				<div class="articleContentTop"></div>
+				<div class="articleContentMiddle">
+					<div class="title">网站制度</div>
+                    <div class="blank"></div>
+                    <div class="info">
+                    	<span class="createDate">日期：2010-10-14</span>
+                    	
+                    	点击：<span id="hits"></span> 次
+                    	<span class="fontSize">【<a id="changeBigFontSize" href="javascript:void(0);">大</a> <a id="changeNormalFontSize" href="javascript:void(0);">中</a> <a id="changeSmallFontSize" href="javascript:void(0);">小</a>】</span>
+                    </div>
+					<div id="articleContent" class="content">
+             			<p>会员定期巡检制度</p><p>一、目的 <br />为确保网站注册会员资料和会员发布信息的真实可靠性，特制定本制度。</p><p>二、人员安排及巡检职责&nbsp;&nbsp; <br />1. 内容主管对整个平台负全责，巡检人员负责整个网站注册会员资料和会员发布信息的检查、审核、激活。网络信息安全管理小组负责管理各信息审核员，并对经信息审核员审核通过的内容进行监管。<br />2. 如巡检人员缺勤，则部门主管须及时安排其他人员巡检。节假日，须安排值班人员巡检会员信息。&nbsp; <br />3. 巡检周期为：当天全面检查，一周抽查一次，一月普查一次。</p><p>三、巡检细则&nbsp;&nbsp; <br />1. 会员注册资料检查&nbsp; <br />1.1. 每天下班前全面检查当天注册的会员资料，如果发现注册资料中包含有害、虚假、诽谤或中伤他人的信息，马上予以删除。<br />1.2. 每周五对一周的注册信息进行抽查，每个月底对一个月的注册信息抽查一次，主要以搜索特定关键字为主。</p><p>2. 会员在网站上发布的信息检查&nbsp; <br />2.1. 会员发布的企业和产品信息：<br />2.1.1. 巡检人员当天检查，审核通过后才在网站前台显示。<br />2.1.2. 审核没有通过，如果原因是不够完善，及时告知会员补充完整；如果信息本身包含有害、虚假、诽谤或中伤他人的内容，直接予以删除。<br />2.2. 会员发布的供求等商业信息：<br />2.2.1. 巡检人员根据信息发布的频率，定期检查，一般15分钟检查一次。&nbsp; <br />2.3. 检查到会员发布的信息本身包含有害、虚假、诽谤或中伤他人等内容，直接予以删除。</p><p>3. 纠错举报处理&nbsp; <br />网站上设置纠错举报用联系方式，该联系人每天查收相关邮件或接听相关电话，及时处理用户反映的会员信息问题，仔细求证，及时回复。</p><p>四、巡检要点 <br />1. 关键时段检查：每日上午开始上班30分钟内完成会员注册资料和会员发布信息的第一遍检查。下午离下班前30分钟左右开始最后一遍检查。</p><p>2. 按频率检查：部门主管根据需要，设置巡检频率。巡检人员根据巡检频率对会员发布的信息进行检查与维护。</p><p>3. 巡检内容：包括所有注册会员资料和会员在网站上发布的各种信息。删除有害信息、虚假、重发、滥发等信息。<br />3.1. 有害信息：网站发布的各类信息必须严格遵守《中华人民共和国计算机信息网络国际联网管理暂行规定》、《互联网信息服务管理办法》等有关国家政策、法规规定。会员不得编辑和传播下列信息：</p><p>（一）反对宪法所确定的基本原则的；</p><p>（二）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；</p><p>（三）损害国家荣誉和利益的；</p><p>（四）煽动民族仇恨、民族歧视，破坏民族团结的；</p><p>（五）破坏国家宗教政策，宣扬邪教和封建迷信的；</p><p>（六）散布谣言，扰乱社会秩序，破坏社会稳定的；</p><p>（七）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；</p><p>（八）侮辱或者诽谤他人，侵害他人合法权益的；</p><p>（九）含有法律、行政法规禁止的其他内容的。</p><p><br />巡检人员可用关键字检索（必要时请用模糊检索方法检索栏目信息）。发现有害信息，请快速作好信息备份（保留原始记录：所发内容、用户IP、登陆时间、注册时间、最后访问时间），并且对该ID所有帖子进行逐个审核，然后立即删除有害信息，并上报部门主管。部门主管须通过技术手段：黑名单控制+定期的数据库检查（一周）, 处理此类信息。如情节严重者，部门主管须通过信息网络安全管理小组上报管理机关！</p><p>3.2. 虚假信息：发布内容明显与事实不符的信息；&nbsp;</p><p>3.3. 诽谤、中伤他人的信息：信息中出现恶意辱骂某公司或个人的字眼，此类信息常出现在论坛和专家等交互式栏目中。如有此类信息，巡检人员在活跃人气的同时须正确引导，若情节严重则立即删除；</p><p>3.4. 与栏目不符的信息：信息内容与栏目主旨（即栏目名称或子栏目名称）不符或欠符合的信息。&nbsp;</p>
+             			<div class="blank"></div>
+             			<link href="/template/shop/css/pager.css" rel="stylesheet" type="text/css" />
+             			<!-- 分页未写 -->
+                    </div>
+				</div>
+				<div class="articleContentBottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+<link href="/template/shop/css/friend_link.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/template/shop/js/friend_link.js"></script>
+<div class="friendLink">
+	<div class="pictureFriendLink">
+		<div class="left prev"></div>
+		<div class="middle scrollable">
+			<ul class="items">
+					<li>
+						<a href="http://www.oschina.net/" target="_blank" title="开源中国">
+							<img src="/upload/image/1e31632cf9214b4191bd0adb50b4ed3e.png">
+						</a>
+					</li>
+			</ul>
+		</div>
+		<div class="right next"></div>
+	</div>
+	<div class="textFriendLink">
+		<div class="left"></div>
+		<div class="middle">
+			<ul>
+			</ul>
+		</div>
+		<div class="right"></div>
+	</div>
+</div>	</div>
+	<div class="blank"></div>
+<link href="/template/shop/css/footer.css" type="text/css" rel="stylesheet" />
+<div class="footer">
+	<div class="bottomNavigation">
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html >购物流程</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html >网站制度</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html >订单查询</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/390aed8de096473aa3fd928c25bf9fb9.html >积分说明</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/c55109104bb241c7a51605602b1531df.html >会员注册协议</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/0340b92488ca464aa8d545fb899dcd25.html >会员等级</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html >网上支付</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html >邮局汇款</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/ac6f0b7c351c41058dc800ea0091e26c.html >退货政策</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html >关于我们</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html >发票制度说明</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/cb4b35cc2fd14ddbb20b49d7637fab2f.html >常见问题</a>
+				</dd>
+				</dl>
+				<dl>
+	</div>
+	<div class="footerInfo">
+		<ul class=" list-paddingleft-2"><li><p><a>关于商城</a>|</p></li><li><p><a>帮助中心</a>|</p></li><li><p><a>网站地图</a>|</p></li><li><p><a>诚聘英才</a>|</p></li><li><p><a>联系我们</a>|</p></li><li><p><a>版权说明</a></p></li><p>Copyright &amp;copy; 2014 JFinalShop. All rights reserved.</p><p>Powered by JFinal<span class="systemName">Shop V1.0</span></p></ul><ul class=" list-paddingleft-2"></ul>
+	</div>
+</div></body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>支付确认 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/payment.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+</head>
+<body class="paymentGateway">
+	<%include("/shop/header.html"){}%>
+	<div class="body">
+		<div class="blank"></div>
+		<div class="paymentGatewayDetail">
+			<form action="${base}/shop/payment/gateway" method="post">
+				<input type="hidden" name="paymentType" value="${paymentType!}" />
+				<input type="hidden" name="amountPayable" value="${amountPayable!}" />
+				<input type="hidden" name="paymentConfig.id" value="${paymentConfig.id!}" />
+				<input type="hidden" name="order.id" value="${order.id!}" />
+				<p>
+					尊敬的<strong class="green">${loginMember.username}</strong>，
+					您选择的支付方式为：<strong>${paymentConfig.name}</strong>
+					<%if (order! != null){%><a href="${base}/shop/order/view?id=${order.id}">[查看订单详情]</a><%}%>
+				</p>
+				<p>
+					支付总金额：<strong class="red">${(amountPayable + paymentFee),orderUnitCurrencyFormat}</strong>
+					<%if (paymentConfig.paymentFeeType == "scale" && paymentConfig.paymentFee != 0){%>
+						[含支付手续费费率：${paymentConfig.paymentFee}%]
+					<%}else if (paymentConfig.paymentFeeType == "fixed" && paymentConfig.paymentFee != 0){%>
+						[含支付手续费：${paymentConfig.paymentFee,orderUnitCurrencyFormat}]
+					<%}%>
+				</p>
+				<div class="buttonArea">
+					<input type="submit" class="formButton" value="确认支付" />
+				</div>
+			</form>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

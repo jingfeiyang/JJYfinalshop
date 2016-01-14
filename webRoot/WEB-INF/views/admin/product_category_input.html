@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>添加/编辑商品分类 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/admin.css">
+  <%
+	var isAdd = false;
+	var isEdit = false;
+	
+	if(isEmpty(productCategory.id)){
+		isAdd = true;
+	}else{	
+		isEdit = true;
+   }%>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<!-- content start -->
+<div class="admin-content">
+	 <div class="am-cf am-padding">
+	   <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品管理</strong> / <small><%if(isAdd){%>添加商品分类<%}else{%>编辑商品分类<%}%></small></div>
+	 </div>
+	 <hr style="padding:0px 1.6rem 1.6rem 1rem;margin:0px;">
+	 <div class="am-g" >
+		<div class="am-u-sm-12" style="padding:0px 5px 0px 0px;margin:0px; height: 600px;">
+		    <form id="inputForm" class="am-form" action="<%if (isAdd){%>${base}/productCategory/save<%}else{%>${base}/productCategory/update<%}%>" method="post">
+	          <input type="hidden" name="productCategory.id" value="${productCategory.id!}" />
+	          
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">分类名称</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" name="productCategory.name" class="am-input-sm" value="${productCategory.name!}" required/>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">${nameMessages!}</div>
+	          </div>
+	          
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">上级分类</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <%if(isAdd){%>
+						<select name="parentId" data-am-selected="{btnSize: 'sm', btnStyle: 'secondary'}" >
+							<%for(list in productCategoryTreeList){%>
+								<option value="${list.id}">
+									<%if (list.level != 0){%>
+										<%for( i in range(0,list.level)){%>------<%}%>
+									<%}%>
+								${list.name}
+								</option>
+							<%}%>
+						</select>
+					<%}else{%>
+						${productCategory.parent.name!'顶级分类'}
+					<%}%>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">&nbsp;</div>
+	          </div>
+	          
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">排序</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" name="productCategory.orderList" class="am-input-sm" value="${productCategory.orderList!50}" title="只允许输入零或正整数" required/>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">${orderListMessages!}</div>
+	          </div>
+	          
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">页面关键词</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" name="productCategory.metaKeywords" class="am-input-sm" value="${productCategory.metaKeywords!}" />
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">&nbsp;</div>
+	          </div>
+	          
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">页面描述</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <textarea name="productCategory.metaDescription" rows="7">${productCategory.metaDescription!}</textarea>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">&nbsp;</div>
+	          </div>
+	          
+			  <div class="am-g am-margin-top">
+				<div class="am-u-sm-12 am-u-md-1 am-text-right admin-form-text"></div>
+				  <div class="am-u-sm-12 am-u-md-11">
+					<button type="submit" class="am-btn am-btn-primary am-btn-sm">提交保存</button>
+					<button type="button" class="am-btn am-btn-warning am-btn-sm" onclick="window.history.back(); return false;">放弃保存</button>
+				  </div>
+			  </div>
+	        </form>
+		</div>
+	</div>
+</div>
+<!-- content end -->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="${base}/template/assets/js/jquery.min.js"></script>
+<script src="${base}/template/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+</body>
+</html>

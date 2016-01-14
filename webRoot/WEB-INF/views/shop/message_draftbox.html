@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>草稿箱 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/member_center.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+<script type="text/javascript">
+$().ready( function() {
+	
+	// 删除
+	$(".deleteMessage").click( function() {
+		if (confirm("您确定要删除吗？") == false) {
+			return false;
+		}
+	});
+	
+});
+</script>
+</head>
+<body class="memberCenter">
+	<%include("/shop/header.html"){}%>
+	<div class="body messageDraftbox">
+		<div class="bodyLeft">
+			<div class="memberInfo">
+				<div class="top"></div>
+				<div class="middle">
+					<p>欢迎您！<span class="username">${loginMember.username}</span> [<a class="userLogout" href="${base}/memberCenter/logout">退出</a>]</p>
+					<p>会员等级:<span class="red"> ${loginMember.memberRank.name}</span></p>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<!-- 侧边栏 -->
+			<%include("/shop/sidebar.html"){}%>
+		</div>
+		<div class="bodyRight">
+			<div class="memberCenterDetail">
+				<div class="top">
+					草稿箱
+				</div>
+				<div class="middle">
+					<div class="blank"></div>
+					<table class="listTable">
+						<tr>
+							<th>标题</th>
+							<th>收件人</th>
+							<th>时间</th>
+							<th>操作</th>
+						</tr>
+						<%for(list in pager.list){%>
+							<tr>
+								<td>
+									<a href="${base}/shop/message/send?id=${list.id}">${list.title}</a>
+								</td>
+								<td>
+									${list.toMember.username!"管理员"}
+								</td>
+								<td>
+									${list.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}
+								</td>
+								<td>
+									<a href="${base}/shop/message/delete?id=${list.id}" class="deleteMessage">删除</a>
+								</td>
+							</tr>
+						<%}%>
+					</table>
+					<div class="blank"></div>
+         			<link href="${base}/template/shop/css/pager.css" rel="stylesheet" type="text/css" />
+         			<%include("/shop/pager.html", {"pageNumber":pager.pageNumber,"pageSize":pager.pageSize,"pageCount":pager.totalPage,"property":"","keyword":"无","orderBy":"","orderType":"","baseUrl":"/shop/order/list"}) {}%>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

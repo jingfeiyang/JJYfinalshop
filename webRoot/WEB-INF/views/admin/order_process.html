@@ -1,0 +1,1064 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>处理订单 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/admin/css/input.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$().ready( function() {
+
+	var $paymentTabButton = $("#paymentTabButton");
+	var $shippingTabButton = $("#shippingTabButton");
+	var $refundTabButton = $("#refundTabButton");
+	var $reshipTabButton = $("#reshipTabButton");
+
+	var $areaSelect = $(".areaSelect");
+	var $paymentProcessButton = $("input[name='paymentProcess']");
+	var $shippingProcessButton = $("input[name='shippingProcess']");
+	var $completedProcessButton = $("input[name='completedProcess']");
+	var $refundProcessButton = $("input[name='refundProcess']");
+	var $reshipProcessButton = $("input[name='reshipProcess']");
+	var $invalidProcessButton = $("input[name='invalidProcess']");
+	
+	// 地区选择菜单
+	$areaSelect.lSelect({
+		url: "${base}/area/ajaxChildrenArea"// Json数据获取url
+	});
+
+	var tabs = $("ul.tab").tabs();
+	
+	// 订单支付
+	$paymentProcessButton.click( function() {
+		tabs.click(2);
+	});
+	
+	// 订单发货
+	$shippingProcessButton.click( function() {
+		tabs.click(3);
+	});
+	
+	// 订单完成
+	$completedProcessButton.click( function() {
+		var $this = $(this);
+		if (confirm("订单完成后将不允许对此订单进行任何操作，确认执行？") == true) {
+			$.ajax({
+				url: "${base}/order/completed",
+				data: {"orders.id": "${orders.id}"},
+				dataType: "json",
+				async: false,
+				beforeSend: function() {
+					$this.attr("disabled", true);
+				},
+				success: function(data) {
+					$.message(data.status, data.message);
+					if (data.status == "success") {
+						$paymentTabButton.attr("disabled", true);
+						$shippingTabButton.attr("disabled", true);
+						$refundTabButton.attr("disabled", true);
+						$reshipTabButton.attr("disabled", true);
+						
+						$paymentProcessButton.attr("disabled", true);
+						$shippingProcessButton.attr("disabled", true);
+						$completedProcessButton.attr("disabled", true);
+						$refundProcessButton.attr("disabled", true);
+						$reshipProcessButton.attr("disabled", true);
+						$invalidProcessButton.attr("disabled", true);
+					} else {
+						$this.attr("disabled", true);
+					}
+				}
+			});
+		}
+	});
+	
+	// 退款
+	$refundProcessButton.click( function() {
+		tabs.click(4);
+	});
+	
+	// 退货
+	$reshipProcessButton.click( function() {
+		tabs.click(5);
+	});
+	
+	// 作废
+	$invalidProcessButton.click( function() {
+		var $this = $(this);
+		if (confirm("订单作废后将不允许对此订单进行任何操作，确认执行？") == true) {
+			$.ajax({
+				url: "${base}/order/invalid",
+				data: {"orders.id": "${orders.id}"},
+				dataType: "json",
+				async: false,
+				beforeSend: function() {
+					$this.attr("disabled", true);
+				},
+				success: function(data) {
+					$.message(data.status, data.message);
+					if (data.status == "success") {
+						$paymentTabButton.attr("disabled", true);
+						$shippingTabButton.attr("disabled", true);
+						$refundTabButton.attr("disabled", true);
+						$reshipTabButton.attr("disabled", true);
+						
+						$paymentProcessButton.attr("disabled", true);
+						$shippingProcessButton.attr("disabled", true);
+						$completedProcessButton.attr("disabled", true);
+						$refundProcessButton.attr("disabled", true);
+						$reshipProcessButton.attr("disabled", true);
+						$invalidProcessButton.attr("disabled", true);
+					} else {
+						$this.attr("disabled", false);
+					}
+				}
+			});
+		}
+	});
+	
+	// 订单支付表单验证
+	$("#paymentForm").validate({
+		errorClass: "validateError",
+		ignore: ".ignoreValidate",
+		errorPlacement: function(error, element) {
+			var messagePosition = element.metadata().messagePosition;
+			if("undefined" != typeof messagePosition && messagePosition != "") {
+				var $messagePosition = $(messagePosition);
+				if ($messagePosition.size() > 0) {
+					error.insertAfter($messagePosition).fadeOut(300).fadeIn(300);
+				} else {
+					error.insertAfter(element).fadeOut(300).fadeIn(300);
+				}
+			} else {
+				error.insertAfter(element).fadeOut(300).fadeIn(300);
+			}
+		},
+		submitHandler: function(form) {
+			$(form).find(":submit").attr("disabled", true);
+			form.submit();
+		}
+	});
+	
+	// 订单发货表单验证
+	$("#shippingForm").validate({
+		errorClass: "validateError",
+		ignore: ".ignoreValidate",
+		errorPlacement: function(error, element) {
+			var messagePosition = element.metadata().messagePosition;
+			if("undefined" != typeof messagePosition && messagePosition != "") {
+				var $messagePosition = $(messagePosition);
+				if ($messagePosition.size() > 0) {
+					error.insertAfter($messagePosition).fadeOut(300).fadeIn(300);
+				} else {
+					error.insertAfter(element).fadeOut(300).fadeIn(300);
+				}
+			} else {
+				error.insertAfter(element).fadeOut(300).fadeIn(300);
+			}
+		},
+		submitHandler: function(form) {
+			$(form).find(":submit").attr("disabled", true);
+			form.submit();
+		}
+	});
+	
+	// 订单退款表单验证
+	$("#refundForm").validate({
+		errorClass: "validateError",
+		ignore: ".ignoreValidate",
+		errorPlacement: function(error, element) {
+			var messagePosition = element.metadata().messagePosition;
+			if("undefined" != typeof messagePosition && messagePosition != "") {
+				var $messagePosition = $(messagePosition);
+				if ($messagePosition.size() > 0) {
+					error.insertAfter($messagePosition).fadeOut(300).fadeIn(300);
+				} else {
+					error.insertAfter(element).fadeOut(300).fadeIn(300);
+				}
+			} else {
+				error.insertAfter(element).fadeOut(300).fadeIn(300);
+			}
+		},
+		submitHandler: function(form) {
+			$(form).find(":submit").attr("disabled", true);
+			form.submit();
+		}
+	});
+	
+	// 订单退货表单验证
+	$("#reshipForm").validate({
+		errorClass: "validateError",
+		ignore: ".ignoreValidate",
+		errorPlacement: function(error, element) {
+			var messagePosition = element.metadata().messagePosition;
+			if("undefined" != typeof messagePosition && messagePosition != "") {
+				var $messagePosition = $(messagePosition);
+				if ($messagePosition.size() > 0) {
+					error.insertAfter($messagePosition).fadeOut(300).fadeIn(300);
+				} else {
+					error.insertAfter(element).fadeOut(300).fadeIn(300);
+				}
+			} else {
+				error.insertAfter(element).fadeOut(300).fadeIn(300);
+			}
+		},
+		submitHandler: function(form) {
+			$(form).find(":submit").attr("disabled", true);
+			form.submit();
+		}
+	});
+
+});
+</script>
+</head>
+<body class="input">
+	<div class="body">
+		<div class="inputBar">
+			<h1><span class="icon">&nbsp;</span>处理订单</h1>
+		</div>
+		<div class="blank"></div>
+		<ul class="tab">
+			<li>
+				<input type="button" value="基本信息" hidefocus="true" />
+			</li>
+			<li>
+				<input type="button" value="商品信息" hidefocus="true" />
+			</li>
+			<li>
+				<input type="button" id="paymentTabButton" value="订单支付"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.paymentStatus == "paid" || orders.paymentStatus == "partRefund" || orders.paymentStatus == "refunded"){%> disabled<%}%> hidefocus="true" />
+			</li>
+			<li>
+				<input type="button" id="shippingTabButton" value="订单发货"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.shippingStatus == "shipped"){%> disabled<%}%> hidefocus="true" />
+			</li>
+			<li>
+				<input type="button" id="refundTabButton" value="退款"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.paymentStatus == "unpaid" || orders.paymentStatus == "refunded"){%> disabled<%}%> hidefocus="true" />
+			</li>
+			<li>
+				<input type="button" id="reshipTabButton" value="退货"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.shippingStatus == "unshipped" || orders.shippingStatus == "reshiped"){%> disabled<%}%> hidefocus="true" />
+			</li>
+		</ul>
+		<div class="tabContent">
+			<table class="inputTable">
+				<tr>
+					<th>
+						订单状态操作:
+					</th>
+					<td>
+						<input type="button" name="paymentProcess" class="formButton" value="订单支付"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.paymentStatus == "paid" || orders.paymentStatus == "partRefund" || orders.paymentStatus == "refunded"){%> disabled<%}%> hidefocus="true" />
+						<input type="button" name="shippingProcess" class="formButton" value="订单发货"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.shippingStatus == "shipped"){%> disabled<%}%> hidefocus="true" />
+						<input type="button" name="completedProcess" class="formButton" value="订单完成"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid"){%> disabled<%}%> hidefocus="true" />
+					</td>
+					<td colspan="2">
+						<input type="button" name="refundProcess" class="formButton" value="退款"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.paymentStatus == "unpaid" || orders.paymentStatus == "refunded"){%> disabled<%}%> hidefocus="true" />
+						<input type="button" name="reshipProcess" class="formButton" value="退货"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.shippingStatus == "unshipped" || orders.shippingStatus == "reshiped"){%> disabled<%}%> hidefocus="true" />
+						<input type="button" name="invalidProcess" class="formButton" value="作废"<%if (orders.orderStatus == "completed" || orders.orderStatus == "invalid" || orders.paymentStatus != "unpaid" || orders.shippingStatus != "unshipped"){%> disabled<%}%> hidefocus="true" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						订单状态:
+					</th>
+					<td colspan="3">
+						[${i18n("OrderStatus." + orders.orderStatus)}]
+						[${i18n("PaymentStatus." + orders.paymentStatus)}]
+						[${i18n("ShippingStatus." + orders.shippingStatus)}]
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<th>
+						订单编号:
+					</th>
+					<td>
+						${orders.orderSn}
+					</td>
+					<th>
+						下单时间:
+					</th>
+					<td>
+						${orders.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商品总金额:
+					</th>
+					<td>
+						<span id="productTotalPrice" class="red">${orders.productTotalPrice,orderUnitCurrencyFormat}</span>
+					</td>
+					<th>
+						订单总金额:
+					</th>
+					<td>
+						<span id="totalAmount" class="red">${orders.totalAmount,orderUnitCurrencyFormat}</span>&nbsp;&nbsp;
+						<strong class="red">[已付金额：${orders.paidAmount,orderUnitCurrencyFormat}]</strong>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						配送方式:
+					</th>
+					<td>
+						${orders.deliveryTypeName}
+					</td>
+					<th>
+						支付方式:
+					</th>
+					<td>
+						${orders.paymentConfigName}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						配送费用:
+					</th>
+					<td>
+						${orders.deliveryFee,orderUnitCurrencyFormat}
+					</td>
+					<th>
+						支付手续费:
+					</th>
+					<td>
+						${orders.paymentFee,orderUnitCurrencyFormat}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						商品重量:
+					</th>
+					<td>
+						${orders.productWeight}${i18n("WeightUnit." + orders.productWeightUnit)}
+					</td>
+					<th>
+						附言:
+					</th>
+					<td>
+						${orders.memo!"&nbsp;"}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<th>
+						收货人姓名:
+					</th>
+					<td>
+						${orders.shipName}
+					</td>
+					<th>
+						收货地区:
+					</th>
+					<td>
+						${orders.shipArea}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						收货地址:
+					</th>
+					<td>
+						${orders.shipAddress}
+					</td>
+					<th>
+						邮编:
+					</th>
+					<td>
+						${orders.shipZipCode}
+					</td>
+				</tr>
+				<tr>
+					<th>
+						电话:
+					</th>
+					<td>
+						${orders.shipPhone}
+					</td>
+					<th>
+						手机:
+					</th>
+					<td>
+						${orders.shipMobile}
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						&nbsp;
+					</td>
+				</tr>
+				<%if (!isEmpty(orders.member_id)){%>
+					<tr>
+						<th>
+							用户名:
+						</th>
+						<td>
+							${orders.member.username}
+						</td>
+						<th>
+							会员等级:
+						</th>
+						<td>
+							${orders.member.memberRank.name}
+							<%if (orders.member.memberRank.preferentialScale != 100){%>
+								<span class="red">[优惠百分比：${orders.member.memberRank.preferentialScale}%]</span>
+							<%}%>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							E-mail:
+						</th>
+						<td>
+							${orders.member.email}
+						</td>
+						<th>
+							最后登录IP:
+						</th>
+						<td>
+							${orders.member.loginIp}
+						</td>
+					</tr>
+					<tr>
+						<th>
+							预存款余额:
+						</th>
+						<td>
+							${orders.member.deposit.balance!0,orderUnitCurrencyFormat}
+						</td>
+						<th>
+							积分:
+						</th>
+						<td>
+							${orders.member.point}
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div class="buttonArea">
+								<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+							</div>
+						</td>
+					</tr>
+				<%}else{%>
+					<tr>
+						<th>
+							会员状态:
+						</th>
+						<td colspan="3">
+							<span class="red">会员不存在</span>
+						</td>
+					</tr>
+				<%}%>
+			</table>
+		</div>
+		<div class="tabContent">
+			<table class="inputTable">
+				<tr class="title">
+					<th>货号</th>
+					<th>商品名称</th>
+					<th>价格</th>
+					<th>购买数量</th>
+				</tr>
+				<%for(list in orders.orderItemList){%>
+					<tr>
+						<td>
+							<a href="${base}${list.productHtmlFilePath}" target="_blank">
+								${list.productSn}
+							</a>
+						</td>
+						<td>
+							<a href="${base}${list.productHtmlFilePath}" target="_blank">
+								${list.productName}
+							</a>
+						</td>
+						<td>
+							${list.productPrice,priceUnitCurrencyFormat}
+						</td>
+						<td>
+							${list.productQuantity}
+						</td>
+					</tr>
+				<%}%>
+				<tr>
+					<td colspan="4">
+						<div class="buttonArea">
+							<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="tabContent">
+			<%if (orders.orderStatus != "completed" && orders.orderStatus != "invalid" && orders.paymentStatus != "paid" && orders.paymentStatus != "partRefund" && orders.paymentStatus != "refunded"){%>
+				<form id="paymentForm" action="${base}/order/payment" method="post">
+					<input type="hidden" name="orders.id" value="${orders.id}" />
+					<table class="inputTable">
+						<tr>
+							<th>
+								订单编号:
+							</th>
+							<td>
+								${orders.orderSn}
+							</td>
+							<th>
+								下单时间:
+							</th>
+							<td>
+								${orders.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								订单总金额:
+							</th>
+							<td>
+								<span class="red">${orders.totalAmount,orderUnitCurrencyFormat}</span>
+							</td>
+							<th>
+								已付金额:
+							</th>
+							<td>
+								<span class="red">${orders.paidAmount,orderUnitCurrencyFormat}</span>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								收款银行:
+							</th>
+							<td>
+								<input type="text" name="payment.bankName" class="formText" />
+							</td>
+							<th>
+								收款账号:
+							</th>
+							<td>
+								<input type="text" name="payment.bankAccount" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								支付类型:
+							</th>
+							<td>
+								<select name="paymentType">
+									<%for(list in nonRechargePaymentTypeList){%>
+										<option value="${list}">
+											${i18n("PaymentType." + list)}
+										</option>
+									<%}%>
+								</select>
+							</td>
+							<th>
+								支付方式:
+							</th>
+							<td>
+								<select name="payment.paymentConfig_id">
+									<%for(list in allPaymentConfig){%>
+										<option value="${list.id}"<%if (list == orders.paymentConfig){%> selected<%}%>>
+											${list.name}
+										</option>
+									<%}%>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								付款金额:
+							</th>
+							<td>
+								<input type="text" name="payment.totalAmount" class="formText {required: true, positive: true, max: ${orders.totalAmount - orders.paidAmount}}" value="${orders.totalAmount - orders.paidAmount}" />
+							</td>
+							<th>
+								付款人:
+							</th>
+							<td>
+								<input type="text" name="payment.payer" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								收款单备注:
+							</th>
+							<td colspan="3">
+								<input type="text" name="payment.memo" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<div class="buttonArea">
+									<input type="submit" class="formButton" value="确  定" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			<%}%>
+		</div>
+		<div class="tabContent">
+			<%if (orders.orderStatus != "completed" && orders.orderStatus != "invalid" && orders.shippingStatus != "shipped"){%>
+				<form id="shippingForm" action="${base}/order/shipping" method="post">
+					<input type="hidden" name="orders.id" value="${orders.id}" />
+					<table class="inputTable">
+						<tr>
+							<th>
+								订单编号:
+							</th>
+							<td>
+								${orders.orderSn}
+							</td>
+							<th>
+								下单时间:
+							</th>
+							<td>
+								${orders.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								配送方式:
+							</th>
+							<td>
+								<select name="shipping.deliveryType_id">
+									<%for(list in allDeliveryType){%>
+										<option value="${list.id}"<%if (list == orders.deliveryType){%> selected<%}%>>
+											${list.name}
+										</option>
+									<%}%>
+								</select>
+							</td>
+							<th>
+								配送费用:
+							</th>
+							<td>
+								<span class="red">${orders.deliveryFee,orderUnitCurrencyFormat}</span>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								物流公司:
+							</th>
+							<td>
+								<select name="shipping.deliveryCorpName">
+									<%for(list in allDeliveryCorp){%>
+										<option value="${list.name}"<%if (list == orders.deliveryType.defaultDeliveryCorp){%> selected<%}%>>
+											${list.name}
+										</option>
+									<%}%>
+								</select>
+							</td>
+							<th>
+								物流编号:
+							</th>
+							<td>
+								<input type="text" name="shipping.deliverySn" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								物流费用:
+							</th>
+							<td colspan="3">
+								<input type="text" name="shipping.deliveryFee" class="formText {min: 0}" value="${orders.deliveryFee}" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								&nbsp;
+							</td>
+						</tr>
+						<tr>
+							<th>
+								收货人姓名:
+							</th>
+							<td>
+								<input type="text" name="shipping.shipName" class="formText {required: true}" value="${orders.shipName}" />
+							</td>
+							<th>
+								收货地区:
+							</th>
+							<td>
+								<input type="text" name="shipping.shipAreaPath" class="areaSelect {required: true, messagePosition: '#shipAreaPathMessagePosition'}" value="${orders.shipAreaPath}" />
+								<span id="shipAreaPathMessagePosition"></span>
+								<label class="requireField">*</label>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								收货地址:
+							</th>
+							<td>
+								<input type="text" name="shipping.shipAddress" class="formText {required: true}" value="${orders.shipAddress}" />
+							</td>
+							<th>
+								邮编:
+							</th>
+							<td>
+								<input type="text" name="shipping.shipZipCode" class="formText {required: true, zipCode: true}" value="${orders.shipZipCode}" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								电话:
+							</th>
+							<td>
+								<input type="text" name="shipping.shipPhone" class="formText {requiredOne: '#shipMobile', phone: true}" value="${orders.shipPhone}" />
+							</td>
+							<th>
+								手机:
+							</th>
+							<td>
+								<input type="text" name="shipping.shipMobile" id="shipMobile" class="formText {mobile: true}" value="${orders.shipMobile}" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								发货备注:
+							</th>
+							<td colspan="3">
+								<input type="text" name="shipping.memo" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								&nbsp;
+							</td>
+						</tr>
+					</table>
+					<table class="inputTable">
+						<tr class="title">
+							<th>货号</th>
+							<th>商品名称</th>
+							<th>购买数量</th>
+							<th>当前库存</th>
+							<th>已发货数</th>
+							<th>本次发货数</th>
+						</tr>
+						<!-- 统计行数，后台取Model用 -->
+						<input type="hidden" name="orderItemSize" value="${orders.orderItemList.~size}" />
+						<%for(list in orders.orderItemList){%>
+							<tr>
+								<td>
+									<input type="hidden" name="deliveryItemList[${listLP.index}].product_id" value="${list.product.id}" />
+									<a href="${base}${list.productHtmlFilePath}" target="_blank">
+										${list.productSn}
+									</a>
+								</td>
+								<td>
+									<a href="${base}${list.productHtmlFilePath}" target="_blank">
+										${list.productName}
+									</a>
+								</td>
+								<td>
+									${list.productQuantity}
+								</td>
+								<td>
+									<span title="被占用数: ${list.product.freezeStore}">${list.product.store!"-"}</span>
+								</td>
+								<td>
+									${list.deliveryQuantity}
+								</td>
+								<td>
+									<input type="text" name="deliveryItemList[${listLP.index}].deliveryQuantity" class="formText {required: true, min: 0, max: ${list.productQuantity - list.deliveryQuantity}}" value="${list.productQuantity - list.deliveryQuantity}" style="width: 50px;" />
+								</td>
+							</tr>
+						<%}%>
+						<tr>
+							<td colspan="6">
+								<div class="buttonArea">
+									<input type="submit" class="formButton" value="确  定" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			<%}%>
+		</div>
+		<div class="tabContent">
+			<%if (orders.orderStatus != "completed" && orders.orderStatus != "invalid" && orders.paymentStatus != "unpaid" && orders.paymentStatus != "refunded"){%>
+				<form id="refundForm" action="${base}/order/refund" method="post">
+					<input type="hidden" name="orders.id" value="${orders.id}" />
+					<table class="inputTable">
+						<tr>
+							<th>
+								订单编号:
+							</th>
+							<td>
+								${orders.orderSn}
+							</td>
+							<th>
+								下单时间:
+							</th>
+							<td>
+								${orders.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								订单总金额:
+							</th>
+							<td>
+								<span class="red">${orders.totalAmount,orderUnitCurrencyFormat}</span>
+							</td>
+							<th>
+								已付金额:
+							</th>
+							<td>
+								<span class="red">${orders.paidAmount,orderUnitCurrencyFormat}</span>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								退款银行:
+							</th>
+							<td>
+								<input type="text" name="refund.bankName" class="formText" />
+							</td>
+							<th>
+								退款账号:
+							</th>
+							<td>
+								<input type="text" name="refund.bankAccount" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								退款类型:
+							</th>
+							<td>
+								<select name="refundType">
+									<%for(list in refundTypeList){%>
+										<option value="${list}">
+											${i18n("RefundType." + list)}
+										</option>
+									<%}%>
+								</select>
+							</td>
+							<th>
+								退款方式:
+							</th>
+							<td>
+								<select name="refund.paymentConfig_id">
+									<%for(list in allPaymentConfig){%>
+										<option value="${list.id}"<%if (list == orders.paymentConfig){%> selected<%}%>>
+											${list.name}
+										</option>
+									<%}%>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								退款金额:
+							</th>
+							<td>
+								<input type="text" name="refund.totalAmount" class="formText {required: true, positive: true, max: ${orders.paidAmount}}" value="${orders.paidAmount}" />
+							</td>
+							<th>
+								收款人:
+							</th>
+							<td>
+								<input type="text" name="refund.payee" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								退款备注:
+							</th>
+							<td colspan="3">
+								<input type="text" name="refund.memo" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<div class="buttonArea">
+									<input type="submit" class="formButton" value="确  定" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			<%}%>
+		</div>
+		<div class="tabContent">
+			<%if (orders.orderStatus != "completed" && orders.orderStatus != "invalid" && orders.shippingStatus != "unshipped" && orders.shippingStatus != "reshiped"){%>
+				<form id="reshipForm" action="${base}/order/reship" method="post">
+					<input type="hidden" name="orders.id" value="${orders.id}" />
+					<table class="inputTable">
+						<tr>
+							<th>
+								订单编号:
+							</th>
+							<td>
+								${orders.orderSn}
+							</td>
+							<th>
+								下单时间:
+							</th>
+							<td>
+								${orders.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}
+							</td>
+						</tr>
+						<tr>
+							<th>
+								配送方式:
+							</th>
+							<td>
+								<select name="reship.deliveryType_id">
+									<%for(list in allDeliveryType){%>
+										<option value="${list.id}"<%if (list == orders.deliveryType){%> selected<%}%>>
+											${list.name}
+										</option>
+									<%}%>
+								</select>
+							</td>
+							<th>
+								物流公司:
+							</th>
+							<td>
+								<select name="reship.deliveryCorpName">
+									<%for(list in allDeliveryCorp){%>
+										<option value="${list.name}">
+											${list.name}
+										</option>
+									<%}%>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								物流费用:
+							</th>
+							<td>
+								<input type="text" name="reship.deliveryFee" class="formText {min: 0}" value="${orders.deliveryFee}" />
+							</td>
+							<th>
+								物流编号:
+							</th>
+							<td>
+								<input type="text" name="reship.deliverySn" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								&nbsp;
+							</td>
+						</tr>
+						<tr>
+							<th>
+								退货人姓名:
+							</th>
+							<td>
+								<input type="text" name="reship.shipName" class="formText {required: true}" value="${orders.shipName}" />
+							</td>
+							<th>
+								退货地区:
+							</th>
+							<td>
+								<input type="text" name="reship.shipAreaPath" class="areaSelect {required: true, messagePosition: '#shipAreaPathMessagePosition'}" value="${orders.shipAreaPath}" />
+								<span id="shipAreaPathMessagePosition"></span>
+								<label class="requireField">*</label>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								退货地址:
+							</th>
+							<td>
+								<input type="text" name="reship.shipAddress" class="formText {required: true}" value="${orders.shipAddress}" />
+							</td>
+							<th>
+								邮编:
+							</th>
+							<td>
+								<input type="text" name="reship.shipZipCode" class="formText {required: true, zipCode: true}" value="${orders.shipZipCode}" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								电话:
+							</th>
+							<td>
+								<input type="text" name="reship.shipPhone" class="formText {requiredOne: '#shipMobile', phone: true}" value="${orders.shipPhone}" />
+							</td>
+							<th>
+								手机:
+							</th>
+							<td>
+								<input type="text" name="reship.shipMobile" id="shipMobile" class="formText {mobile: true}" value="${orders.shipMobile}" />
+							</td>
+						</tr>
+						<tr>
+							<th>
+								退货备注:
+							</th>
+							<td colspan="3">
+								<input type="text" name="reship.memo" class="formText" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								&nbsp;
+							</td>
+						</tr>
+					</table>
+					<table class="inputTable">
+						<tr class="title">
+							<th>货号</th>
+							<th>商品名称</th>
+							<th>购买数量</th>
+							<th>已发货数</th>
+							<th>本次退货数</th>
+						</tr>
+						<!-- 统计行数，后台取Model用 -->
+						<input type="hidden" name="orderItemSize" value="${orders.orderItemList.~size}" />
+						<%for(list in orders.orderItemList){%>
+							<tr>
+								<td>
+									<input type="hidden" name="deliveryItemList[${listLP.index}].product_id" value="${list.product.id}" />
+									<a href="${base}${list.productHtmlFilePath}" target="_blank">
+										${list.productSn}
+									</a>
+								</td>
+								<td>
+									<a href="${base}${list.productHtmlFilePath}" target="_blank">
+										${list.productName}
+									</a>
+								</td>
+								<td>
+									${list.productQuantity}
+								</td>
+								<td>
+									${list.deliveryQuantity}
+								</td>
+								<td>
+									<input type="text" name="deliveryItemList[${listLP.index}].deliveryQuantity" class="formText {required: true, min: 0, max: ${list.deliveryQuantity}}" value="${list.deliveryQuantity}" style="width: 50px;" />
+								</td>
+							</tr>
+						<%}%>
+						<tr>
+							<td colspan="6">
+								<div class="buttonArea">
+									<input type="submit" class="formButton" value="确  定" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
+									<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			<%}%>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>工商网银付款说明 - Powered By JFinalShop</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<meta name="keywords" content="工商网银付款说明" />
+<meta name="description" content="工商网银付款说明" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="/template/common/css/base.css" rel="stylesheet" type="text/css" />
+<link href="/template/common/css/jquery.datepicker.css" rel="stylesheet" type="text/css" />
+<link href="/template/common/css/jquery.zoomimage.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/common/js/jquery.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.form.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.metadata.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.methods.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.validate.cn.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.dimensions.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.jqDnR.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.jqModal.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.tools.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.qtip.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.pager.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.livequery.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.superfish.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.datepicker.js"></script>
+<!-- <script type="text/javascript" src="/template/common/js/jquery.bCheckbox.js"></script> -->
+<script type="text/javascript" src="/template/common/js/jquery.lSelect.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.ajaxfileupload.js"></script>
+<script type="text/javascript" src="/template/common/js/jquery.zoomimage.js"></script>
+<script type="text/javascript" src="/template/common/tiny_mce/jquery.tinymce.js"></script>
+<!--[if lte IE 6]>
+<script type="text/javascript" src="/template/common/js/belatedPNG.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/template/common/js/base.js"></script><link href="/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/article.css" rel="stylesheet" type="text/css" />
+<link href="/template/shop/css/article_content.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/template/shop/js/login.js"></script>
+<script type="text/javascript" src="/template/shop/js/register.js"></script>
+<script type="text/javascript" src="/template/shop/js/article.js"></script>
+<script type="text/javascript">
+$().ready( function() {
+
+	$hits = $("#hits");
+
+	// 统计文章点击数
+	$.ajax({
+		url: "/shop/article/ajaxCounter?id=402881882ba8753a012ba8a62fd7000c",
+		dataType: "json",
+		async: false,
+		success: function(data) {
+			if (data.status == "success") {
+				$hits.text(data.hits);
+			}
+		}
+	});
+
+});
+</script>
+</head>
+<body class="articleContent">
+<script type="text/javascript" src="/template/shop/js/header.js"></script>
+<link href="/template/shop/css/header.css" rel="stylesheet" type="text/css" />
+<div class="header png">
+	<div class="headerTop png">
+		<div class="headerTopContent">
+			<div class="headerLoginInfo">
+				您好<span id="headerLoginMemberUsername"></span>，欢迎来到JFinalShop体验商城!
+				<a href="#" id="headerShowLoginWindow" class="showLoginWindow">[登  录]</a>
+				<a href="/memberCenter" id="headerMemberCenter">[会员中心]</a>
+				<a href="#" id="headerShowRegisterWindow" class="showRegisterWindow">[注  册]</a>
+				<a href="/memberCenter/logout" id="headerLogout">[退  出]</a>
+			</div>
+			<div class="headerTopNav">
+										<a href="/html/article_content/201010/5010509a555548939840a3103d3cea71.html"  target="_blank">关于我们</a>
+			</div>
+		</div>
+	</div>
+	<div class="headerMiddle">
+		<div class="headerInfo">
+			7×24小时服务热线：<strong>400-8888888</strong>
+		</div>
+		<div class="headerLogo">
+			<a href="/"><img class="png" src="/upload/image/logo.gif" title="JFinalShop体验商城" /></a>
+		</div>
+		<div class="headerSearch png">
+			<form id="productSearchForm" action="/shop/product/search" method="get">
+				<div class="headerSearchText">
+					<input type="text" id="productSearchKeyword" name="keyword" value="请输入关键词..."}" />
+				</div>
+				<input type="submit" class="headerSearchButton" value="" />
+				<div class="hotKeyword">
+					热门关键词: 
+						<a href="/shop/product/search?keyword=电子书">电子书</a>
+						<a href="/shop/product/search?keyword=生活电器">生活电器</a>
+						<a href="/shop/product/search?keyword=电脑配件">电脑配件</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="headerBottom">
+		<input type="button" class="cartItemListButton showCartItemList" value="" onclick="window.open('/shop/cartItem/list')" />
+		<ul id="cartItemListDetail"></ul>
+		<input type="button" class="orderButton" value="" onclick="window.open('/shop/cartItem/list')" />
+		<div class="headerMiddleNav">
+			<div class="headerMiddleNavLeft png"></div>
+			<ul class="headerMiddleNavContent png">
+					<li>
+						<a href="/">首页</a>
+					</li>
+			</ul>
+			<div class="headerMiddleNavRight png"></div>
+		</div>
+	</div>
+</div>	<div class="body">
+		<div class="bodyLeft">
+			<div class="recommendArticle">
+				<div class="top">推荐文章</div>
+				<div class="middle clearfix">
+					<ul>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html" title="网上支付">网上支付</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/9028537042de4f8da39bf312ac43ba3b.html" title="邮局汇款">邮局汇款</a>
+							</li>
+							<li>
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/47532f706bf94c9ebb23a87a99424072.html" title="工商网银付款说明">工商网银付款说明</a>
+							</li>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotArticle">
+				<div class="top">热点文章</div>
+				<div class="middle clearfix">
+					<ul>
+							<li class="number1">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html" title="网上支付">网上支付</a>
+							</li>
+							<li class="number2">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/9028537042de4f8da39bf312ac43ba3b.html" title="邮局汇款">邮局汇款</a>
+							</li>
+							<li class="number3">
+									<span class="icon">&nbsp;</span><a href="/html/article_content/201010/47532f706bf94c9ebb23a87a99424072.html" title="工商网银付款说明">工商网银付款说明</a>
+							</li>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="listBar">
+				<div class="left"></div>
+				<div class="middle">
+					<div class="path">
+						<a href="/" class="home"><span class="icon">&nbsp;</span>首页</a>>
+							<a href="/shop/article/list?id=402881882ba8455f012ba86aa5c60002">支付方式</a>>
+					</div>
+					<div class="articleSearch">
+						<form id="articleSearchForm" action="/shop/article/search" method="get">
+							<input type="text" name="keyword" id="articleSearchKeyword" class="keyword" value="请输入关键词..." />
+							<input type="submit" class="searchButton" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="right"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="articleContentDetail">
+				<div class="articleContentTop"></div>
+				<div class="articleContentMiddle">
+					<div class="title">工商网银付款说明(2)</div>
+                    <div class="blank"></div>
+                    <div class="info">
+                    	<span class="createDate">日期：2010-10-14</span>
+                    	
+                    	点击：<span id="hits"></span> 次
+                    	<span class="fontSize">【<a id="changeBigFontSize" href="javascript:void(0);">大</a> <a id="changeNormalFontSize" href="javascript:void(0);">中</a> <a id="changeSmallFontSize" href="javascript:void(0);">小</a>】</span>
+                    </div>
+					<div id="articleContent" class="content">
+             			<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果您是第一次在电脑上使用个人网上银行，请参照工行个人网上银行系统设置指南首先调整您的计算机设置，然后安装U盾驱动程序，不同品牌U盾的驱动程序只能用于本品牌。如果您希望用光盘安装，请运行U盾光盘，选择安装主页面的&ldquo;系统升级&rdquo;，系统会自动检测并提示您安装补丁。安装补丁后，请选择&ldquo;驱动程序安装&rdquo;，安装U盾驱动程序。</p><p>第二步：下载证书信息</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;申请U盾后，您可以委托工行网点柜员协助您下载个人证书信息到U盾体内，也可以登录工行个人网上银行，进入&ldquo;客户服务-个人客户证书自助下载&rdquo;，完成证书信息下载。下载前请确认U盾已连接到电脑USB接口上。如果下载不成功，请到柜面办理。</p><p>第三步：开心使用U盾</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您在登录个人网上银行之后，只要按系统提示将U盾插入电脑的USB接口，输入U盾密码，并经银行系统验证无误，即可完成支付业务。</p><p>分步图解：</p><p><strong>一、登录工商银行网站www.icbc.com.cn，</strong>点击&ldquo;个人网上银行登录&rdquo;下方的&ldquo;安装&rdquo;。</p><p><img src="http://localhost/upload/image/201010/442f81d9af8f43a2bb1958a7d970817e.jpg" alt="" width="554" height="256" /></p><p><strong>二、下载安装安全控件、安装工行根证书、安装证书驱动程序、下载个人客户证书</strong></p><p><img src="http://localhost/upload/image/201010/3ed521007dc945baac2b7ad73a8ebc57.jpg" alt="" width="337" height="518" /></p><p><strong>三、什么是登录密码与U盾密码？</strong></p><p>登录密码就是客户在登录个人网上银行时使用的密码。</p><p>U盾密码是在您登陆个人网上银行在&ldquo;U盾管理&rdquo;栏下载证书时输入的密码。</p><p>为简化操作，客户在柜面注册网上银行时只设置一个初始密码，客户首次登录网上银行，系统会要求客户对登录密码进行修改，这样客户的账户资金将更为安全。</p><p>客户登录个人网上银行后，随时可以在&ldquo;客户服务&rdquo;栏目中对登录密码进行修改。客户如果忘了登录密码，可以携带本人的有效身份证件及注册卡，到银行办理重置网上银行密码。</p><p><strong>四、在线支付的手续费是如何计算的？ </strong></p><p>使用工行网上银行在线支付在商城网站购物的，银行不收取用户任何手续费。</p><p><strong>五、安全小锦囊 </strong></p><p>1、请谨记工行官方网站地址为www.icbc.com.cn，统一客户服务热线为95588，中国移动统一短信服务号码为95588和106573095588，中国联通统一短信服务号码为95588和1065595588。</p><p>2、提高防范意识，注意保管个人资料</p><p>（1）保护好自己的银行卡密码、存折密码、电子银行密码（口令）、U盾密码等重要信息，不要在计算机、电话、手机或其他电子设备上记录或保留；在任何情况下，银行工作人员都不会向客户索要密码，请您注意勿向他人（包括银行人员）泄露，不要相信陌生人的短信、电话、邮件等。</p><p>（2）各类密码的设置原则是&ldquo;本人易记别人难猜&rdquo;，避免使用与本人明显相关的信息（如姓名、生日、常用电话号码、身份证件号码等）或具有明显规律性的字符（如重复或连续的数字或字母）作为密码；办理电子银行业务的密码应不同于其他用途的密码（如银行卡/存折密码 、其他网站会员密码），并做到经常更换。</p><p>（3）妥善保管与办理电子银行业务相关的各项重要资料，如身份证件、银行卡、存折、U盾、电子银行口令卡等，不得交给他人保管。不要在不信任的网站或其他场所留下卡号、存折账号、身份证号、常用电话号码等个人信息，防止被他人利用。</p><p>3、充分利用&ldquo;预留验证信息&rdquo;服务，您可在网银或银行网点设置您的预留信息，使用网银时，务必进行核对，只有在页面显示的信息与您预留的信息一致才可进行后续操作。</p><p>操作步骤</p>
+             			<div class="blank"></div>
+             			<link href="/template/shop/css/pager.css" rel="stylesheet" type="text/css" />
+             			<!-- 分页未写 -->
+                    </div>
+				</div>
+				<div class="articleContentBottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+<link href="/template/shop/css/friend_link.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="/template/shop/js/friend_link.js"></script>
+<div class="friendLink">
+	<div class="pictureFriendLink">
+		<div class="left prev"></div>
+		<div class="middle scrollable">
+			<ul class="items">
+					<li>
+						<a href="http://www.oschina.net/" target="_blank" title="开源中国">
+							<img src="/upload/image/1e31632cf9214b4191bd0adb50b4ed3e.png">
+						</a>
+					</li>
+			</ul>
+		</div>
+		<div class="right next"></div>
+	</div>
+	<div class="textFriendLink">
+		<div class="left"></div>
+		<div class="middle">
+			<ul>
+			</ul>
+		</div>
+		<div class="right"></div>
+	</div>
+</div>	</div>
+	<div class="blank"></div>
+<link href="/template/shop/css/footer.css" type="text/css" rel="stylesheet" />
+<div class="footer">
+	<div class="bottomNavigation">
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/9102600e47b7401b843ad3722e1e9b70.html >购物流程</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/90eb7634990341909027a5e20245b3e1.html >网站制度</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/50588403d9dd494c9035fa763e49e112.html >订单查询</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/390aed8de096473aa3fd928c25bf9fb9.html >积分说明</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/c55109104bb241c7a51605602b1531df.html >会员注册协议</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/0340b92488ca464aa8d545fb899dcd25.html >会员等级</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html >网上支付</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/fd97e448663c4f5a8f033743328a8038.html >邮局汇款</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/ac6f0b7c351c41058dc800ea0091e26c.html >退货政策</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/070088f2df794b26b03bdf022565f1f2.html >关于我们</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/82c2ffe3f0234a6ba2aed4727a75a19a.html >发票制度说明</a>
+				</dd>
+				</dl>
+				<dl>
+				<dd>
+					<a href=/html/article_content/201010/cb4b35cc2fd14ddbb20b49d7637fab2f.html >常见问题</a>
+				</dd>
+				</dl>
+				<dl>
+	</div>
+	<div class="footerInfo">
+		<ul class=" list-paddingleft-2"><li><p><a>关于商城</a>|</p></li><li><p><a>帮助中心</a>|</p></li><li><p><a>网站地图</a>|</p></li><li><p><a>诚聘英才</a>|</p></li><li><p><a>联系我们</a>|</p></li><li><p><a>版权说明</a></p></li><p>Copyright &amp;copy; 2014 JFinalShop. All rights reserved.</p><p>Powered by JFinal<span class="systemName">Shop V1.0</span></p></ul><ul class=" list-paddingleft-2"></ul>
+	</div>
+</div></body>
+</html>

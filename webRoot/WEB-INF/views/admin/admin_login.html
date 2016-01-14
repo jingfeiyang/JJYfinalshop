@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+	<head>
+		<meta charset="utf-8">
+		<title> JFinalShop</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<!-- #CSS Links -->
+		<!-- Basic Styles -->
+		<link rel="stylesheet" type="text/css" media="screen" href="${base}/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="${base}/css/font-awesome.min.css">
+
+		<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+		<link rel="stylesheet" type="text/css" media="screen" href="${base}/css/smartadmin-production-plugins.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="${base}/css/smartadmin-production.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="${base}/css/smartadmin-skins.min.css">
+
+		<!-- SmartAdmin RTL Support -->
+		<link rel="stylesheet" type="text/css" media="screen" href="${base}/css/smartadmin-rtl.min.css"> 
+
+		<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+		<link rel="stylesheet" type="text/css" media="screen" href="${base}/css/demo.min.css">
+
+		<!-- #FAVICONS -->
+		<link rel="shortcut icon" href="${base}/img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="${base}/img/favicon/favicon.ico" type="image/x-icon">
+
+		<!-- #GOOGLE FONT -->
+		<!-- <link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400italic,700italic,300,400,700"> -->
+
+		<!-- #APP SCREEN / ICONS -->
+		<!-- Specifying a Webpage Icon for Web Clip 
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+		<link rel="apple-touch-icon" href="${base}/img/splash/sptouch-icon-iphone.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="${base}/img/splash/touch-icon-ipad.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="${base}/img/splash/touch-icon-iphone-retina.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="${base}/img/splash/touch-icon-ipad-retina.png">
+		
+		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!-- Startup image for web apps -->
+		<link rel="apple-touch-startup-image" href="${base}/img/splash/ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="${base}/img/splash/ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="${base}/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
+		
+	</head>
+	
+	<body class="animated fadeInDown">
+
+		<header id="header">
+
+			<div id="logo-group">
+				<!-- <span id="logo"> <img src="${base}/img/logo.png" alt="SmartAdmin"> </span> -->
+				<span id="logo"> <img src="${base}/img/logo.gif" alt="JFinalShop"> </span>
+			</div>
+
+			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">需要一个账号?</span> <a href="register.html" class="btn btn-danger">新建用户</a> </span>
+
+		</header>
+
+		<div id="main" role="main">
+
+			<!-- MAIN CONTENT -->
+			<div id="content" class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+						<h1 class="txt-color-red login-header-big">JFinalShop后台管理</h1>
+						<div class="hero">
+
+							<div class="pull-left login-desc-box-l">
+								<h4 class="paragraph-header">JFinalShop后台管理基于JFinal开，JFinal 是基于 Java 语言的极速 WEB + ORM 框架，其核心设计目标是开发迅速、代码量少、学习简单、功能强大、轻量级、易扩展、Restful。在拥有Java语言所有优势的同时再拥有ruby、python、php等动态语言的开发效率！</h4>
+								<div class="login-app-icons">
+									<a href="javascript:void(0);" class="btn btn-danger btn-sm">前端模板</a>
+									<a href="javascript:void(0);" class="btn btn-danger btn-sm">查看更多</a>
+								</div>
+							</div>							
+							<img src="${base}/img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">
+						</div>						
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<h5 class="about-heading">关于JFinalShop</h5>
+								<p>前台网址：<a href="http://www.jfinalshop.com">www.jfinalshop.com</a></br></p>								
+								<p>后台网址：<a href="http://www.jfinalshop.com/admin">www.jfinalshop.com/admin</a> <br></p>	
+								<p>后台用户：admin <br></p>	
+								<p>后台密码：123456</p>
+								<p>备案号：粤ICP备15007170号-1</p>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<h5 class="about-heading">技术构架</h5>
+								<p>开发语言： Java</p>
+								<p>数 据 库： MySQL</p>
+								<p>核心框架： JFinal、JFinal-ext</p>
+								<p>缓存技术： Ehcache</p>
+								<p>模板视图： Beetl、HTML、CSS、JQuery</p>
+								<p>权限控制： Shiro</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+						<div class="well no-padding">
+							<form action="${base}/admin/singIn" id="login-form" class="smart-form client-form">
+								<header>
+									登录
+								</header>
+								<fieldset>									
+									<section>
+										<label class="label">邮箱地址/用户名</label>
+										<label class="input"> <i class="icon-append fa fa-user"></i>
+											<input type="text" name="username"  placeholder="邮箱地址/用户名">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> 请输入您的邮箱地址/用户名</b></label>
+									</section>
+									<section>
+										<label class="label">密码</label>
+										<label class="input"> <i class="icon-append fa fa-lock"></i>
+											<input type="password" name="password"  placeholder="请输入密码">
+											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> 请输入您的密码</b> </label>
+										<div class="note">
+											<a href="forgotpassword.html">忘记密码？</a>
+										</div>
+									</section>									
+									<section>
+										<label class="input"> <i class="icon-append fa fa-comment-o"></i>
+											<input type="text" id="captcha" name="captchaToken" placeholder="验证码">
+										</label>
+									</section>
+									<section>
+										<label class="input">
+											<img id="captchaImage" src="${base}/captcha?width=100&height=35&fontsize=30" alt="换一张" />
+										</label>
+									</section>									
+									<section>
+										<label class="checkbox">
+											<input type="checkbox" name="remember" checked="">
+											<i></i>保持登录状态</label>
+									</section>
+								</fieldset>
+								<footer>
+									<button type="submit" class="btn btn-primary">
+										登录
+									</button>
+								</footer>
+							</form>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>		
+
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+		<script src="${base}/js/plugin/pace/pace.min.js"></script>
+
+	    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+	    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->		
+		<script src="${base}/js/libs/jquery-2.1.1.min.js"></script>
+		<script> if (!window.jQuery) { document.write('<script src="js/libs/jquery-2.1.1.min.js"><\/script>');} </script>
+
+	    <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>-->
+		<script src="${base}/js/libs/jquery-ui-1.10.3.min.js"></script>
+		<script> if (!window.jQuery.ui) { document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');} </script>
+
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="${base}/js/app.config.js"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events 		
+		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> -->
+
+		<!-- BOOTSTRAP JS -->		
+		<script src="${base}/js/bootstrap/bootstrap.min.js"></script>
+
+		<!-- JQUERY VALIDATE -->
+		<script src="${base}/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+		
+		<!-- JQUERY MASKED INPUT -->
+		<script src="${base}/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+		
+		<!--[if IE 8]>
+			
+			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+			
+		<![endif]-->
+
+		<!-- MAIN APP JS FILE -->
+		<script src="${base}/js/app.min.js"></script>
+
+		<script type="text/javascript">
+			runAllForms();
+
+			$(function() {
+				// Validation
+				$("#login-form").validate({
+					// Rules for form validation
+					rules : {
+						username : {
+							required : true,
+							//email : true
+						},
+						password : {
+							required : true,
+							minlength : 3,
+							maxlength : 20
+						}
+					},
+
+					// Messages for form validation
+					messages : {
+						username : {
+							required : 'Please enter your user name',
+							username : 'Please enter a VALID username'
+						},
+						password : {
+							required : 'Please enter your password'
+						}
+					},
+
+					// Do not change code below
+					errorPlacement : function(error, element) {
+						error.insertAfter(element.parent());
+					}
+				});
+			});
+		</script>	
+		<script type="text/javascript">
+		  $().ready( function() {
+				var $captcha = $("#captcha");
+				var $captchaImage = $("#captchaImage");
+					
+				$captchaImage.click( function() {
+					var timestamp = (new Date()).valueOf();
+					var imageSrc = $captchaImage.attr("src");
+					if(imageSrc.indexOf("?") >= 0) {
+						imageSrc = imageSrc.substring(0, imageSrc.indexOf("?"));
+					}
+					imageSrc = imageSrc + "?timestamp=" + timestamp + "&width=100&height=35&fontsize=30";
+					$captchaImage.attr("src", imageSrc);
+				});
+					
+			});
+		</script>	
+	</body>
+</html>

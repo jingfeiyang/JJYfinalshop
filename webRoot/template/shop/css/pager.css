@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Pager Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+.pager {
+	float: right;
+	clear: both;
+}
+
+.pager li {
+	line-height: 18px;
+	display: block;
+	float: left;
+	padding: 0px 5px;
+	margin: 0px 3px;
+	font-size: 12px;
+	border: 1px solid #cccccc;
+}
+
+.pager li:hover {
+	color: #ff9900;
+	border: 1px solid #ff9900;
+}
+
+.pager li:hover a {
+	color: #ff9900;
+}
+
+.pager li a {
+	color: #464646;
+}
+
+.pager li span {
+	color: #cfcfcf;
+}
+
+.pager li.currentPage {
+	border: 1px solid #ff9900;
+	background-color: #ff9900;
+}
+
+.pager li.currentPage span {
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.pager li.pageInfo {
+	margin-right: 5px;
+	color: #464646;
+	border: none;
+	background: none;
+}

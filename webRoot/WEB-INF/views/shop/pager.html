@@ -1,0 +1,128 @@
+<%
+
+var pageNumber = pager.pageNumber;
+var pageSize = pager.pageSize;
+var totalPage = pager.totalPage;
+var maxShowPageCount = 6;
+var parameter = "";
+
+if (pageSize != ""){
+	parameter = parameter + "&pageSize=" + pageSize;
+}
+if (property != ""){
+	parameter = parameter + "&property=" + property;
+}
+if (keyword != ""){
+	parameter = parameter + "&keyword=" + keyword;
+}
+if (orderBy != ""){
+	parameter = parameter + "&orderBy=" + orderBy;
+}
+if (orderType != ""){
+	parameter = parameter + "&orderType=" + orderType;
+}
+
+if (strutil.contain (baseUrl,"?")){
+	baseUrl = baseUrl + "&";
+}else{
+	baseUrl = baseUrl + "?";
+}
+
+var firstPageUrl = baseUrl + "pageNumber=1" + parameter;
+var lastPageUrl = baseUrl + "pageNumber=" + totalPage + parameter;
+var prePageUrl = baseUrl + "pageNumber=" + (pageNumber - 1) + parameter;
+var nextPageUrl = baseUrl + "pageNumber=" + (pageNumber + 1) + parameter;
+
+if (maxShowPageCount <= 0){
+	maxShowPageCount = 6;
+}
+
+var segment = parseInt(((pageNumber - 1) / maxShowPageCount)) + 1;
+var startPageNumber = (segment - 1) * maxShowPageCount + 1;
+var endPageNumber = segment * maxShowPageCount;
+if (startPageNumber < 1){
+	startPageNumber = 1;
+}
+
+if (endPageNumber > totalPage){
+	endPageNumber = totalPage;
+}
+%>
+<%if (totalPage >= 1){%>
+	<ul class="pager">
+		<li class="pageInfo">
+			共 ${totalPage} 页
+		</li>
+		<!-- 首页 -->
+		<%if (pageNumber > 1){%>
+			<li class="firstPage">
+				<a href="${base}${firstPageUrl}">首页</a>
+			</li>
+		<%}else{%>
+			<li class="firstPage">
+				<span>首页</span>
+			</li>
+		<%}%>
+		
+		<!-- 上一页 -->
+		<%if (pageNumber > 1){%>
+			<li class="prePage">
+				<a href="${base}${prePageUrl}">上一页</a>
+			</li>
+		<%}else{%>
+			<li class="prePage">
+				<span>上一页</span>
+			</li>
+		<%}%>
+		
+		<%if (startPageNumber > 1){%>
+			<li>
+				<a href="${base}${baseUrl + "pageNumber=" + (pageNumber - 2) + parameter}">...</a>
+			</li>
+		<%}%>
+		
+		<%for(var index in range(startPageNumber,endPageNumber)){%>
+			<%if (pageNumber != index){%>
+				<li>
+					<a href="${base}${baseUrl + "pageNumber=" + index + parameter}">${index}</a>
+				</li>
+			<%}else{%>
+				<li class="currentPage">
+					<span>${index}</span>
+				</li>
+			<%}%>
+		<%}%>
+		
+		<%if (endPageNumber < totalPage){%>
+			<li>
+				<a href="${base}${baseUrl + "pageNumber=" + (pageNumber + 2) + parameter}">...</a>
+			</li>
+		<%}%>
+	    
+		<!-- 下一页 -->
+		<%if (pageNumber < totalPage){%>
+			<li class="nextPage">
+				<a href="${base}${nextPageUrl}">下一页</a>
+			</li>
+		<%}else{%>
+			<li class="nextPage">
+				<span>下一页</span>
+			</li>
+		<%}%>
+		
+		<!-- 末页 -->
+		<%if (pageNumber < totalPage){%>
+			<li class="lastPage">
+				<a href="${base}${lastPageUrl}">末页</a>
+			</li>
+		<%}else{%>
+			<li class="lastPage">
+				<span>末页</span>
+			</li>
+		<%}%>
+	</ul>
+<%}%>
+
+
+
+

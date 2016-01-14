@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Friend Link Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+.friendLink {
+	clear: both;
+}
+
+.friendLink .pictureFriendLink {
+	clear: both;
+}
+
+.friendLink .pictureFriendLink .left {
+	width: 13px;
+	height: 40px;
+	float: left;
+	cursor: pointer;
+	background: url(../images/friend_link_bg.gif) 0px 0px no-repeat;
+}
+
+.friendLink .pictureFriendLink .middle {
+	width: 974px;
+	height: 32px;
+	line-height: 32px;
+	padding: 4px 0px;
+	float: left;
+	background: url(../images/friend_link_x_bg.gif) 0px 0px repeat-x;
+}
+
+.friendLink .pictureFriendLink .scrollable {
+	position: relative;
+	overflow: hidden;
+}
+
+.friendLink .pictureFriendLink .scrollable .items {
+	width: 20000em;
+	position: absolute;
+	clear: both;
+}
+
+.friendLink .pictureFriendLink .scrollable ul {
+	float: left;
+}
+
+.friendLink .pictureFriendLink .middle li {
+	display: inline;
+	margin: 0px 17px;
+}
+
+.friendLink .pictureFriendLink .middle li img {
+	width: 88px;
+	height: 31px;
+}
+
+.friendLink .pictureFriendLink .right {
+	width: 13px;
+	height: 40px;
+	float: right;
+	cursor: pointer;
+	background: url(../images/friend_link_bg.gif) -30px 0px no-repeat;
+}
+
+.friendLink .textFriendLink {
+	clear: both;
+}
+
+.friendLink .textFriendLink .left {
+	width: 13px;
+	height: 40px;
+	float: left;
+	background: url(../images/friend_link_bg.gif) 0px -60px no-repeat;
+}
+
+.friendLink .textFriendLink .middle {
+	width: 974px;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	overflow: hidden;
+	background: url(../images/friend_link_x_bg.gif) 0px -60px repeat-x;
+}
+
+.friendLink .textFriendLink .middle li {
+	float: left;
+	margin: 0px 16px;
+}
+
+.friendLink .textFriendLink .middle li a {
+	color: #9b9b9b;
+}
+
+.friendLink .textFriendLink .middle li a:hover {
+	color: #ea6210;
+}
+
+.friendLink .textFriendLink .right {
+	width: 13px;
+	height: 40px;
+	float: right;
+	background: url(../images/friend_link_bg.gif) -30px -60px no-repeat;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>收货地址 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/member_center.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+<script type="text/javascript">
+$().ready( function() {
+
+	var $areaSelect = $(".areaSelect");
+
+	// 地区选择菜单
+	$areaSelect.lSelect({
+		url: "${base}/area/ajaxChildrenArea"// AJAX数据获取url
+	});
+
+});
+</script>
+<%
+var isAdd = false;
+var isEdit = false;
+if(isEmpty(receiver.id)){
+	isAdd = true;
+}else{	
+	isEdit = true;
+}%>
+</head>
+<body class="memberCenter">
+	<%include("/shop/header.html"){}%>
+	<div class="body receiverInput">
+		<div class="bodyLeft">
+			<div class="memberInfo">
+				<div class="top"></div>
+				<div class="middle">
+					<p>欢迎您！<span class="username">${loginMember.username}</span> [<a class="userLogout" href="${base}/memberCenter/logout">退出</a>]</p>
+					<p>会员等级:<span class="red"> ${loginMember.memberRank.name}</span></p>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<!-- 侧边栏 -->
+			<%include("/shop/sidebar.html"){}%>
+		</div>
+		<div class="bodyRight">
+			<div class="memberCenterDetail">
+				<div class="top">
+					收货地址
+				</div>
+				<div class="middle">
+					<div class="blank"></div>
+					<form id="inputForm" class="validate" action="<%if (isAdd){%>${base}/receiver/save<%}else{%>${base}/receiver/update<%}%>" method="post">
+						<input type="hidden" name="receiver.id" value="${receiver.id!}" />
+						<table class="inputTable">
+							<tr>
+								<th>
+									收货人姓名:
+								</th>
+								<td>
+									<input type="text" name="receiver.name" class="formText {required: true, messages: {required: '请输入收货人姓名！'}}" value="${receiver.name!}" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									地区:
+								</th>
+								<td>
+									<input type="text" name="receiver.areaPath" class="areaSelect hidden {required: true, messages: {required: '请选择地区！'}, messagePosition: '#addressMessagePosition'}" value="${receiver.areaPath!}" />
+									<span id="addressMessagePosition"></span>
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									地址:
+								</th>
+								<td>
+									<input type="text" name="receiver.address" class="formText {required: true, messages: {required: '请输入地址！'}}" value="${receiver.address!}" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									电话:
+								</th>
+								<td>
+									<input type="text" name="receiver.phone" class="formText {requiredOne: '#mobile', phone: true, messages: {requiredOne: '电话、手机必须填写其中一项!'}}" value="${receiver.phone!}" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									手机:
+								</th>
+								<td>
+									<input type="text" id="mobile" name="receiver.mobile" class="formText {mobile: true}" value="${receiver.mobile!}" />
+								</td>
+							</tr>
+							<tr>
+								<th>
+									邮编:
+								</th>
+								<td>
+									<input type="text" name="receiver.zipCode" class="formText {required: true, zipCode: true, messages: {required: '请输入邮编！'}}" value="${receiver.zipCode!}" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									是否默认:
+								</th>
+								<td>
+									<label><input type="radio" name="receiver.isDefault" value="true"<%if (isEdit && receiver.isDefault){%> checked<%}%> />是</label>
+									<label><input type="radio" name="receiver.isDefault" value="false"<%if (isAdd || !receiver.isDefault){%> checked<%}%> />否</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									&nbsp;
+								</th>
+								<td>
+									<input type="submit" class="submitButton" value="提 交" hidefocus="true" />
+									<input type="button" class="backButton" onclick="window.history.back(); return false;" value="返 回" hidefocus="true" />
+								</td>
+							</tr>
+						</table>
+					</form>
+					<div class="blank"></div>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

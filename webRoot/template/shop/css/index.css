@@ -1,0 +1,352 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Index Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+ 
+.index .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.index .bodyLeft {
+	width: 210px;
+	float: left;
+}
+
+.index .bodyRight {
+	width: 780px;
+	float: right;
+}
+
+.index .bodyRight .slider {
+	width: 778px;
+	height: 260px;
+	clear: both;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #dddddd;
+}
+
+.index .bodyRight .slider .scrollable {
+	width: 778px;
+	height: 260px;
+	overflow: hidden;
+	position: relative;
+}
+
+.index .bodyRight .slider .items {
+	width: 20000em;
+	position: absolute;
+	clear: both;
+}
+
+.index .bodyRight .slider .scrollable .items div {
+	width: 998px;
+	float: left;
+}
+
+.index .bodyRight .slider .scrollable img {
+	float: left;
+	background-color: #fff;
+}
+
+.index .bodyRight .slider .scrollable .navi {
+	height: 10px;
+	margin: 0px 10px;
+	position: absolute;
+	right: 50px;
+	bottom: 12px;
+}
+
+.index .bodyRight .slider .scrollable .navi a {
+	width: 10px;
+	height: 10px;
+	float: left;
+	margin-left: 5px;
+	display: block;
+	outline: none;
+	overflow: hidden;
+	background: url(../images/index_slider_navi_bg.gif) -1px -40px no-repeat;
+}
+
+.index .bodyRight .slider .scrollable .navi a:hover {
+	background-position: -1px -60px;
+}
+
+.index .bodyRight .slider .scrollable .navi a.active {
+	background-position: -1px -60px;
+}
+
+.index .bodyRight .slider .scrollable .prevNext {
+	height: 15px;
+	width: 40px;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	display: block;
+	float: left;
+}
+
+.index .bodyRight .slider .scrollable a.browse {
+	height: 15px;
+	width: 20px;
+	display: block;
+	float: left;
+	cursor: pointer;
+	overflow: hidden;
+	background: url(../images/index_slider_navi_bg.gif) no-repeat;
+}
+
+.index .bodyRight .slider .scrollable a.right {
+	background-position: -21px 0px;
+}
+
+.index .bodyRight .slider .scrollable .right:hover {
+	background-position: -21px -19px;
+}
+
+.index .bodyRight .slider .scrollable .left:hover {
+	background-position: 0px -19px;
+}
+
+.index .bodyRight .slider .scrollable a.disabled {
+	visibility: hidden !important;
+}
+
+.index .bodyRight .hotProduct {
+	width: 778px;
+	height: 196px;
+	clear: both;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #dddddd;
+}
+
+.index .bodyRight .hotProduct .title {
+	width: 770px;
+	height: 25px;
+	line-height: 25px;
+	clear: both;
+	padding-left: 8px;
+	text-align: left;
+	color: #b983e2;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.index .bodyRight .hotProduct .title strong {
+	margin-right: 5px;
+	color: #333333;
+}
+
+.index .bodyRight .hotProduct .scrollable {
+	width: 700px;
+	height: 196px;
+	float: left;
+	overflow: hidden;
+	position: relative;
+}
+
+.index .bodyRight .hotProduct a.prev {
+	width: 30px;
+	height: 30px;
+	display: block;
+	float: left;
+	margin-top: 60px;
+	margin-right: 9px;
+	cursor: pointer;
+	background: url(../images/index_bg.gif) 0px 0px no-repeat;
+}
+
+.index .bodyRight .hotProduct a.prev:hover {
+	background: url(../images/index_bg.gif) -30px 0px no-repeat;
+}
+
+.index .bodyRight .hotProduct a.next {
+	width: 30px;
+	height: 30px;
+	display: block;
+	float: right;
+	margin-top: 60px;
+	margin-left: 9px;
+	cursor: pointer;
+	background: url(../images/index_bg.gif) -60px 0px no-repeat;
+}
+
+.index .bodyRight .hotProduct a.next:hover {
+	background: url(../images/index_bg.gif) -90px 0px no-repeat;
+}
+
+.index .bodyRight .hotProduct .items {
+	width: 20000em;
+	position: absolute;
+	clear: both;
+}
+
+.index .bodyRight .hotProduct .scrollable .items div {
+	width: 700px;
+	float: left;
+}
+
+.index .bodyRight .hotProduct .scrollable .items li {
+	width: 162px;
+	height: 150px;
+	_display: inline;
+	float: left;
+	margin: 0px 6px;
+	text-align: center;
+	position: relative;
+}
+
+.index .bodyRight .hotProduct .scrollable .items li img {
+	clear: both;
+	padding: 10px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+	border: 1px solid #e2e2e2;
+}
+
+.index .bodyRight .hotProduct .scrollable .items li p {
+	width: 140px;
+	line-height: 25px;
+	margin-left: 11px;
+	clear: both;
+	color: #ffffff;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	z-index: 10;
+	background-color: #000000;
+	filter: alpha(opacity=30);
+	-moz-opacity: 0.3;
+	opacity: 0.3;
+}
+
+.index .newProduct {
+	width: 998px;
+	height: 208px;
+	clear: both;
+	overflow: hidden;
+	border: 1px solid #dddddd;
+}
+
+.index .newProduct .left {
+	width: 217px;
+	height: 158px;
+	float: left;
+	padding-top: 50px;
+	text-align: center;
+	background: url(../images/index_bg.gif) 0px -30px no-repeat;
+}
+
+.index .newProduct .left li {
+	line-height: 29px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+	cursor: pointer;
+}
+
+.index .newProduct .left li:hover {
+	background: url(../images/index_bg.gif) 0px -240px no-repeat;
+}
+
+.index .newProduct .left li.current {
+	background: url(../images/index_bg.gif) 0px -240px no-repeat;
+}
+
+.index .newProduct .right {
+	width: 781px;
+	float: right;
+	position: relative;
+}
+
+.index .newProduct .right ul {
+	position: absolute;
+	top: 10px;
+	left: 0px;
+}
+
+.index .newProduct .right li {
+	width: 140px;
+	height: 166px;
+	_display: inline;
+	float: left;
+	padding: 10px;
+	margin: 0px 15px;
+	text-align: center;
+	border: 1px solid #ededed;
+}
+
+.index .newProduct .right li p {
+	line-height: 25px;
+	clear: both;
+}
+
+.index .bestProduct {
+	width: 780px;
+	clear: both;
+	overflow: hidden;
+}
+
+.index .bestProduct .top {
+	width: 770px;
+	height: 31px;
+	line-height: 36px;
+	padding-left: 16px;
+	clear: both;
+	font-size: 14px;
+	font-weight: bold;
+	color: #b983e2;
+	overflow: hidden;
+	background: url(../images/index_bg.gif) 0px -300px no-repeat;
+}
+
+.index .bestProduct .top strong {
+	margin-right: 5px;
+	color: #333333;
+}
+
+.index .bestProduct .middle {
+	width: 778px;
+	clear: both;
+	padding: 5px 0px 19px 0px;
+	border-left: 1px solid #d9d9d9;
+	border-right: 1px solid #d9d9d9;
+}
+
+.index .bestProduct li {
+	width: 140px;
+	height: 176px;
+	_display: inline;
+	float: left;
+	padding: 10px;
+	margin: 0px 15px 25px 15px;
+	text-align: center;
+	border: 1px solid #ededed;
+}
+
+.index .bestProduct img {
+	width: 140px;
+	height: 140px;
+}
+
+.index .bestProduct li p {
+	line-height: 20px;
+	clear: both;
+}
+
+.index .bestProduct .bottom {
+	width: 780px;
+	height: 7px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/index_bg.gif) 0px -360px no-repeat;
+}

@@ -1,0 +1,364 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Product List Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+ 
+.productList .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.productList .bodyLeft {
+	width: 210px;
+	float: left;
+}
+
+.productList .bodyRight {
+	width: 780px;
+	float: right;
+}
+
+.productList .bodyRight .operateBar {
+	height: 30px;
+	clear: both;
+}
+
+.productList .bodyRight .operateBar .left {
+	width: 3px;
+	height: 30px;
+	float: left;
+	background: url(../images/product_list_bg.gif) 0px 0px no-repeat;
+}
+
+.productList .bodyRight .operateBar .middle {
+	width: 774px;
+	height: 30px;
+	float: left;
+	background: url(../images/product_list_x_bg.gif) 0px 0px repeat-x;
+}
+
+.productList .bodyRight .operateBar .pictureIcon {
+	width: 25px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	margin-right: 3px;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/product_list_bg.gif) 0px -30px no-repeat;
+}
+
+.productList .bodyRight .operateBar .pictureDisabledIcon {
+	width: 25px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	margin-right: 3px;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/product_list_bg.gif) -30px -30px no-repeat;
+}
+
+.productList .bodyRight .operateBar .tableIcon {
+	width: 25px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	margin-right: 3px;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/product_list_bg.gif) -60px -30px no-repeat;
+}
+
+.productList .bodyRight .operateBar .tableDisabledIcon {
+	width: 25px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	margin-right: 3px;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/product_list_bg.gif) -90px -30px no-repeat;
+}
+
+.productList .bodyRight .operateBar .separator {
+	width: 11px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/product_list_bg.gif) -60px 0px no-repeat;
+}
+
+
+.productList .bodyRight .operateBar .right {
+	width: 3px;
+	height: 30px;
+	float: right;
+	background: url(../images/product_list_bg.gif) -30px 0px no-repeat;
+}
+
+.productList .bodyRight .productPictureList {
+	clear: both;
+}
+
+.productList .bodyRight .productPictureList .productListDetail li {
+	width: 173px;
+	height: 230px;
+	float: left;
+	padding: 4px;
+	margin-right: 16px;
+	margin-bottom: 16px;
+	text-align: center;
+	border: 1px solid #d8d8d8;
+}
+
+.productList .bodyRight .productPictureList .productListDetail li:hover {
+	border: 1px solid #fdd57b;
+}
+
+.productList .bodyRight .productPictureList .productListDetail li.end {
+	margin-right: 0px;
+}
+
+.productList .bodyRight .productPictureList .productListDetail li.noRecord {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	padding: 5px 0px;
+	clear: both;
+	color: #999999;
+	font-size: 14px;
+	text-align: center;
+	margin: 0px;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid #cccccc;
+}
+
+.productList .bodyRight .productPictureList .productListDetail li.noRecord:hover {
+	border-top: none;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productImage {
+	width: 170px;
+	height: 170px;
+	display: block;
+	clear: both;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productImage img {
+	width: 140px;
+	height: 140px;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productTitle {
+	height: 32px;
+	clear: both;
+	text-align: center;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productBottom {
+	line-height: 25px;
+	clear: both;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productPrice {
+	line-height: 15px;
+	float: left;
+	text-align: left;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productPrice .price {
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ff662b;
+	clear: both;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productPrice .marketPrice {
+	font-size: 12px;
+	color: #999999;
+	text-decoration: line-through;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productButton {
+	float: right;
+	padding-top: 3px;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productButton .addCartItemButton {
+	width: 39px;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	float: left;
+	font-size: 12px;
+	text-align: center;
+	color: #666666;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	background: url(../images/product_list_bg.gif) -90px 0px no-repeat;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productButton .addCartItemButton:hover {
+	background: url(../images/product_list_bg.gif) -210px 0px no-repeat;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productButton .addFavoriteButton {
+	width: 39px;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	float: left;
+	font-size: 12px;
+	text-align: center;
+	color: #666666;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	background: url(../images/product_list_bg.gif) -129px 0px no-repeat;
+}
+
+.productList .bodyRight .productPictureList .productListDetail .productButton .addFavoriteButton:hover {
+	background: url(../images/product_list_bg.gif) -249px 0px no-repeat;
+}
+
+.productList .bodyRight .productTableList .productListDetail li {
+	height: 150px;
+	clear: both;
+	padding-bottom: 12px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.productList .bodyRight .productTableList .productListDetail li.noRecord {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	clear: both;
+	color: #999999;
+	font-size: 14px;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productImage {
+	width: 140px;
+	height: 140px;
+	display: block;
+	float: left;
+	padding: 3px;
+	margin-right: 20px;
+	border: 1px solid #dddddd;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productImage:hover {
+	border: 1px solid #fdd57b;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productImage img {
+	width: 140px;
+	height: 140px;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productTitle {
+	float: left;
+	font-weight: bold;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productRight {
+	width: 170px;
+	float: right;
+	padding-top: 45px
+}
+
+.productList .bodyRight .productTableList .productListDetail .productPrice .price {
+	margin-right: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ff662b;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productPrice .marketPrice {
+	font-size: 12px;
+	color: #999999;
+	text-decoration: line-through;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productButton {
+	clear: both;
+	padding-top: 8px;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productButton .addCartItemButton {
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	float: left;
+	padding-left: 30px;
+	text-align: left;
+	font-size: 12px;
+	color: #666666;
+	cursor: pointer;
+	border: none;
+	background: url(../images/product_list_bg.gif) 0px -60px no-repeat;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productButton .addCartItemButton:hover {
+	background: url(../images/product_list_bg.gif) -120px -60px no-repeat;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productButton .outOfStockButton {
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	float: left;
+	padding-left: 30px;
+	text-align: left;
+	font-size: 12px;
+	color: #666666;
+	cursor: pointer;
+	border: none;
+	background: url(../images/product_list_bg.gif) 0px -90px no-repeat;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productButton .outOfStockButton:hover {
+	background: url(../images/product_list_bg.gif) -120px -90px no-repeat;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productButton .addFavoriteButton {
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	float: left;
+	padding-left: 30px;
+	text-align: left;
+	font-size: 12px;
+	color: #666666;
+	cursor: pointer;
+	outline: none;
+	border: none;
+	background: url(../images/product_list_bg.gif) -60px -60px no-repeat;
+}
+
+.productList .bodyRight .productTableList .productListDetail .productButton .addFavoriteButton:hover {
+	background: url(../images/product_list_bg.gif) -180px -60px no-repeat;
+}

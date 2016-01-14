@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Menu Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+html, body {
+	height: 100%;
+}
+
+.menu .menuContent {
+	height: 100%;
+}
+
+.menu dt {
+	height: 29px;
+	line-height: 29px;
+	background: url(../images/menu_bg.gif) 0px 0px repeat-x;
+}
+
+.menu dt:hover {
+	background: url(../images/menu_bg.gif) 0px -30px repeat-x;
+}
+
+.menu dt span {
+	height: 29px;
+	line-height: 29px;
+	display: block;
+	padding-left: 22px;
+	color: #336699;
+}
+
+.menu dd {
+	height: 25px;
+	line-height: 25px;
+	padding-left: 10px;
+	border-bottom: 1px solid #efefef;
+}
+
+.menu dd:hover {
+	background-color: #ffffd4;
+}

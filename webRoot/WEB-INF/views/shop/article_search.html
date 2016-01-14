@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>${keyword!} 文章搜索结果 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<meta name="keywords" content="${keyword!}" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/article.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/article_list.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/article.js"></script>
+</head>
+<body class="articleList">
+	<%include("/shop/header.html"){}%>
+	<div class="body">
+		<div class="bodyLeft">
+			<div class="recommendArticle">
+				<div class="top">推荐文章</div>
+				<div class="middle clearfix">
+					<ul>
+						<%for(list in recommendArticleList){%>
+							<li>
+								<%if (strutil.length(list.title) < 15){%>
+									<span class="icon">&nbsp;</span><a href="${base}${list.htmlFilePath}" title="${list.title}">${list.title}</a>
+								<%}else{%>
+									<span class="icon">&nbsp;</span><a href="${base}${list.htmlFilePath}" title="${list.title}">${strutil.subStringTo(list.title,0,11)}...</a>
+								<%}%>
+							</li>
+							<%if (listLP.index == 10){%>
+								<%break;%>
+							<%}%>
+						<%}%>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotArticle">
+				<div class="top">热点文章</div>
+				<div class="middle clearfix">
+					<ul>
+						<%for(list in hotArticleList!){%>
+							<li class="number${listLP.index}">
+								<%if (strutil.length(list.title) < 15){%>
+									<span class="icon">&nbsp;</span><a href="${base}${list.htmlFilePath}" title="${list.title}">${list.title}</a>
+								<%}else{%>
+									<span class="icon">&nbsp;</span><a href="${base}${list.htmlFilePath}" title="${list.title}">${strutil.subStringTo(list.title,0,11)}...</a>
+								<%}%>
+							</li>
+							<%if (listLP.index == 10){%>
+								<%break;%>
+							<%}%>
+						<%}%>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="listBar">
+				<div class="left"></div>
+				<div class="middle">
+					<div class="path">
+						<a href="${base}/" class="home"><span class="icon">&nbsp;</span>首页</a>>&nbsp;搜索 "${keyword!}" 结果列表 [${pager.list.~size!0}条]
+					</div>
+					<div class="articleSearch">
+						<form id="articleSearchForm" action="${base}/shop/article/search" method="get">
+							<input type="text" name="keyword" id="articleSearchKeyword" class="keyword" value="${keyword!}" />
+							<input type="submit" class="searchButton" value="" />
+						</form>
+					</div>
+				</div>
+				<div class="right"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="articleList">
+				<div class="articleListTop"></div>
+				<div class="articleListMiddle">
+					<ul class="articleListDetail">
+						<%for(list in pager.list!){%>
+                			<li>
+                            	<a href="${base}${list.htmlFilePath}" class="title">
+                            		<%if (strutil.length(list.title) < 40){%>
+										${list.title}
+									<%}else{%>
+										${strutil.subStringTo(list.title,0,40)}...
+									<%}%>
+								</a>
+                                <span class="author">
+                                	作者:<%if (list.author == ""){%>未知<%}else{%>${list.author}<%}%>
+                                </span>
+                                <span class="createDate">
+                                	${list.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}
+                                </span>
+                                <div class="contentText">                                
+									<%if (strutil.length(list.contentText) < 100){%>
+										${list.contentText}
+									<%}else{%>
+										${strutil.subStringTo(list.contentText,0,100)}...
+									<%}%>
+									<a href="${base}${list.htmlFilePath}">[阅读全文]</a>
+								</div>
+      		        		</li>
+                		<%}%>
+                		<%if (pager.list.~size! == 0){%>
+                			<li class="noRecord">非常抱歉，没有找到相关文章！</li>
+                		<%}%>
+					</ul>
+					<div class="blank"></div>
+         			<link href="${base}/template/shop/css/pager.css" rel="stylesheet" type="text/css" />
+         			<!-- 未分页 -->
+				</div>
+				<div class="articleListBottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

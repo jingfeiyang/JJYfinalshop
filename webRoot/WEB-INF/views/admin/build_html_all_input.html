@@ -1,0 +1,237 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>一键网站更新 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/admin.css">
+  <script src="${base}/template/assets/js/jquery.min.js"></script>
+  <script src="${base}/template/admin/js/jquery.form.min.js"></script>
+  
+  <script type="text/javascript">
+  
+	$().ready( function() {
+
+		$(".loadingBar").hide();
+		
+		// 根据更新选项显示/隐藏开始日期和结束日期
+		$(".buildTypeInput").click( function() {
+			if ($(this).val() == "date") {
+				$(".dateTr").show();
+				$("#progressid").css("width", "0%");
+				$(".loadingBar").hide();
+			} else {
+				$(".dateTr").hide();
+				$("#progressid").css("width", "0%");
+				$(".loadingBar").hide();
+			}
+		})
+
+		$("#inputForm").submit(function() {
+			$(".loadingBar").show();
+			$("#buildType").val($(".buildTypeInput:checked").val());
+			$("#maxResults").val($("#maxResultsInput").val());
+			$("#beginDate").val($("#beginDateInput").val());
+			$("#endDate").val($("#endDateInput").val());
+		});
+
+		var isInitialize = false;
+		var buildTotal = 0;
+		$("#inputForm").ajaxForm({
+			dataType: "json",
+			beforeSubmit: function(data) {
+				if (!isInitialize) {
+					isInitialize = true;
+					$(".buildTypeInput").attr("disabled", true);
+					$("#maxResultsInput").attr("disabled", true);
+					$("#beginDateInput").attr("disabled", true);
+					$("#endDateInput").attr("disabled", true);
+					$(":submit").attr("disabled", true);
+					$("#statusTr").show();
+					$("#status").text("正在更新BASE_JAVASCRIPT，请稍后...");
+				}
+			},
+			success: function(data) {
+				if (data.buildTotal) {
+					buildTotal += Number(data.buildTotal);
+				}
+				if (data.status == "baseJavascriptFinish") {
+					$("#progressid").css("width", "10%");
+					$("#status").text("正在更新自定义错误页，请稍后...");
+					$("#buildContent").val("errorPage");
+					$("#inputForm").submit();
+				} else if (data.status == "errorPageFinish") {
+					$("#progressid").css("width", "20%");
+					$("#status").text("正在更新首页，请稍后...");
+					$("#buildContent").val("index");
+					$("#inputForm").submit();
+				} else if (data.status == "indexFinish") {
+					$("#progressid").css("width", "30%");
+					$("#status").text("正在更新登录页，请稍后...");
+					$("#buildContent").val("login");
+					$("#inputForm").submit();
+				} else if (data.status == "loginFinish") {
+					$("#progressid").css("width", "50%");
+					$("#status").text("正在更新文章，请稍后...");
+					$("#buildContent").val("article");
+					$("#inputForm").submit();
+				} else if (data.status == "articleBuilding") {
+					var maxResults = Number($("#maxResults").val());
+					var firstResult = Number(data.firstResult);
+					$("#progressid").css("width", "70%");
+					$("#status").text("正在更新文章[" + (firstResult + 1) + " - " + (firstResult + maxResults) + "]，请稍后...");
+					$("#buildContent").val("article");
+					$("#firstResult").val(firstResult);
+					$("#inputForm").submit();
+				} else if (data.status == "articleFinish") {
+					$("#progressid").css("width", "80%");
+					$("#status").text("正在更新商品，请稍后...");
+					$("#buildContent").val("product");
+					$("#firstResult").val("0");
+					$("#inputForm").submit();
+				} else if (data.status == "productBuilding") {
+					var maxResults = Number($("#maxResults").val());
+					var firstResult = Number(data.firstResult);
+					$("#progressid").css("width", "90%");
+					$("#status").text("正在更新商品[" + (firstResult + 1) + " - " + (firstResult + maxResults) + "]，请稍后...");
+					$("#buildContent").val("product");
+					$("#firstResult").val(firstResult);
+					$("#inputForm").submit();
+				} else if (data.status == "productFinish") {
+					$("#buildContent").val("");
+					$("#firstResult").val("0");
+					$("#statusTr").hide();
+					$(".buildTypeInput").attr("disabled", false);
+					$("#maxResultsInput").attr("disabled", false);
+					$("#beginDateInput").attr("disabled", false);
+					$("#endDateInput").attr("disabled", false);
+					$(":submit").attr("disabled", false);
+					$("#progressid").css("width", "100%");
+					$("#status").text("网站更新成功！[更新总数: " + buildTotal + "]");
+					isInitialize = false;
+					buildTotal = 0;
+				}
+			}
+		});
+	});
+  </script>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<div class="admin-content">
+	 <div class="am-cf am-padding">
+	   <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品管理</strong> / <small>一键网站更新</small></div>
+	 </div>
+	 <hr style="padding:0px 1.6rem 1.6rem 1rem;margin:0px;">
+	 <div class="am-g" >
+		<div class="am-u-sm-12" style="padding:0px 5px 0px 0px;margin:0px;height: 550px">
+		    <form id="inputForm" class="am-form" action="${base}/buildHtml/all" method="post">
+		        <input type="hidden" id="buildType" name="buildType" value="" />
+				<input type="hidden" id="maxResults" name="maxResults" value="" />
+				<input type="hidden" id="firstResult" name="firstResult" value="0" />
+				<input type="hidden" id="buildContent" name="buildContent" value="" />
+				<input type="hidden" id="beginDate" name="beginDate" value="" />
+				<input type="hidden" id="endDate" name="endDate" value="" />
+		        
+		       <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right" style="margin-top:0.8rem">更新选项</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	            	<div class="am-g">
+					  <div class="am-u-sm-4"><label class="am-radio am-secondary"><input type="radio" name="buildTypeInput" class="buildTypeInput" value="date" data-am-ucheck checked > 指定日期</label></div>
+					  <div class="am-u-sm-8"><label class="am-radio am-secondary"><input type="radio" name="buildTypeInput" class="buildTypeInput" value="all" data-am-ucheck> 更新所有</label></div>
+					</div>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning"></div>
+	          </div>
+	          
+	          <div class="dateTr am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">起始日期</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <div class="am-form-group am-form-icon">
+	                <i class="am-icon-calendar"></i>
+	                <input type="text" id="beginDateInput" name="" class="am-form-field" placeholder="起始日期" data-am-datepicker/>
+	              </div>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">${urlMessages!}</div>
+	          </div>
+	
+	          <div class="dateTr am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">结束日期</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <div class="am-form-group am-form-icon">
+	                <i class="am-icon-calendar"></i>
+	                <input type="text" id="endDateInput" name="" class="am-form-field" placeholder="结束日期" data-am-datepicker/>
+	              </div>
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning">${orderListMessages!}</div>
+	          </div>
+	
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">每次更新数</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" id="maxResultsInput" class="am-form-field" name="" class="formText" value="50" />
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning">${orderListMessages!}</div>
+	          </div>
+	          
+	          <!-- 进度条 -->
+	          <div class="loadingBar am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">&nbsp;</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <div class="am-progress am-progress-striped">
+					 <div id="progressid"  class="am-progress-bar am-progress-bar-success" style="width: 0%"><p id="status"></p></div>
+				  </div>
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning">&nbsp;</div>
+	          </div>
+	          
+	          
+			  <div class="am-g am-margin-top">
+			  <div class="am-u-sm-12 am-u-md-1 am-text-right admin-form-text"></div>
+			  <div class="am-u-sm-12 am-u-md-11">
+			  	<button type="submit" class="am-btn am-btn-primary am-btn-xs">提交更新</button>
+			    <button type="button" class="am-btn am-btn-warning am-btn-xs" onclick="window.history.back(); return false;">返回</button>
+			  </div>
+			  </div>
+	        </form>
+		</div>
+	</div>
+</div>
+<!-- content end -->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="${base}/template/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+</body>
+</html>

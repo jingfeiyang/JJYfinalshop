@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Payment Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+.paymentGateway .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.paymentGateway .paymentGatewayDetail {
+	width: 896px;
+	height: 126px;
+	line-height: 40px;
+	padding: 10px 50px;
+	border: 2px solid #a1bee0;
+	background: url(../images/payment_x_bg.gif) 0px 0px repeat-x;
+}
+
+.paymentGateway .paymentGatewayDetail .buttonArea {
+	padding-top: 5px;
+	border-top: 1px dashed #cfd2d7;
+}
+
+.paymentGateway input.formButton {
+	width: 81px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	outline: none;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	border: none;
+	background: url(../images/payment_bg.gif) 0px 0px no-repeat;
+}
+
+.paymentGateway input.formButton:hover {
+	background: url(../images/payment_bg.gif) -90px 0px no-repeat;
+}
+
+.paymentResult .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.paymentResult .paymentResultDetail {
+	width: 896px;
+	height: 126px;
+	line-height: 60px;
+	padding: 10px 50px;
+	font-size: 14px;
+	font-weight: bold;
+	border: 2px solid #a1bee0;
+	background: url(../images/payment_x_bg.gif) 0px 0px repeat-x;
+}
+
+.paymentResult .paymentResultDetail .icon {
+	width: 55px;
+	height: 55px;
+	line-height: 55px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+}
+
+.paymentResult .paymentResultDetail .success {
+	background: url(../images/payment_bg.gif) no-repeat 0px -30px;
+}
+
+.paymentResult .paymentResultDetail .error {
+	background: url(../images/payment_bg.gif) no-repeat -60px -30px;
+}
+
+.paymentResult .paymentResultDetail .warn {
+	background: url(../images/payment_bg.gif) no-repeat -120px -30px;
+}
+
+.paymentResult .paymentResultDetail .buttonArea {
+	padding-top: 5px;
+	border-top: 1px dashed #cfd2d7;
+}
+
+.paymentResult input.formButton {
+	width: 81px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	outline: none;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	border: none;
+	background: url(../images/payment_bg.gif) 0px 0px no-repeat;
+}
+
+.paymentResult input.formButton:hover {
+	background: url(../images/payment_bg.gif) -90px 0px no-repeat;
+}

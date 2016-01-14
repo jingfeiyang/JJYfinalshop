@@ -1,0 +1,162 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>商品更新 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/admin.css">
+  <script src="${base}/template/assets/js/jquery.min.js"></script>
+  <script src="${base}/template/admin/js/jquery.form.min.js"></script>
+  
+  <script type="text/javascript">
+  
+	$().ready( function() {
+
+		$(".loadingBar").hide();
+				
+		$("#inputForm").submit(function() {
+			$(".loadingBar").show();
+			$("#id").val($("#idSelect").val());
+			$("#maxResults").val($("#maxResultsInput").val());
+		});
+
+		$("#idSelect").change(function(){
+			$("#progressid").css("width", "0%");
+		}); 
+		
+		var isInitialize = false;
+		$("#inputForm").ajaxForm({
+			dataType: "json",
+			beforeSubmit: function(data) {
+				if (!isInitialize) {
+					isInitialize = true;
+					$("#idSelect").attr("disabled", true);
+					$("#maxResultsInput").attr("disabled", true);
+					$(".submitButton").attr("disabled", true);
+					$("#statusTr").show();
+					$("#status").text("正在进行更新操作，请稍后...");
+				}
+			},
+			success: function(data) {
+				if (data.status == "PRODUCT_BUILDING") {
+					var maxResults = Number($("#maxResults").val());
+					var firstResult = Number(data.firstResult);
+					$("#progressid").css("width", "90%");
+					$("#status").text("正在更新商品[" + (firstResult + 1) + " - " + (firstResult + maxResults) + "]，请稍后...");
+					$("#firstResult").val(firstResult);
+					$("#inputForm").submit();
+				} else if (data.status == "PRODUCT_FINISH") {
+					isInitialize = false;
+					$("#firstResult").val("0");
+					$("#statusTr").hide();
+					$("#idSelect").attr("disabled", false);
+					$("#maxResultsInput").attr("disabled", false);
+					$(".submitButton").attr("disabled", false);
+					$("#progressid").css("width", "100%");
+					$("#status").text("商品更新成功！[更新总数: " + data.buildTotal + "]");
+				}
+			}
+		});
+	});
+  </script>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<div class="admin-content">
+	 <div class="am-cf am-padding">
+	   <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品管理</strong> / <small>商品更新</small></div>
+	 </div>
+	 <hr style="padding:0px 1.6rem 1.6rem 1rem;margin:0px;">
+	 <div class="am-g" >
+		<div class="am-u-sm-12" style="padding:0px 5px 0px 0px;margin:0px;height: 550px">
+		    <form id="inputForm" class="am-form" action="${base}/buildHtml/product" method="post">
+			    <input type="hidden" id="id" name="id" value="" />
+				<input type="hidden" id="maxResults" name="maxResults" value="" />
+				<input type="hidden" id="firstResult" name="firstResult" value="0" />
+				
+		      <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">商品分类</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <select id="idSelect" name="" data-am-selected="{btnSize: 'sm', btnStyle: 'secondary'}">
+					<option value="">更新所有分类</option>
+					<%for(list in productCategoryTreeList){%>
+						<option value="${list.id}">
+							<%if (list.level != 0){%>
+								<%for( i in range(0,list.level)){%>------<%}%>
+							<%}%>
+						${list.name}
+					</option>
+					<%}%>
+				  </select>
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning">&nbsp;</div>
+	          </div>
+	
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">每次更新数</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" id="maxResultsInput" class="am-form-field" name="" class="formText" value="50" />
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning">&nbsp;</div>
+	          </div>
+	          
+	          <!-- 进度条 -->
+	          <div class="loadingBar am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-1 am-text-right">&nbsp;</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <div class="am-progress am-progress-striped">
+					 <div id="progressid"  class="am-progress-bar am-progress-bar-success" style="width: 0%"><p id="status"></p></div>
+				  </div>
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning">&nbsp;</div>
+	          </div>
+	          
+			  <div class="am-g am-margin-top">
+			  <div class="am-u-sm-12 am-u-md-1 am-text-right admin-form-text"></div>
+			  <div class="am-u-sm-12 am-u-md-11">
+			  	<button type="submit" class="am-btn am-btn-primary am-btn-xs">提交更新</button>
+			    <button type="button" class="am-btn am-btn-warning am-btn-xs" onclick="window.history.back(); return false;">返回</button>
+			  </div>
+			  </div>
+	        </form>
+		</div>
+	</div>
+</div>
+<!-- content end -->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="${base}/template/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+</body>
+</html>

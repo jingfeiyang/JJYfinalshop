@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>预存款列表 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/member_center.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+</head>
+<body class="memberCenter">
+	<%include("/shop/header.html"){}%>
+	<div class="body orderList">
+		<div class="bodyLeft">
+			<div class="memberInfo">
+				<div class="top"></div>
+				<div class="middle">
+					<p>欢迎您！<span class="username">${loginMember.username}</span> [<a class="userLogout" href="member!logout.action"">退出</a>]</p>
+					<p>会员等级:<span class="red"> ${loginMember.memberRank.name}</span></p>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<!-- 侧边栏 -->
+			<%include("/shop/sidebar.html"){}%>
+		</div>
+		<div class="bodyRight">
+			<div class="memberCenterDetail">
+				<div class="top">预存款记录 <span class="red">[预存款余额：${loginMember.deposit.balance!0,orderUnitCurrencyFormat}]</span></div>
+				<div class="middle">
+					<div class="blank"></div>
+					<table class="listTable">
+						<tr>
+							<th>操作类型</th>
+							<th>存入金额</th>
+							<th>支出金额</th>
+							<th>当前余额</th>
+							<th>日期</th>
+						</tr>
+						<%for(list in pager.list){%>
+							<tr>
+								<td>
+									<%if (list.payment != null && list.payment.order != null){%>
+										<a href="/shop/order/view?id=${list.payment.order.id}">
+											${i18n("DepositType." + list.depositType)}
+										</a>
+									<%}else{%>
+										${i18n("DepositType." + list.depositType)}
+									<%}%>
+								</td>
+								<td>
+									<%if (list.credit != 0){%>
+										${list.credit,orderUnitCurrencyFormat}
+									<%}else{%>
+										-
+									<%}%>
+								</td>
+								<td>
+									<%if (list.debit != 0){%>
+										${list.debit,orderUnitCurrencyFormat}
+									<%}else{%>
+										-
+									<%}%>
+								</td>
+								<td>
+									${list.balance,orderUnitCurrencyFormat}
+								</td>
+								<td>
+									<span title="${list.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}">${list.createDate,dateFormat="yyyy-MM-dd HH:mm:ss"}</span>
+								</td>
+							</tr>
+						<%}%>
+					</table>
+					<div class="blank"></div>
+         			<link href="${base}/template/shop/css/pager.css" rel="stylesheet" type="text/css" />
+         			<%include("/shop/pager.html", {"pageNumber":pager.pageNumber,"pageSize":pager.pageSize,"pageCount":pager.totalPage,"property":"","keyword":"无","orderBy":"","orderType":"","baseUrl":"/shop/order/list"}) {}%>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

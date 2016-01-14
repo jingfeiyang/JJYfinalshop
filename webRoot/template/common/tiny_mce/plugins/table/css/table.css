@@ -1,0 +1,29 @@
+/* CSS file for table dialog in the table plugin */
+
+.panel_wrapper div.current {
+	height: 278px;
+}
+
+.advfield {
+	width: 200px;
+}
+
+#class {
+	width: 150px;
+}
+
+.number {
+	width: 50px;
+}
+
+#width, #height {
+	width: 50px;
+}
+
+#advanced_panel input, #advanced_panel select {
+	width: 290px;
+}
+
+#advanced_panel #bordercolor, #advanced_panel #bgcolor{
+	width: 265px;
+}

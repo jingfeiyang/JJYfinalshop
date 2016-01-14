@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>添加/编辑友情链接 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/admin.css">
+  <script type="text/javascript" src="${base}/template/assets/js/jquery.min.js"></script>
+  <%
+	var isAdd = false;
+	var isEdit = false;
+	if(isEmpty(friendLink.id)){
+		isAdd = true;
+	}else{	
+		isEdit = true;
+  }%>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<div class="admin-content">
+	 <div class="am-cf am-padding">
+	   <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品管理</strong> / <small><%if(isAdd){%>添加友情链接<%}else{%>编辑友情链接<%}%></small></div>
+	 </div>
+	 <hr style="padding:0px 1.6rem 1.6rem 1rem;margin:0px;">
+	 <div class="am-g" >
+		<div class="am-u-sm-12" style="padding:0px 5px 0px 0px;margin:0px;">
+		    <form id="inputForm" class="am-form" action="<%if (isAdd){%>${base}/friendLink/save<%}else{%>${base}/friendLink/update<%}%>" enctype="multipart/form-data" method="post">
+	          <input type="hidden" name="friendLink.id" value="${friendLink.id!}" />
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right">友情链接名称</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" name="friendLink.name" class="am-input-sm" value="${friendLink.name!}" placeholder="友情链接名称不允许为空!" required/>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">${nameMessages!}</div>
+	          </div>
+	
+			 <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right">网址</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" name="friendLink.url" class="am-input-sm" value="${friendLink.url!}" placeholder="请以http://或https://开头!" required/>
+	            </div>
+	            <div class="am-hide-sm-only am-u-md-6 am-text-warning">${urlMessages!}</div>
+	          </div>
+	          
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right">LOGO</div>
+	            <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+	              <input type="file" name="logo" /><%if (friendLink.logo! != null){%>&nbsp;&nbsp;&nbsp;<a href="${base}${friendLink.logo}" class="am-input-sm" target="_blank">查看</a><%}%>
+	            </div>
+	          </div>
+	
+	          <div class="am-g am-margin-top">
+	            <div class="am-u-sm-4 am-u-md-2 am-text-right">排序</div>
+	            <div class="am-u-sm-8 am-u-md-4">
+	              <input type="text" name="friendLink.orderList" class="am-input-sm" value="${friendLink.orderList!50}" placeholder="只允许输入零或正整数" required/>
+	            </div>
+	            <div class="am-u-sm-12 am-u-md-6 am-text-warning">${orderListMessages!}</div>
+	          </div>
+	
+			  <div class="am-g am-margin-top">
+			  <div class="am-u-sm-12 am-u-md-2 am-text-right admin-form-text"></div>
+			  <div class="am-u-sm-12 am-u-md-10">
+			  	<button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+			    <button type="button" class="am-btn am-btn-warning am-btn-xs" onclick="window.history.back(); return false;">放弃保存</button>
+			  </div>
+			  </div>
+	        </form>
+		</div>
+	</div>
+</div>
+<!-- content end -->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="${base}/template/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+</body>
+</html>

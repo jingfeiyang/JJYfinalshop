@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>个人信息 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/member_center.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+<script type="text/javascript">
+$().ready( function() {
+
+	// 地区选择菜单
+	$(".areaSelect").lSelect({
+		url: "${base}/area/ajaxChildrenArea"// Json数据获取url
+	});
+
+});
+</script>
+</head>
+<body class="memberCenter">
+	<%include("/shop/header.html"){}%>
+	<div class="body profileInput">
+		<div class="bodyLeft">
+			<div class="memberInfo">
+				<div class="top"></div>
+				<div class="middle">
+					<p>欢迎您！<span class="username">${loginMember.username}</span> [<a class="userLogout" href="member!logout.action"">退出</a>]</p>
+					<p>会员等级:<span class="red"> ${loginMember.memberRank.name}</span></p>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<!-- 侧边栏 -->
+			<%include("/shop/sidebar.html"){}%>
+		</div>
+		<div class="bodyRight">
+			<div class="memberCenterDetail">
+				<div class="top">
+					个人信息
+				</div>
+				<div class="middle">
+					<div class="blank"></div>
+					<form id="inputForm" class="validate" action="${base}/profile/update" method="post">
+						<table class="inputTable">
+							<tr>
+								<th>
+									E-mail:
+								</th>
+								<td>
+									<input type="text" name="member.email" class="formText {required: true, messages: {required: '请输入E-mail地址！'}, email: true}" class="{required: true, messages: {required: '请选择收货地址！'}}" value="${member.email!}" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<%for(list in enabledMemberAttributeList){%>
+								<tr>
+									<th>
+										${list.name}:
+									</th>
+									<td>
+										<%if (list.attributeType == "text"){%>
+											<input type="text" name="${list.id}" class="formText<%if (list.isRequired){%> {required: true}<%}%>" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "number"){%>
+											<input type="text" name="${list.id}" class="formText {<%if (list.isRequired){%>required: true, <%}%>number: true}" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "alphaint"){%>
+											<input type="text" name="${list.id}" class="formText {<%if (list.isRequired){%>required: true, <%}%>lettersonly: true}" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "email"){%>
+											<input type="text" name="${list.id}" class="formText {<%if (list.isRequired){%>required: true, <%}%>email: true}" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "select"){%>
+											<select name="${list.id}"<%if (list.isRequired){%> class="{required: true}"<%}%>>
+												<option value="">请选择...</option>
+												<%for(attributeOptionList in list.attributeOptionList){%>
+													<option value="${attributeOptionList}"<%if (member.memberAttributeMap[list.id] == attributeOptionList){%> selected<%}%>>${attributeOptionList}</option>
+												<%}%>
+											</select>
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "checkbox"){%>
+											<%for(attributeOptionList in list.attributeOptionList){%>
+												<label><input type="checkbox" name="${list.id}"<%if (list.isRequired){%> class="{required: true, messagePosition: '#${list.id}MessagePosition'}"<%}%> value="${attributeOptionList}"<%if (strutil.contain(member.memberAttributeMap[list.id],attributeOptionList)){%> checked<%}%> />${attributeOptionList}</label>
+											<%}%>
+											<span id="${list.id}MessagePosition"></span>
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "name"){%>
+											<input type="text" name="${list.id}" class="formText <%if (list.isRequired){%>{required: true}<%}%>" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "gender"){%>
+											<label><input type="radio" name="${list.id}"<%if (list.isRequired){%> class="{required: true, messagePosition: '#${list.id}MessagePosition'}"<%}%> value="male" <%if (member.memberAttributeMap[list.id] == "male"){%> checked<%}%> />${i18n("Gender.male")}</label>
+											<label><input type="radio" name="${list.id}"<%if (list.isRequired){%> class="{required: true, messagePosition: '#${list.id}MessagePosition'}"<%}%> value="female" <%if (member.memberAttributeMap[list.id] == "female"){%> checked<%}%> />${i18n("Gender.female")}</label>
+											<span id="${list.id}MessagePosition"></span>
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "date"){%>
+											<input type="text" name="${list.id}" class="formText datePicker {<%if (list.isRequired){%>required: true, <%}%>dateISO: true}" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "area"){%>
+											<input type="text" name="${list.id}" class="formText areaSelect<%if (list.isRequired){%> {required: true}<%}%>" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "address"){%>
+											<input type="text" name="${list.id}" class="formText <%if (list.isRequired){%>{required: true}<%}%>" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "zipCode"){%>
+											<input type="text" name="${list.id}" class="formText {<%if (list.isRequired){%>required: true, <%}%>zipCode: true}" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "mobile"){%>
+											<input type="text" name="${list.id}" class="formText {<%if (list.isRequired){%>required: true, <%}%>mobile: true}" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "phone"){%>
+											<input type="text" name="${list.id}" class="formText {<%if (list.isRequired){%>required: true, <%}%>phone: true}" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "qq"){%>
+											<input type="text" name="${list.id}" class="formText <%if (list.isRequired){%>{required: true}<%}%>" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "msn"){%>
+											<input type="text" name="${list.id}" class="formText <%if (list.isRequired){%>{required: true}<%}%>" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "wangwang"){%>
+											<input type="text" name="${list.id}" class="formText <%if (list.isRequired){%>{required: true}<%}%>" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}else if (list.attributeType == "skype"){%>
+											<input type="text" name="${list.id}" class="formText <%if (list.isRequired){%>{required: true}<%}%>" value="${member.memberAttributeMap[list.id]}" />
+											<%if (list.isRequired){%><label class="requireField">*</label><%}%>
+										<%}%>
+									</td>
+								</tr>
+							<%}%>
+							<tr>
+								<th>
+									&nbsp;
+								</th>
+								<td>
+									<input type="submit" class="submitButton" value="提 交" hidefocus="true" />
+								</td>
+							</tr>
+						</table>
+					</form>
+					<div class="blank"></div>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

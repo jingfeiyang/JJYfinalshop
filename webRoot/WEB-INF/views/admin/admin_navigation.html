@@ -1,0 +1,31 @@
+<aside id="left-panel">
+	<!-- User info -->
+	<div class="login-info">
+		<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 			
+			<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+				<img src="${base}/img/avatars/sunny.png" alt="me" class="online" /> 
+				<span> ${loginUsername!} </span>
+			</a> 			
+		</span>
+	</div>
+	<!-- end user info -->
+
+	<!-- NAVIGATION : This navigation is also responsive-->
+	<nav>
+		<ul>
+			<%for(menu in menuList!){%>
+				<li><a href="#"><i class="fa fa-lg fa-fw ${menu.icon}"></i> <span class="menu-item-parent"> ${menu.name!} </span></a>
+					<ul>
+					<%for(children in menu.children!){%>
+						<li><a href="${base}${children.url!}" target="mainFrame">${children.name!}</a></li>
+					<%}%>
+					</ul>
+				</li>
+			<%}%>			
+		</ul>
+	</nav>
+	<span class="minifyme" data-action="minifyMenu"> 
+		<i class="fa fa-arrow-circle-left hit"></i> 
+	</span>
+
+</aside>

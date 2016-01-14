@@ -1,0 +1,171 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>添加/编辑商品分类 - Powered By ${systemConfig.systemName}</title>
+
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+  <link rel="icon" type="image/png" href="${base}/template/assets/i/favicon.png">
+
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="${base}/template/assets/i/app-icon72x72@2x.png">
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="${base}/template/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="stylesheet" href="${base}/template/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/app.css">
+  <link rel="stylesheet" href="${base}/template/assets/css/admin.css">
+  <script type="text/javascript">
+	// 删除
+	function deleteCategory(ids) {
+		if (confirm('您确定要删除吗？') == true) {
+			$.ajax({
+				method:"post",  
+				url: '${base}/productCategory/delete',
+				data:"id=" + ids + "",
+				dataType: "json",
+				async: false,
+				success: function(data) {
+					if (data.status == "success") {
+						alert(data.message);  
+						location.href='${base}/productCategory/list';
+					} else if (data.status == "error") {	
+						alert(data.message); 
+					}				
+				}
+			});
+		}
+	}  
+</script>
+<style type="text/css">
+<!--
+.am-icon-folder-o {
+	cursor: pointer;
+}
+-->
+</style>
+</head>
+<body>
+<!--在这里编写你的代码-->
+<div class="admin-content">
+  <div class="am-cf am-padding" style="padding:1rem 1.6rem 1.6rem 1rem;margin:0px;"> <!--  padding:1px 2px 3px 4px;上、右、下,和左   -->
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品管理</strong> / <small>商品分类列表</small></div>
+  </div>
+  <form class="am-form" id="listForm" action="${base}/brand/list" method="post">
+   <div class="am-g">
+     <div class="am-u-sm-12 am-u-md-6" style="padding:0px 1.6rem 1.6rem 1rem;margin:0px;">
+       <div class="am-btn-toolbar">
+         <div class="am-btn-group am-btn-group-xs" >
+           <button type="button" class="am-btn am-btn-default" onclick="location.href='${base}/productCategory/add'"><span class="am-icon-plus"></span> 新增</button>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="am-g" >
+     <div class="am-u-sm-12" style="padding:0px 5px 0px 0px;margin:0px;"><!--  padding:1px 2px 3px 4px;上、右、下,和左   -->
+         <table class="am-table am-table-striped am-table-hover table-main" style="padding:0px;margin:0px;">
+           <thead>
+             <tr>
+               <th class="table-title">分类名称</th>
+               <th>排序</th>
+               <th class="table-set">操作</th>
+             </tr>
+         </thead>
+         <tbody>
+         <%for(list in productCategoryTreeList){%>
+         	 <tr level="${list.level!}">
+             <td class="categoryName">
+				<span style="margin-left: ${list.level * 20}px;">
+					<%if (list.level == 0){%>
+						<i class="am-icon-folder-o"></i>
+					<%}else{%>
+						<i class="am-icon-folder-open-o"></i>
+					<%}%>
+					${list.name}
+				</span>
+			 </td>
+             <td>${list.orderList}</td>
+             <td>
+               <div class="am-btn-toolbar">
+                 <div class="am-btn-group am-btn-group-xs">   
+                 	<a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="${base}/shop/product/list?id=${list.id}" target="_blank" title="查看"><span class="am-icon-home"></span> 查看</a>
+					<%if (list.children.~size > 0){%>
+						<button type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" disabled="disabled"><span class="am-icon-trash-o"></span> 删除</button>
+					<%}else{%>
+						<button id="deleteAction" type="button" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="deleteCategory('${list.id}')"><span class="am-icon-trash-o"></span> 删除</button>
+					<%}%>
+                   	<button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="location.href='${base}/productCategory/edit?id=${list.id}'"><span class="am-icon-pencil-square-o"></span>编辑</button>
+                 </div>
+               </div>
+             </td>
+           </tr>
+         <%}%> 
+       </tbody>
+       </table>
+         <div class="am-cf">
+  			<!-- 分页 -->
+  			<%if (productCategoryTreeList.~size == 0){%>
+				<div class="am-kai">
+				  <h3>没有找到任何记录!</h3>
+				</div>
+			<%}%>
+	 </div>  
+     </div>
+   </div>
+  </form>
+</div>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="${base}/template/assets/js/jquery.min.js"></script>
+<script src="${base}/template/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+	// 树折叠
+	$(".categoryName").click( function() {
+		var level = $(this).parent().attr("level");
+		var isHide;
+		$(this).parent().nextAll("tr").each(function(){
+			var thisLevel = $(this).attr("level");
+			if(thisLevel <=  level) {
+				return false;
+			}
+			if(isHide == null) {
+				if($(this).is(":hidden")){
+					isHide = true;
+				} else {
+					isHide = false;
+				}
+			}
+			if( isHide) {
+				$(this).show();
+			} else {
+				$(this).hide();
+			}
+		});
+	  });
+  })
+</script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<![endif]-->
+</body>
+</html>

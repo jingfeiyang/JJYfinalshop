@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>${systemConfig.shopName!} - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFINALSHOP Team" />
+<meta name="Copyright" content="JFINALSHOP" />
+<%if (systemConfig.metaKeywords! != ""){%><meta name="keywords" content="${systemConfig.metaKeywords}" /><%}%>
+<%if (systemConfig.metaDescription! != ""){%><meta name="description" content="${systemConfig.metaDescription}" /><%}%>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/index.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/product.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/article.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+<!-- <script type="text/javascript" src="${base}/template/shop/js/index.js"></script> -->
+<script type="text/javascript" src="${base}/template/shop/js/product.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$(".slider .scrollable").scrollable({
+		circular: true,
+		speed: 500
+	}).autoscroll({
+		autoplay: true,
+		interval: 4000
+	}).navigator();
+	
+	$(".hotProduct .scrollable").scrollable({
+		circular: true,
+		speed: 500
+	});
+	
+	$(".newProduct ul.newProductTab").tabs(".newProduct .newProductTabContent", {
+		effect: "fade",// 逐渐显示动画
+		fadeInSpeed: 500,// 动画显示速度
+		event: "mouseover"// 触发tab切换的事件
+	});
+
+})
+</script>
+</head>
+<body class="index">
+	<%include("/shop/header.html"){}%>
+	<div class="body">
+		<div class="bodyLeft">
+			<div class="productCategory">
+            	<div class="top">商品分类</div>
+            	<div class="middle clearfix">
+            		<ul class="menu">
+            			<%for(list in rootProductCategoryList){%>
+            				<li class="mainCategory">
+								<a href="${base}/shop/product/list?id=${list.id}">${list.name}</a>
+							</li>
+							<%var childrenList = list.children;%>
+							<%if (childrenList != null && childrenList.~size > 0){%>
+								<%for(c1_List in childrenList){%>
+									<li>
+										<a href="${base}/shop/product/list?id=${c1_List.id}"><span class="icon"> </span>${c1_List.name}</a>
+										<%var childrenList2 = c1_List.children;%>
+										<%if (childrenList2 != null && childrenList2.~size > 0){%>
+											<ul>
+												<%for(c2_List in childrenList2){%>
+													<li>
+														<a href="${base}/shop/product/list?id=${c2_List.id}"><span class="icon"> </span>${c2_List.name}</a>
+													</li>
+												<%}%>
+											</ul>
+										<%}%>
+									</li>
+									<%if (c1_ListLP.index == 5){%>
+										<%break;%>
+									<%}%>
+								<%}%>
+							<%}%>
+							<%if (listLP.index == 5){%>
+								<%break;%>
+							<%}%>
+            			<%}%>
+					</ul>
+            	</div>
+                <div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="slider">
+				<div class="scrollable">
+					<div class="items">
+						<div>
+							<img src="${base}/upload/image/banner1.jpg" />
+						</div>
+						<div>
+							<img src="${base}/upload/image/banner2.jpg" />
+						</div>
+						<div>
+							<img src="${base}/upload/image/banner3.jpg" />
+						</div>
+					</div>
+					<div class="navi"></div>
+					<div class="prevNext">
+						<a class="prev browse left"></a>
+						<a class="next browse right"></a>
+					</div>
+				</div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotProduct">
+				<div class="title">
+					<strong>热卖商品</strong>HOT
+				</div>
+				<a class="prev browse"></a>
+				<div class="scrollable">
+					<div class="items">
+						<%for(list in hotProductList){%>
+							<%if (listLP.index == 1){%>
+								<div>
+								<ul>
+							<%}%>
+							<li>
+								<a href="${base}${list.htmlFilePath}">
+									<img src="${base}${list.productImageList[0].thumbnailProductImagePath!systemConfig.defaultThumbnailProductImagePath}" alt="${list.name}" />
+									<%if (strutil.length(list.name) < 12){%>
+										<p title="${list.name}">${list.name}</p>
+									<%}else{%>
+										<p title="${list.name}">${strutil.subStringTo(list.name,0,8)}...</p>
+									<%}%>
+								</a>
+							</li>
+							<%if ((listLP.index % 4 == 0) && (listLP.last && listLP.index != 12)){%>
+								</ul>
+								</div>
+								<div>
+								<ul>
+							<%}%>
+							<%if ((listLP.index % 4 == 0) && !listLP.last || listLP.index == 12){%>
+								</ul>
+								</div>
+								<%break;%>
+							<%}%>
+						<%}%>
+					</div>
+				</div>
+				<a class="next browse"></a>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<img src="${base}/upload/image/banner4.jpg" />
+		<div class="blank"></div>
+		<div class="newProduct">
+			<div class="left">
+				<ul class="newProductTab">
+					<%for(list in rootProductCategoryList){%>
+						<li>
+							${list.name}
+						</li>
+						<%if (listLP.index == 4){%>
+							<%break;%>
+						<%}%>
+					<%}%>
+				</ul>
+			</div>
+			<div class="right">
+				<%for(list in rootProductCategoryList){%>
+					<ul class="newProductTabContent">
+						<%for(listMap in newProductMap[list.id]){%>
+							<li>
+								<a href="${base}${listMap.htmlFilePath}">
+									<img src="${base}${listMap.productImageList[0].thumbnailProductImagePath!systemConfig.defaultThumbnailProductImagePath}" alt="${listMap.name}" />
+									<%if (strutil.length(list.name) < 12){%>
+										<p title="${listMap.name}">${listMap.name}</p>
+									<%}else{%>
+										<p title="${listMap.name}">${strutil.subStringTo(listMap.name,0,8)}...</p>
+									<%}%>
+								</a>
+							</li>
+							<%if (listLP.index == 4){%>
+								<%break;%>
+							<%}%>
+						<%}%>
+					</ul>
+					<%if (listLP.index == 4){%>
+						<%break;%>
+					<%}%>
+				<%}%>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<div class="bodyLeft">
+			<div class="hotProduct">
+				<div class="top">热销排行</div>
+				<div class="middle clearfix">
+					<ul>
+						<%for(list in hotProductList){%>
+							<li class="number${listLP.index}">
+								<%if (strutil.length(list.name) < 15){%>
+									<span class="icon"> </span><a href="${base}${list.htmlFilePath}" title="${list.name}">${list.name}</a>
+								<%}else{%>
+									<span class="icon"> </span><a href="${base}${list.htmlFilePath}" title="${list.name}">${strutil.subStringTo(list.name,0,11)}...</a>
+								<%}%>
+							</li>
+							<%if (listLP.index == 10){%>
+								<%break;%>
+							<%}%>
+						<%}%>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<div class="hotArticle">
+				<div class="top">热点文章</div>
+				<div class="middle clearfix">
+					<ul>
+						<%for(list in hotArticleList){%>
+							<li class="number${listLP.index}">
+								<%if (strutil.length(list.title) < 15){%>
+									<span class="icon"> </span><a href="${base}${list.htmlFilePath}" title="${list.title}">${list.title}</a>
+								<%}else{%>
+									<span class="icon"> </span><a href="${base}${list.htmlFilePath}" title="${list.title}">${strutil.subStringTo(list.title,0,11)}...</a>
+								<%}%>
+							</li>
+							<%if (listLP.index == 10){%>
+								<%break;%>
+							<%}%>
+						<%}%>
+					</ul>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="bodyRight">
+			<div class="bestProduct">
+				<div class="top">
+					<strong>精品推荐</strong>BEST
+				</div>
+				<div class="middle">
+					<ul>
+						<%for(list in bestProductList){%>
+							<li>
+								<a href="${base}${list.htmlFilePath}">
+									<img src="${base}${list.productImageList[0].thumbnailProductImagePath!systemConfig.defaultThumbnailProductImagePath}" alt="${list.name}" />
+									<%if (strutil.length(list.name) < 12){%>
+										<p title="${list.name}">${list.name}</p>
+									<%}else{%>
+										<p title="${list.name}">${strutil.subStringTo(list.name,0,8)}...</p>
+									<%}%>
+									<p class="red">${list.price,priceCurrencyFormat}</p>
+								</a>
+							</li>
+							<%if (listLP.index == 12){%>
+								<%break;%>
+							<%}%>
+						<%}%>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

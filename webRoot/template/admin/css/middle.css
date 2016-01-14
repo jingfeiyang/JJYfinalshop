@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Middle Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+
+.middle .main {
+	width: 6px;
+	height: 100%;
+	cursor: pointer;
+}
+
+.middle .leftArrow {
+	background: url(../images/middle_bg.gif) #d9d9d9 -6px center no-repeat;
+}
+
+.middle .leftArrow:hover {
+	background-color: #e2e2e2;
+}
+
+.middle .rightArrow {
+	background: url(../images/middle_bg.gif) #d9d9d9 -18px center no-repeat;
+}
+
+.middle .rightArrow:hover {
+	background-color: #eeeeee;
+}

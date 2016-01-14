@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>预存款充值 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFINALSHOP Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/shop/css/login.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/register.css" rel="stylesheet" type="text/css" />
+<link href="${base}/template/shop/css/member_center.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/shop/js/login.js"></script>
+<script type="text/javascript" src="${base}/template/shop/js/register.js"></script>
+<script type="text/javascript">
+$().ready( function() {
+	
+	var $depositRechargeForm = $("#depositRechargeForm");
+	
+	// 表单验证
+	$depositRechargeForm.validate({
+		ignore: ".ignoreValidate",
+		invalidHandler: function(form, validator) {
+			$.each(validator.invalid, function(key, value){
+				$.tip(value);
+				return false;
+			});
+		},
+		errorPlacement:function(error, element) {},
+		submitHandler: function(form) {
+			$depositRechargeForm.find(":submit").attr("disabled", true);
+			form.submit();
+		}
+	});
+	
+});
+</script>
+</head>
+<body class="memberCenter">
+	<%include("/shop/header.html"){}%>
+	<div class="body depositRecharge">
+		<div class="bodyLeft">
+			<div class="memberInfo">
+				<div class="top"></div>
+				<div class="middle">
+					<p>欢迎您！<span class="username">${loginMember.username}</span> [<a class="userLogout" href="member!logout.action"">退出</a>]</p>
+					<p>会员等级:<span class="red"> ${loginMember.memberRank.name}</span></p>
+				</div>
+				<div class="bottom"></div>
+			</div>
+			<div class="blank"></div>
+			<!-- 侧边栏 -->
+			<%include("/shop/sidebar.html"){}%>
+		</div>
+		<div class="bodyRight">
+			<div class="memberCenterDetail">
+				<div class="top">
+					预存款充值
+				</div>
+				<div class="middle">
+					<div class="blank"></div>
+					<form id="depositRechargeForm" action="${base}/shop/payment/confirm" method="post">
+						<input type="hidden" name="paymentType" value="recharge" />
+						<table class="inputTable">
+							<tr>
+								<th>
+									充值金额:
+								</th>
+								<td>
+									<input type="text" name="amountPayable" class="formText {required: true, positive: true, messages: {required: '请填写充值金额！', positive: '充值金额必须大于0！'}}" />
+									<label class="requireField">*</label>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									支付方式:
+								</th>
+								<td>
+									<table class="paymentConfigTable">
+										<%for(list in nonDepositOfflinePaymentConfigList){%>
+											<tr>
+												<td class="nameTd">
+													<label>
+														<input type="radio" name="paymentConfig.id" class="{required: true, messages: {required: '请选择支付方式！'}}" value="${list.id}" />
+														${list.name}
+													</label>
+												</td>
+												<td>
+													<%if (list.paymentFeeType == "scale" && list.paymentFee != 0){%>
+														[支付手续费费率：${list.paymentFee}%]
+													<%}else if (list.paymentFeeType == "fixed" && list.paymentFee != 0){%>
+														[支付手续费：${list.paymentFee,orderUnitCurrencyFormat}]
+													<%}%>
+													<p>${list.description}</p>
+												</td>
+											</tr>
+										<%}%>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									&nbsp;
+								</th>
+								<td>
+									<input type="submit" class="submitButton" value="立刻充值" hidefocus="true" />
+								</td>
+							</tr>
+						</table>
+					</form>
+					<div class="blank"></div>
+				</div>
+				<div class="bottom"></div>
+			</div>
+		</div>
+		<div class="blank"></div>
+		<%include("/shop/friend_link.html"){}%>
+	</div>
+	<div class="blank"></div>
+	<%include("/shop/footer.html"){}%>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>会员列表 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<link href="${base}/template/admin/css/list.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="${base}/template/admin/js/list.js"></script>
+</head>
+<body class="list">
+	<div class="body">
+		<div class="listBar">
+			<h1><span class="icon">&nbsp;</span>会员列表&nbsp;<span class="pageInfo">总记录数: ${pager.totalRow}(共${pager.totalPage}页)</span></h1>
+		</div>
+		<form id="listForm" action="${base}/admin/member/list" method="post">
+			<div class="operateBar">
+				<input type="button" class="addButton" onclick="location.href='${base}/admin/member/add'" value="添加会员" />
+				<label>查找:</label>
+				<select name="property">
+					<option value="username" <%if (property! == "username"){%>selected="selected" <%}%>
+						用户名
+					</option>
+					<option value="email" <%if (property! == "email"){%>selected="selected" <%}%>
+						E-mail
+					</option>
+				</select>
+				<label class="searchText"><input type="text" name="keyword" value="${keyword!}" /></label><input type="button" id="searchButton" class="searchButton" value="" />
+				<label>每页显示:</label>
+				<select name="pageSize" id="pageSize">
+					<option value="10" <%if(pager.pageSize == 10){%> selected="selected" <%}%>>
+						10
+					</option>
+					<option value="20" <%if(pager.pageSize == 20){%> selected="selected" <%}%>>
+						20
+					</option>
+					<option value="50" <%if(pager.pageSize == 50){%> selected="selected" <%}%>>
+						50
+					</option>
+					<option value="100" <%if(pager.pageSize == 100){%> selected="selected" <%}%>>
+						100
+					</option>			
+				</select>
+			</div>
+			<table class="listTable">
+				<tr>
+					<th class="check">
+						<input type="checkbox" class="allCheck" />
+					</th>
+					<th>
+						<span class="sort" name="username">用户名</span>
+					</th>
+					<th>
+						<span class="sort" name="memberRank">会员等级</span>
+					</th>
+					<th>
+						<span class="sort" name="email">E-mail</span>
+					</th>
+					<th>
+						<span class="sort" name="createDate">注册日期</span>
+					</th>
+					<th>
+						状态
+					</th>
+					<th>
+						操作
+					</th>
+				</tr>
+				<%for(list in pager.list){%>
+					<tr>
+						<td>
+							<input type="checkbox" name="ids" value="${list.id!}" />
+						</td>
+						<td>
+							${list.username}
+						</td>
+						<td>
+							${list.memberRank.name}
+						</td>
+						<td>
+							${list.email}
+						</td>
+						<td>
+							<span>${list.createDate,"yyyy-MM-dd HH:mm:ss"}</span>
+						</td>
+						<td>
+							<%if (list.isAccountEnabled == true && list.isAccountLocked == false){%>
+								<span class="green">正常</span>
+							<%}else if (list.isAccountEnabled == false){%>
+								<span class="red"> 未启用 </span>
+							<%}else if (list.isAccountLocked == true){%>
+								<span class="red"> 已锁定 </span>
+							<%}%>
+						</td>
+						<td>
+							<a href="${base}/admin/member/edit?id=${list.id}" title="[编辑]">[编辑]</a>
+						</td>
+					</tr>
+				<%}%>
+			</table>
+			<%if (pager.list.~size > 0){%>
+				<div class="pagerBar">
+					<input type="button" class="deleteButton" url="${base}/admin/member/delete" value="删 除" disabled hidefocus="true" />
+					<% include("/admin/pager.html"){}%>
+				</div>
+			<%}else{%>
+				<div class="noRecord">
+					没有找到任何记录!
+				</div>
+			<%}%>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+ /***
+ *	JFinalShop Article Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+ 
+.articleContent .body {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.articleContent .bodyLeft {
+	width: 210px;
+	float: left;
+}
+
+.articleContent .bodyRight {
+	width: 780px;
+	float: right;
+}
+
+.articleContent .articleContentDetail {
+	width: 780px;
+	float: right;
+}
+
+.articleContent .articleContentDetail .articleContentTop {
+	width: 780px;
+	height: 3px;
+	overflow: hidden;
+	clear: both;
+	background: url(../images/article_content_bg.gif) 0px 0px no-repeat;
+}
+
+.articleContent .articleContentDetail .articleContentMiddle {
+	width: 750px;
+	clear: both;
+	padding: 15px;
+	background: url(../images/article_content_y_bg.gif) 0px 0px repeat-y;
+}
+
+.articleContent .articleContentDetail .title {
+	line-height: 30px;
+	clear: both;
+	color: #000000;
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.articleContent .articleContentDetail .info {
+	line-height: 30px;
+	text-align: center;
+	color: #787878;
+	border-bottom: 1px solid #e9e9e9;
+}
+
+.articleContent .articleContentDetail .createDate {
+	padding: 0px 3px;
+}
+
+.articleContent .articleContentDetail .author {
+	padding: 0px 3px;
+}
+
+.articleContent .articleContentDetail .fontSize {
+	padding: 0px 3px;
+}
+
+.articleContent .articleContentDetail .content {
+	line-height: 28px;
+	padding: 5px;
+	font-size: 14px;
+	color: #2a2a2a;
+}
+
+.articleContent .articleContentDetail .articleContentBottom {
+	width: 780px;
+	height: 5px;
+	overflow: hidden;
+	clear: both;
+	background: url(../images/article_content_bg.gif) 0px -30px no-repeat;
+}

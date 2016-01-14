@@ -1,0 +1,59 @@
+<script type="text/javascript" src="${base}/template/shop/js/header.js"></script>
+<link href="${base}/template/shop/css/header.css" rel="stylesheet" type="text/css" />
+<div class="header png">
+	<div class="headerTop png">
+		<div class="headerTopContent">
+			<div class="headerLoginInfo">
+				您好<span id="headerLoginMemberUsername"></span>，欢迎来到${systemConfig.shopName!}!
+				<a href="#" id="headerShowLoginWindow" class="showLoginWindow">[登  录]</a>
+				<a href="${base}/memberCenter" id="headerMemberCenter">[会员中心]</a>
+				<a href="#" id="headerShowRegisterWindow" class="showRegisterWindow">[注  册]</a>
+				<a href="${base}/memberCenter/logout" id="headerLogout">[退  出]</a>
+			</div>
+			<div class="headerTopNav">
+				<%for(list in topNavigationList!){%>					
+					<a href="${base}${list.url}" <%if (list.isBlankTarget == true){%> target="_blank"<%}%>>${list.name!}</a>
+					<%if (!listLP.last){%>|<%}%>
+				<%}%>
+			</div>
+		</div>
+	</div>
+	<div class="headerMiddle">
+		<div class="headerInfo">
+			7×24小时服务热线：<strong>${systemConfig.phone!}</strong>
+		</div>
+		<div class="headerLogo">
+			<a href="${base}/"><img class="png" src="${base}${systemConfig.shopLogo!}" title="${systemConfig.shopName!}" /></a>
+		</div>
+		<div class="headerSearch png">
+			<form id="productSearchForm" action="${base}/shop/product/search" method="get">
+				<div class="headerSearchText">
+					<input type="text" id="productSearchKeyword" name="keyword" value="<%if (keyword! != null && rootProductCategoryList != null){%>${keyword!}<%}else{%>请输入关键词...<%}%>"}" />
+				</div>
+				<input type="submit" class="headerSearchButton" value="" />
+				<div class="hotKeyword">
+					热门关键词: 
+					<%for(list in systemConfig.hotSearchList){%>
+						<a href="${base}/shop/product/search?keyword=${list}">${list}</a>
+					<%}%>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="headerBottom">
+		<input type="button" class="cartItemListButton showCartItemList" value="" onclick="window.open('${base}/shop/cartItem/list')" />
+		<ul id="cartItemListDetail"></ul>
+		<input type="button" class="orderButton" value="" onclick="window.open('${base}/shop/cartItem/list')" />
+		<div class="headerMiddleNav">
+			<div class="headerMiddleNavLeft png"></div>
+			<ul class="headerMiddleNavContent png">
+				<%for(list in middleNavigationList){%>
+					<li>
+						<a href="${base}${list.url}"<%if (list.isBlankTarget == true){%> target="_blank"<%}%>>${list.name}</a>
+					</li>
+				<%}%>
+			</ul>
+			<div class="headerMiddleNavRight png"></div>
+		</div>
+	</div>
+</div>

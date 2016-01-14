@@ -1,0 +1,75 @@
+#src_list, #over_list, #out_list {
+	width: 280px;
+}
+
+.mceActionPanel {
+	margin-top: 8px;
+}
+
+.alignPreview {
+	border: 1px solid #000;
+	width: 140px;
+	height: 140px;
+	overflow: hidden;
+	padding: 5px;
+}
+
+.checkbox {
+	border: 0px;
+}
+
+.panel_wrapper div.current {
+	height: 305px;
+}
+
+#prev {
+	width: 428px;
+	height: 155px;
+	overflow: auto;
+	margin: 0px;
+	border: 1px solid #000000;
+}
+
+#align, #classlist {
+	width: 150px;
+}
+
+#width, #height {
+	width: 63px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#vspace, #hspace, #border {
+	vertical-align: middle;
+	width: 63px;
+	text-align: center;
+}
+
+#class_list {
+	width: 180px;
+}
+
+input {
+	width: 350px;
+}
+
+#constrain, #onmousemovecheck {
+	width: auto;
+}
+
+#id, #dir, #lang, #usemap, #longdesc {
+	width: 200px;
+}
+
+#uploadButton {
+	width: 60px;
+	height: 18px;
+	line-height: 16px;
+	border: solid 1px #999999;
+	background-color: #ece9d8;
+}
+
+#upload {
+	width: 290px;
+}

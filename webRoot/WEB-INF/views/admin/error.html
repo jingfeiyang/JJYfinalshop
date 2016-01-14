@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>提示信息 - Powered By ${systemConfig.systemName}</title>
+<meta name="Author" content="JFinalShop Team" />
+<meta name="Copyright" content="JFinalShop" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<% include("/common/include.html"){}%>
+<!-- <link href="${base}/template/admin/css/message.css" rel="stylesheet" type="text/css" /> -->
+</head>
+<body class="message">
+	<div class="body">
+		<div class="messageBox">
+			<div class="boxTop">
+				<div class="boxTitle">错误信息&nbsp;</div>
+				<a class="boxClose windowClose" href="#" hidefocus="true"></a>
+			</div>
+			<div class="boxMiddle">
+				<div class="messageContent">
+					<span class="icon error">&nbsp;</span>
+					<span class="messageText">${errorMessages}<br></span>
+				</div>
+				<input type="button" class="formButton messageButton" <%if (!isEmpty(redirectionUrl)){%>onclick="window.location.href='${redirectionUrl!}'"<%}else{%>onclick="window.history.back(); return false;"<%}%> value="确  定" hidefocus="true" />
+			</div>
+			<div class="boxBottom"></div>
+		</div>
+	</div>
+</body>
+</html>

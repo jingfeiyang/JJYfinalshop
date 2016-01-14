@@ -1,0 +1,632 @@
+@charset "utf-8";
+
+/***
+ *	JFinalShop Base Style
+ *
+ *	http://www.jfinalshop.com
+ *
+ *	Copyright (c) 2014 JFinalShop. All rights reserved.
+ **/
+ 
+/* 解决IE6对hover支持的问题 */
+body {
+	_behavior: url("../template/common/css/csshover3.htc");
+}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body {
+	font: 12px tahoma, Arial, "宋体", Verdana, sans-serif;
+	background-color: #ffffff;
+}
+
+a {
+	color: #656d77;
+	text-decoration: none;
+}
+
+.black {
+	color: black;
+}
+
+.blue {
+	color: blue;
+}
+
+.green {
+	color: green;
+}
+
+.gray {
+	color: gray;
+}
+
+.red {
+	color: red;
+}
+
+.white {
+	color: white;
+}
+
+a:hover {
+	color: #ff6600;
+	text-decoration: none;
+}
+
+img {
+	border: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.hidden {
+	display: none;
+}
+
+.lineThrough {
+	text-decoration: line-through;
+}
+
+.blank {
+	width: 100%;
+	height: 10px;
+	clear: both;
+	overflow: hidden;
+}
+
+input, select, label {
+	vertical-align: middle
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+html[xmlns] .clearfix {
+	display: block;
+}
+
+* html .clearfix {
+	height: 1%;
+}
+
+.contentWindow {
+	width: 400px;
+	margin-left: -200px;
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	z-index: 100;
+}
+
+.contentWindow .windowTop {
+	width: 400px;
+	height: 29px;
+	clear: both;
+	cursor: move;
+	background: url(../images/message_bg.gif) no-repeat 0px 0px;
+}
+
+.contentWindow .windowMiddle {
+	width: 400px;
+	clear: both;
+	padding: 30px 0px;
+	text-align: center;
+	background: url(../images/message_y_bg.gif) repeat-y 0px 0px;
+}
+
+.contentWindow .windowBottom {
+	width: 400px;
+	height: 5px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/message_bg.gif) no-repeat 0px -30px;
+}
+
+.contentWindow .windowTitle {
+	height: 29px;
+	line-height: 29px;
+	float: left;
+	margin-left: 8px;
+	font-weight: bold;
+}
+
+.contentWindow .messageClose {
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
+	display: block;
+	outline: none;
+	margin-right: 4px;
+	float: right;
+	cursor: pointer;
+	background: url(../images/message_bg.gif) no-repeat 0px -120px;
+}
+
+.contentWindow .messageClose:hover {
+	background: url(../images/message_bg.gif) no-repeat -30px -120px;
+}
+
+.contentWindow .windowContent {
+	line-height: 12px;
+	clear: both;
+	padding: 0px 20px;
+	margin-bottom: 10px;
+}
+
+* html .contentWindow {
+	position: absolute;
+	top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(25 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+.contentWindow table.windowInputTable {
+	width: 100%;
+}
+
+.contentWindow table.windowInputTable th {
+	width: 90px;
+	padding: 5px;
+	text-align: right;
+}
+
+.contentWindow table.windowInputTable td {
+	padding: 5px;
+	text-align: left;
+}
+
+.messageWindow {
+	width: 400px;
+	margin-left: -200px;
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	z-index: 200;
+}
+
+.messageWindow .windowTop {
+	width: 400px;
+	height: 29px;
+	clear: both;
+	cursor: move;
+	background: url(../images/message_bg.gif) no-repeat 0px 0px;
+}
+
+.messageWindow .windowMiddle {
+	width: 400px;
+	clear: both;
+	padding: 30px 0px;
+	text-align: center;
+	background: url(../images/message_y_bg.gif) repeat-y 0px 0px;
+}
+
+.messageWindow .windowBottom {
+	width: 400px;
+	height: 5px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/message_bg.gif) no-repeat 0px -30px;
+}
+
+.messageWindow .windowTitle {
+	height: 29px;
+	line-height: 29px;
+	float: left;
+	margin-left: 8px;
+	font-weight: bold;
+}
+
+.messageWindow .messageClose {
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
+	display: block;
+	outline: none;
+	margin-right: 4px;
+	float: right;
+	cursor: pointer;
+	background: url(../images/message_bg.gif) no-repeat 0px -120px;
+}
+
+.messageWindow .messageClose:hover {
+	background: url(../images/message_bg.gif) no-repeat -30px -120px;
+}
+
+.messageWindow .messageContent {
+	line-height: 12px;
+	clear: both;
+	padding: 0px 20px;
+	margin-bottom: 40px;
+}
+
+.messageWindow .messageContent .icon {
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+}
+
+.messageWindow .messageContent .warn {
+	background: url(../images/message_bg.gif) no-repeat -60px -120px;
+}
+
+.messageWindow .messageContent .success {
+	background: url(../images/message_bg.gif) no-repeat -90px -120px;
+}
+
+.messageWindow .messageContent .error {
+	background: url(../images/message_bg.gif) no-repeat -120px -120px;
+}
+
+.messageWindow .messageContent .messageText {
+	line-height: 29px;
+}
+
+.jqmOverlay {
+	background: url(../images/overlay_bg.png);
+}
+
+* html .messageWindow {
+	position: absolute;
+	top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(25 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+.tipWindow {
+	padding: 5px 10px;
+	display: none;
+	position: fixed;
+	top: 25%;
+	left: 50%;
+	z-index: 300;
+	color: #000000;
+	border: 2px solid #ffaa71;
+	background-color: #fff5ee;
+}
+
+.tipWindow .icon {
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+}
+
+.tipWindow .warn {
+	background: url(../images/message_bg.gif) no-repeat -60px -120px;
+}
+
+.tipWindow .success {
+	background: url(../images/message_bg.gif) no-repeat -90px -120px;
+}
+
+.tipWindow .error {
+	background: url(../images/message_bg.gif) no-repeat -120px -120px;
+}
+
+.tipWindow .messageText {
+	line-height: 29px;
+}
+
+* html .tipWindow {
+	position: absolute;
+	top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(30 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+.messageBox {
+	width: 400px;
+	margin: 100px auto;
+}
+
+.messageBox .boxTop {
+	width: 400px;
+	height: 29px;
+	clear: both;
+	background: url(../images/message_bg.gif) no-repeat 0px -60px;
+}
+
+.messageBox .boxMiddle {
+	width: 400px;
+	clear: both;
+	padding: 30px 0px;
+	text-align: center;
+	background: url(../images/message_y_bg.gif) repeat-y -400px 0px;
+}
+
+.messageBox .boxBottom {
+	width: 400px;
+	height: 5px;
+	clear: both;
+	overflow: hidden;
+	background: url(../images/message_bg.gif) no-repeat 0px -90px;
+}
+
+.messageBox .boxTitle {
+	height: 29px;
+	line-height: 29px;
+	float: left;
+	margin-left: 8px;
+	font-weight: bold;
+}
+
+.messageBox .messageContent {
+	clear: both;
+	line-height: 12px;
+	padding: 0px 20px;
+	margin-bottom: 40px;
+}
+
+.messageBox .messageContent .icon {
+	width: 29px;
+	height: 29px;
+	line-height: 29px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+}
+
+.messageBox .messageContent .warn {
+	background: url(../images/message_bg.gif) no-repeat -60px -120px;
+}
+
+.messageBox .messageContent .success {
+	background: url(../images/message_bg.gif) no-repeat -90px -120px;
+}
+
+.messageBox .messageContent .error {
+	background: url(../images/message_bg.gif) no-repeat -120px -120px;
+}
+
+.messageBox .messageContent .messageText {
+	line-height: 29px;
+}
+
+.errorBox {
+	width: 500px;
+	height: 200px;
+	margin: 100px auto;
+	position: relative;
+	background: url(../images/message_bg.gif) no-repeat 0px -180px;
+}
+
+.errorBox .errorDetail {
+	line-height: 30px;
+	position: absolute;
+	top: 100px;
+	left: 120px;
+}
+
+.errorBox .errorContent {
+	color: #fb6600;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.errorBox .errorUrl {
+	color: #333333;
+}
+
+.errorBox .errorUrl a {
+	color: #fb6600;
+}
+
+.fieldTitle {
+	height: 29px;
+	line-height: 29px;
+	padding-right: 5px;
+}
+
+.requireField {
+	line-height: 12px;
+	padding: 5px;
+	zoom: 1;
+}
+
+input.validateError {
+	color: #ff6600;
+	background-color: #fff8ef;
+}
+
+label.validateError {
+	line-height: 12px;
+	padding: 4px;
+	padding: 6px\9;
+	*padding: 7px;
+	_padding: 7px;
+	margin-left: 5px;
+	zoom: 1;
+	border: 1px solid #ffca88;
+	background-color: #fffeee;
+}
+
+input.formText {
+	width: 200px;
+	padding: 5px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+input.formText:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+input.formText:focus {
+	background-color: #fff8ef;
+}
+
+input.formTextS {
+	width: 115px;
+	padding: 5px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+input.formTextS:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+input.formTextS:focus {
+	background-color: #fff8ef;
+}
+
+input.formTextL {
+	width: 260px;
+	padding: 5px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+input.formTextL:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+input.formTextL:focus {
+	background-color: #fff8ef;
+}
+
+textarea.formTextarea {
+	width: 350px;
+	height: 120px;
+	padding: 5px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+textarea.formTextarea:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+textarea.formTextarea:focus {
+	background-color: #fff8ef;
+}
+
+textarea.wysiwyg {
+	width: 100%;
+}
+
+input.formButton {
+	width: 70px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	outline: none;
+	cursor: pointer;
+	font-size: 12px;
+	border: none;
+	background: url(../images/form_bg.gif) 0px 0px no-repeat;
+}
+
+input.formButton:hover {
+	color: #ff6600;
+	background: url(../images/form_bg.gif) 0px -30px no-repeat;
+}
+
+input.formButtonL {
+	width: 90px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	outline: none;
+	cursor: pointer;
+	font-size: 12px;
+	border: none;
+	background: url(../images/form_bg.gif) -90px 0px no-repeat;
+}
+
+input.formButtonL:hover {
+	color: #ff6600;
+	background: url(../images/form_bg.gif) -90px -30px no-repeat;
+}
+
+span.warnInfo {
+	height: 25px;
+	line-height: 23px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	padding: 0px 5px;
+	border: 1px solid #ffca80;
+	background-color: #fffee2;
+}
+
+span.warnInfo .icon {
+	width: 18px;
+	height: 25px;
+	line-height: 25px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/message_bg.gif) no-repeat 0px -150px;
+}
+
+span.warnIcon {
+	width: 16px;
+	height: 29px;
+	line-height: 29px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/message_bg.gif) no-repeat -30px -150px;
+}
+
+span.loadingIcon {
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/loading_icon.gif) center no-repeat;
+}
+
+span.loadingBar {
+	width: 208px;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	display: -moz-inline-stack;
+	zoom: 1;
+	*display: inline;
+	background: url(../images/loading_bar.gif) center no-repeat;
+}
